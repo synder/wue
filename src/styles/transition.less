@@ -1,0 +1,33 @@
+.wue-fade-enter-active,.wue-fade-leave-active {
+  opacity: 1;
+  transition: opacity linear 0.2s;
+}
+
+.wue-fade-enter, .wue-fade-leave-to {
+  opacity: 0;
+}
+
+.wue-dialog-enter-active, .wue-dialog-leave-active {
+  opacity: 1;
+  transition-duration: 400ms;
+  transform: translate(-50%, -50%) scale(1)!important;
+  transition-property: transform, opacity!important;
+}
+.wue-dialog-leave-active {
+  transition-duration: 300ms;
+}
+.wue-dialog-enter {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.185)!important;
+}
+.wue-dialog-leave-active {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.85)!important;
+}
+
+.wue-mask-enter, .wue-mask-leave-active {
+  opacity: 0;
+}
+.wue-mask-leave-active, .wue-mask-enter-active {
+  transition: opacity 300ms;
+}

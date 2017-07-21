@@ -1,0 +1,245 @@
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes loader {
+  0% {
+    -webkit-transform: scale(1, .5);
+    transform: scale(1, .5);
+    opacity: .2;
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
+@keyframes goup {
+  0% {
+    -webkit-transform: translate(0, 1.875rem);
+    transform: translate(0, 1.875rem);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+
+.wue-chat {
+  .chat-content {
+    content: '';
+    clear: both;
+    display: table;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.45rem;
+    margin: 0;
+  }
+
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  
+  .box-body {
+    flex: 1;
+  }
+
+  .box-footer {
+    background-color: #fff;
+    display: block;
+  }
+}
+
+.wue-chat-button{
+  
+}
+
+
+.bubble {
+  &:before {
+    content: '';
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: .438rem;
+    height: .438rem;
+    position: absolute;
+    top: .938rem;
+    background-color: inherit;
+    border-right-color: inherit;
+    border-bottom-color: inherit;
+  }
+  max-width: 14.688rem;
+  min-height: 2.5rem;
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  font-size: .875rem;
+  border-radius: .125rem;
+  margin: 0 .875rem;
+}
+
+.avatar {
+  > img {
+    width: 100%;
+  }
+  background-size: contain;
+  background-position: center center;
+}
+
+.message {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  float: left;
+  -webkit-animation: goup .5s;
+  animation: goup .5s;
+  .avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-top: .938rem;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .author_name {
+    height: .938rem;
+    margin: 0 .875rem;
+    font-size: .625rem;
+    line-height: .938rem;
+    color: #b0b0b0;
+  }
+  .content {
+    overflow: hidden;
+  }
+}
+
+.scroll-wrapper {
+  overflow: hidden !important;
+  padding: 0 !important;
+  -webkit-overflow-scrolling: touch;
+  > .scroll-content {
+    height: 100%;
+    overflow-x: hidden !important;
+    overflow-y: scroll !important;
+  }
+}
+
+.message.me {
+  float: right;
+  text-align: right;
+  clear: right;
+  .avatar {
+    float: right;
+  }
+}
+
+.message.others {
+  float: left;
+  text-align: left;
+  clear: left;
+  .avatar {
+    float: left;
+  }
+}
+
+.bubble-count {
+  .picture {
+    img {
+      max-width: 9.375rem;
+      max-height: 9.375rem;
+      display: block;
+      cursor: pointer;
+    }
+    border-radius: .125rem;
+    overflow: hidden;
+    position: relative;
+  }
+  .video {
+    img {
+      max-width: 9.375rem;
+      max-height: 9.375rem;
+    }
+    video {
+      max-width: 9.375rem;
+      max-height: 9.375rem;
+    }
+  }
+  .plain {
+    .hide {
+      display: none;
+    }
+    padding: .68rem .625rem;
+    font-size: 1rem;
+    
+    img {
+      width: 1.5rem;
+    }
+    .trans {
+      display: block;
+      cursor: pointer;
+      margin-top: .25rem;
+      padding-top: .25rem;
+      color: #669a27;
+      border-top: .0703rem solid #dcdcdc;
+    }
+  }
+  word-wrap: break-word;
+  word-break: break-all;
+  min-height: 2.5rem;
+}
+
+.bubble.bubble-image {
+  &:before {
+    display: none;
+  }
+  border: none;
+}
+
+.bubble.right {
+  &:before {
+    right: -.188rem;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+}
+
+.bubble.left {
+  &:before {
+    left: -.188rem;
+    -webkit-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+}
+
+.bubble.bubble-default {
+  background-color: #fff;
+  border-color: #919191;
+}
+
+.bubble.bubble-default.left {
+  &:before {
+    border-color: #919191;
+  }
+}
+
+.bubble.bubble-primary {
+  background-color: #90d936;
+  border-color: #6c9a36;
+}
+
+.bubble.bubble-primary.right {
+  &:before {
+    border-color: #6c9a36;
+  }
+}
