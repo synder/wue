@@ -1,8 +1,10 @@
+```
 <template>
-    <div style="height: 2000px; background-color: #0BB20C;">
-        <wue-backtop></wue-backtop>
-    </div>
-    
+    <wue-scroll-tab>
+        <wue-scroll-tab-panel v-for="item in list" :label="item.label" :icon="item.icon" :active="item.active">
+            <div style="height: 350px;" :style="{backgroundColor: item.color}">{{item.label}}</div>
+        </wue-scroll-tab-panel>
+    </wue-scroll-tab>
 </template>
 
 <style lang="less">
@@ -13,9 +15,6 @@
 
     import tab from '../../../src/components/tab/index.vue';
     import panel from '../../../src/components/tab/panel.vue';
-    import badge from '../../../src/components/badge/index.vue';
-    import WueBadge from "../../../src/components/badge/index";
-    import backtop from "../../../src/components/backtop/index";
 
 
     export default {
@@ -53,11 +52,9 @@
             }
         },
         components: {
-            WueBadge,
             'wue-scroll-tab': tab,
             'wue-scroll-tab-panel': panel,
-            'wue-badge': badge,
-            'wue-backtop': backtop,
         }
     }
 </script>
+```

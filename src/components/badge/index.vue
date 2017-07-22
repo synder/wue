@@ -12,6 +12,11 @@
                 type: String,
                 default: '#F43530',
             },
+
+            radius: {
+                type: Number | String,
+                default: '50%'
+            },
         },
         
         data(){
@@ -26,7 +31,10 @@
             },
             
             style(){
-                return { 'background-color': this.color };
+                return { 
+                    backgroundColor: this.color,
+                    borderRadius: this.radius.toString().indexOf('%') > 0 ? this.radius : this.radius + 'px',
+                };
             }
         },
         
