@@ -2,7 +2,7 @@
     <div v-show="show" @click.stop="backTop">
         <slot>
             <div class="wue-backtop">
-                <i class="icon-arrow-up-h"></i>
+                <i class="icon-arrow-up-l"></i>
             </div>
         </slot>
     </div>
