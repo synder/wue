@@ -1,5 +1,6 @@
 <template>
     <div style="height: 2000px; background-color: #0BB20C;">
+        <div style="background-color: red; height: 800px;"></div>
         <wue-backtop></wue-backtop>
     </div>
     
