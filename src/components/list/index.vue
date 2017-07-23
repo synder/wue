@@ -25,6 +25,8 @@
 
 <style lang="less" scoped>
 
+    @import "../../styles/base/reset.less";
+
     @line-color: #D9D9D9;
 
     .text-overflow(@align: justify) {

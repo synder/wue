@@ -1,5 +1,5 @@
 <template>
-    <i class="weui-loading" style="{ 'fontSize': size + 'px', 'color': color }"></i>
+    <i class="weui-loading" :style="style"></i>
 </template>
 
 <script>
@@ -14,6 +14,15 @@
             color: {
                 type: String,
                 default: '#ccc'
+            }
+        },
+        
+        computed: {
+            style(){
+                return { 
+                    fontSize: this.size + 'px', 
+                    color: this.color 
+                }
             }
         }
     }

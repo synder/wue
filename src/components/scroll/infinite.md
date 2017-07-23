@@ -1,3 +1,6 @@
+
+
+```
 <template>
     <div>
         <wue-infinite-scroll :on-infinite="loadList" ref="infinite">
@@ -32,7 +35,7 @@
             WueList,
             WueListItem,
             WueBacktop,
-            'wue-infinite-scroll': WueInfiniteScroll
+            WueInfiniteScroll
         },
         
         data() {
@@ -106,7 +109,7 @@
                         productprice: 89.36
                     });
 
-                    self.$refs.infinite.over();
+                    self.$refs.infinite.finished();
 
                 }, 5000);
                 
@@ -115,3 +118,4 @@
         }
     }
 </script>
+```
