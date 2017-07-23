@@ -120,7 +120,7 @@ i {
 .icon-photo:before {
   content: "\e656";
 }
-.icon-checkmark:before {
+.icon-checked:before {
   content: "\e661";
 }
 .icon-coupon:before {
@@ -267,7 +267,7 @@ i {
 .icon-unlike:before {
   content: "\e60a";
 }
-.icon-microphoneicon:before {
+.icon-microphone:before {
   content: "\e643";
 }
 .icon-phone-o:before {

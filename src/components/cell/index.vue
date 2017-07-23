@@ -1,5 +1,6 @@
 <template>
-    <a class="weui-cell" :class="{'weui-cell_access': !!to}" :href="href"  @click="handleClick" v-if="to">
+
+    <router-link class="weui-cell" :class="{'weui-cell_access': !!to}" :href="href"  @click="handleClick" v-if="to">
         <div class="weui-cell_hd" v-if="icon">
             <slot name="icon">
                 <img :src="icon"  alt="" class="cell-icon" :style="iconStyle">
@@ -13,7 +14,7 @@
         <div class="weui-cell__ft">
             <slot name="label">{{label}}</slot>
         </div>
-    </a>
+    </router-link>
     
     <div class="weui-cell" :class="{'weui-cell_access': !!to}"  @click="handleClick" v-else>
         <div class="weui-cell_hd" v-if="icon">
@@ -62,11 +63,7 @@
             },
             
             handleClick(event){
-                if(this.to){
-                    window.location.hash = this.to;
-                }else{
-                    this.$emit('click', event);
-                }
+                this.$emit('click', event);
             }
         }
     }

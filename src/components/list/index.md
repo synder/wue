@@ -1,3 +1,6 @@
+
+
+```
 <template>
     <div>
         <wue-list :theme="theme">
@@ -101,3 +104,5 @@
         }
     }
 </script>
+
+```

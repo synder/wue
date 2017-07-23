@@ -2,7 +2,7 @@
     <div v-show="show" @click.stop="backTop">
         <slot>
             <div class="wue-backtop">
-                <i class="icon-arrow-up-l"></i>
+                <i class="weui-icon-arrow-up-l"></i>
             </div>
         </slot>
     </div>
@@ -116,10 +116,9 @@
     @base-zindex: 1;
     
     .wue-backtop {
-        border: none;
         width: 3rem;
         height: 3rem;
-        background-color: rgba(255, 255, 255, .85);
+        background-color: rgba(230, 230, 230, .85);
         position: fixed;
         border-radius: 50%;
         right: 5%;
@@ -128,6 +127,7 @@
         align-items: center;
         justify-content: center;
         z-index: @base-zindex * 1000;
+        border: none;
         color: #0BB20C;
         font-size: 1.5rem;
     }

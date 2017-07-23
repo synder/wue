@@ -26,7 +26,7 @@
             icon: String,
             onIcon: String,
             badge: Number | String,
-            dot: Boolean
+            dot: Boolean,
         },
         
         data(){
@@ -55,6 +55,7 @@
             handleClick () {
                 this.$emit('click', this);
                 this.$parent.$emit('input', this.id);
+                this.$parent.$emit('active', this.id);
             }
         }
     }
