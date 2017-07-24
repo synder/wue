@@ -1,51 +1,76 @@
 <template>
-
     <div class="weui-uploader">
-        <div class="weui-uploader__hd">
-            <p class="weui-uploader__title">图片上传</p>
-            <div class="weui-uploader__info">
+        <div class="weui-uploader__hd" v-if="title || limit">
+            <p class="weui-uploader__title" v-if="title" v-html="title"></p>
+            <div class="weui-uploader__info" v-if="limit">
                 <span v-text="id"></span>/<span v-text="limit"></span>
             </div>
         </div>
         <div class="weui-uploader__bd">
             <ul class="weui-uploader__files">
-                <li class="weui-uploader__file weui-uploader__file_status" v-for="file in files"
-                    :style="file.style">
+                <li class="weui-uploader__file weui-uploader__file_status" v-for="file in files" :style="file.style">
                     <div class="weui-uploader__file-content">
-                        <i class="weui-icon-warn" v-if="file.status === 'fail'"></i>
+                        <wue-icon name="info" color="red" v-if="file.status === 'fail'"></wue-icon>
+                        <wue-circle :value="file.percent" :diameter="(width > height ? height : width) - 20" @click="onPause(file.id)" v-else-if="file.status === 'progress'" ></wue-circle>
                     </div>
                 </li>
             </ul>
-            <div class="weui-uploader__input-box">
-                <input id="uploaderInput" class="weui-uploader__input" ref="file" type="file" accept="image/*" capture="camera" multiple="">
+            <div class="weui-uploader__input-box" :style="style">
+                <input class="weui-uploader__input" ref="file" type="file" accept="image/png" :capture="capture" :multiple="!!multiple" v-if="update">
             </div>
         </div>
     </div>
-    
 </template>
 
 <style lang='less' scoped>
     @import "../../styles/base/reset.less";
+    @import "../../styles/icon/weui-font.less";
+    @import "../../styles/icon/weui-icon_font.less";
+    @import "../../styles/icon/weui-icon_font.less";
     @import "../../styles/widget/weui-cell/weui-uploader.less";
-
 </style>
 
 <script>
+    import circle from '../circle/index.vue';
+    import icon from '../icon/index.vue';
     import compress from './compress.js';
 
     export default {
         name: '',
+        
+        components: {
+            'wue-circle' : circle,
+            'wue-icon' : icon,
+        },
 
         props: {
+            value: Array,
             compress: Object,
+            multiple: Boolean,
             auto: {
                 type: Boolean,
                 default: true
             },
-            limit: {
-                type: Number,
-                default: 5
+            capture: {
+                type: String,
             },
+            width: {
+                type: Number,
+                validator(value){
+                    return value > 40;
+                },
+                default: 60
+            },
+            removable: Boolean,
+            height: {
+                type: Number,
+                validator(value){
+                    return value > 40;
+                },
+                default: 60
+            },
+            title: String,
+            limit: Number,
             type: {
                 type: String,
                 default: 'file'
@@ -54,11 +79,11 @@
                 type: String,
                 required: true
             },
-            fileVal: {
+            name: {
                 type: String,
                 default: 'file'
             },
-            xhrFields: {
+            fields: {
                 type: Object,
                 default: function () {
                     return {};
@@ -75,18 +100,23 @@
         data(){
             return {
                 id: 0,
-                files: [
-                    
-                ]
+                files: [],
+                update: true
             };
         },
 
-        computed: {},
+        computed: {
+            style(){
+                return {
+                    width: this.width + 'px',
+                    height: this.height + 'px'
+                };
+            }
+        },
 
         methods: {
-            init(){
+            __initFunction(){
                 const self = this;
-
 
                 self._onBeforeQueued = function (file, files) {
                     if (self.onBeforeQueued) {
@@ -101,7 +131,9 @@
                     }
 
                     file.style = {
-                        backgroundImage: 'url("' + (file.base64 || file.url) + '")'
+                        backgroundImage: 'url("' + (file.base64 || file.url) + '")',
+                        width: this.width + 'px',
+                        height: this.height + 'px'
                     };
 
                     self.files.push(file);
@@ -114,30 +146,55 @@
                     return true;
                 };
 
-                self._onSuccess = function (file, ret) {
+                self._onSuccess = function (file, result) {
                     file.status = 'success';
+
+                    self.files.forEach(function (item) {
+                        if(item.id === file.id){
+                            self.$set(self.files, file.id, file);
+                        }
+                    });
+
                     if (self.onSuccess) {
-                        self.onSuccess(file, ret);
+                        self.onSuccess(file, result);
                     }
                 };
 
                 self._onProgress = function (file, percent) {
-                    if (self.onProgress) {
-                        self.onProgress.call(file, percent)
-                    }
 
+                    file.status = 'progress';
+                    file.percent = percent;
+
+                    self.files.forEach(function (item) {
+                        if(item.id === file.id){
+                            self.$set(self.files, file.id, file);
+                        }
+                    });
+
+                    if (self.onProgress) {
+                        self.onProgress.call(file, percent);
+                    }
                 };
 
                 self._onError = function (file, err) {
-                    
                     file.status = 'fail';
-                    
-                    if (self.onError) {
-                        if (!self.onError.call(file, err)) {
-                            //todo 上传错误提示
+
+                    self.files.forEach(function (item) {
+                        if(item.id === file.id){
+                            self.$set(self.files, file.id, file);
                         }
+                    });
+
+                    if(self.onError){
+                        self.onError.call(file, err);
                     }
                 };
+            },
+            
+            init(){
+                const self = this;
+                
+                console.log(self.$refs.file);
 
                 if (self.$refs.file) {
                     self.$refs.file.onchange = function (event) {
@@ -150,8 +207,8 @@
                         if (!self.compress && self.type === 'file') {
                             // 以原文件方式上传
                             Array.prototype.forEach.call(files, (file) => {
-                                self.id += 1;
                                 file.id = self.id;
+                                self.id += 1;
 
                                 if (self._onBeforeQueued(file, files) === false) {
                                     return;
@@ -162,8 +219,8 @@
                         } else {
                             // base64上传 和 压缩上传
                             Array.prototype.forEach.call(files, (file) => {
-                                self.id += 1;
                                 file.id = self.id;
+                                self.id += 1;
 
                                 if (self._onBeforeQueued(file, files) === false) {
                                     return;
@@ -217,9 +274,9 @@
                 });
 
                 if (self.type === 'file') {
-                    formData.append(self.fileVal, file, name);
+                    formData.append(self.name, file, name);
                 } else {
-                    formData.append(self.fileVal, file.base64);
+                    formData.append(self.name, file.base64);
                 }
 
                 xhr.onreadystatechange = function () {
@@ -248,8 +305,8 @@
 
                 xhr.open('POST', self.url);
 
-                Object.keys(self.xhrFields).forEach((key) => {
-                    xhr[key] = self.xhrFields[key];
+                Object.keys(self.fields).forEach((key) => {
+                    xhr[key] = self.fields[key];
                 });
 
                 // 设置头部信息
@@ -273,7 +330,7 @@
                 };
 
                 file.stop = function () {
-                    self.xhr.abort();
+                    this.xhr.abort();
                 };
 
                 self._onQueued(file);
@@ -283,12 +340,35 @@
                 }
 
                 return file;
+            },
+
+            onPause(id){
+                const self = this;
+                let file = null;
+                
+                self.files.forEach(function (item) {
+                    if(item.id === id){
+                        file = item;
+                    }
+                });
+                
+                if(file){
+                    if(file.status === 'pause'){
+                        file.upload();
+                    }else{
+                        file.stop();
+                        file.status = 'pause';
+                    }
+
+                    self.$set(self.files, file.id, file);
+                }
             }
         },
 
         watch: {},
 
         mounted(){
+            this.__initFunction();
             this.init();
         }
     }

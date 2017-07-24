@@ -1,8 +1,9 @@
 <template>
-    <div class="wue-circle" :style="style">
+    <div class="wue-circle" :style="style" @click="click">
         <svg :width="diameter" :height="diameter" :viewBox="'0 0 ' + diameter + ' ' + diameter">
             <path :d="pathString" :stroke="trailColor" :stroke-width="lineWidth" fill="none"/>
-            <path :d="pathString" stroke-linecap="round" :stroke="strokeColor" :stroke-width="lineWidth" :style="pathStyle"
+            <path :d="pathString" stroke-linecap="round" :stroke="strokeColor" :stroke-width="lineWidth"
+                  :style="pathStyle"
                   :fill="fillColor"/>
         </svg>
         <div class="wue-circle-content">
@@ -56,7 +57,8 @@
             style () {
                 return {
                     width: this.diameter + 'px',
-                    heigth: this.diameter + 'px'
+                    height: this.diameter + 'px',
+                    textAlign: 'center',
                 }
             },
 
@@ -70,8 +72,8 @@
 
             pathString () {
                 return `M ${this.radius},${this.radius} m 0,-${this.pathRadius}
-      a ${this.pathRadius},${this.pathRadius} 0 1 1 0,${2 * this.pathRadius}
-      a ${this.pathRadius},${this.pathRadius} 0 1 1 0,-${2 * this.pathRadius}`
+                        a ${this.pathRadius},${this.pathRadius} 0 1 1 0,${2 * this.pathRadius}
+                        a ${this.pathRadius},${this.pathRadius} 0 1 1 0,-${2 * this.pathRadius}`
             },
 
             len () {
@@ -84,6 +86,11 @@
                     'stroke-dashoffset': `${((100 - this.currentValue) / 100 * this.len)}px`,
                     'transition': `stroke-dashoffset ${this.speed}ms ease 0s, stroke ${this.speed}ms ease`
                 }
+            }
+        },
+        methods: {
+            click(){
+                this.$emit('click');
             }
         },
 
@@ -102,8 +109,8 @@
 <style scoped lang="less">
     .wue-circle {
         position: relative;
-        width: 100%;
-        height: 100%;
+        text-align: center;
+        margin: 0 auto;
 
         .wue-circle-content {
             width: 100%;

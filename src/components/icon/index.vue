@@ -1,5 +1,5 @@
 <template>
-    <i :class="'weui-icon-' + name" :style="style"></i>
+    <i :class="'weui-icon-' + name" :style="style" @click="click"></i>
 </template>
 
 <script>
@@ -15,6 +15,8 @@
                 type: Number | String,
                 default: 23
             },
+            
+            color: String
         },
 
         computed: {
@@ -32,8 +34,18 @@
                        result.fontSize = (parseInt(this.size) || 23) + 'px';
                    }
                }
+               
+               if(this.color){
+                   result.color = this.color;
+               }
                 
                 return result;
+            }
+        },
+        
+        methods: {
+            click(){
+                this.$emit('click');
             }
         }
     }

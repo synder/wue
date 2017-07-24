@@ -1,6 +1,6 @@
 <template>
     <div>
-        <wue-upload url="/upload"></wue-upload>
+        <wue-upload url="/upload" :width="100" :height="60" :on-progress="progress" :removable="true"></wue-upload>
     </div>
 </template>
 
@@ -21,7 +21,9 @@
         },
         
         methods: {
-            
+            progress(){
+                
+            }
         }
     }
 </script>

@@ -19,6 +19,10 @@ const compiler = webpack(config);
 app.use(webpackDev(compiler, config));
 app.use(webpackHot(compiler, config));
 
+//ctrl====================================
+const upload = require('./ctrl/upload');
+
+app.post('/upload', upload.batch);
 
 app.use(express.static('./static'));
 
