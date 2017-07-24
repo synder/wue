@@ -1,5 +1,5 @@
 <template>
-
+    <!---->
 </template>
 
 <style lang='less' scoped>
@@ -10,7 +10,12 @@
     export default {
         name: '',
 
-        props: {},
+        props: {
+            direction: {
+                type: String,
+                default: 'up'
+            }
+        },
 
         data(){
             return {};

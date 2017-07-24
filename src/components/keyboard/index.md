@@ -1,3 +1,5 @@
+
+```
 <template>
     
     <wue-keyboard v-model="show1" :input-done="done1">
@@ -25,3 +27,5 @@
         }
     }
 </script>
+
+```
