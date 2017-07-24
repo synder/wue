@@ -17,7 +17,8 @@
 
 <style lang="less" scoped>
 
-    @line-color: #D9D9D9;
+    @line-color: #E5E5E5;
+    @arrow-color: #A0A0A0;
 
     .bottom-line(@color, @zindex: 0) {
         content: '';
@@ -58,7 +59,7 @@
                 height: 0;
                 border-left: 5px solid transparent;
                 border-right: 5px solid transparent;
-                border-bottom: 7px solid #A0A0A0;
+                border-bottom: 7px solid @arrow-color;
                 display: block;
                 transition: transform .25s cubic-bezier(0.4, 0.6, 0.2, 1);
                 transform: rotate(0deg);
@@ -108,7 +109,8 @@
                 this.setHeight();
             },
             setHeight() {
-                this.height = (this.show ? this.$refs.content.offsetHeight : 0) + 'px';
+                const content =  this.$refs.content;
+                this.height = (this.show ? content.offsetHeight : 0) + 'px';
             }
         },
         mounted() {

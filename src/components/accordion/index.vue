@@ -16,7 +16,7 @@
         methods: {
             open(uid) {
                 this.$children.forEach(item => {
-                    if (item._uid == uid) {
+                    if (item._uid === uid) {
                         item.show = !item.show;
                     } else {
                         if (!this.accordion) {

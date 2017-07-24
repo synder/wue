@@ -7,7 +7,12 @@
                   :fill="fillColor"/>
         </svg>
         <div class="wue-circle-content">
-            <slot></slot>
+            <slot>
+                <p :style="{color: strokeColor}">
+                    <span v-text="currentValue"></span>%
+                </p>
+               
+            </slot>
         </div>
     </div>
 </template>
