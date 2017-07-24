@@ -131,7 +131,7 @@
         position: relative
     }
 
-    .wue-color-checked.weui-icon-success-no-circle:before {
+    .wue-color-checked .weui-icon-success-no-circle:before {
         color: #fff;
     }
 

@@ -1,27 +1,33 @@
 <template>
-    
-    <wue-keyboard v-model="show1" :input-done="done1">
-        
-    </wue-keyboard>
+    <wue-icon name="back" color="red"></wue-icon>
 </template>
 
-<script type="text/babel">
-    import keyboard from '../../../src/components/keyboard/index.vue';
-    
+<script>
+    import icon from '../../../src/components/icon/index.vue';
+    import WueIcon from "../../../src/components/icon/index";
+
     export default {
-        data() {
+        components: {
+            WueIcon,
+            'wue-icon': icon,
+        },
+        data () {
             return {
-                show1: true,
-                show2: false
+                step1: 1,
+                step2: 0
             }
         },
-        components: {
-            'wue-keyboard': keyboard
-        },
         methods: {
-            done1(val) {
-                console.log('输入的密码是：' + val);
-            },
+            nextStep () {
+                this.step2 ++
+            }
         }
     }
 </script>
+
+<style lang="less">
+    .btn_wrap {
+        padding: 0 1rem;
+        margin-top: 2rem;
+    }
+</style>

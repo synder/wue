@@ -1,5 +1,5 @@
 <template>
-    <i :class="'weui-icon-' + name" :style="style" @click="click"></i>
+    <i :class="'wue-icon-' + name" :style="style" @click="click"></i>
 </template>
 
 <script>
@@ -52,7 +52,5 @@
 </script>
 
 <style scoped lang="less">
-    @import '../../styles/icon/weui-font.less';
     @import '../../styles/icon/wue-icon.less';
-    @import '../../styles/icon/weui-icon_font.less';
 </style>
