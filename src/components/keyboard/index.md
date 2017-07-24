@@ -1,4 +1,7 @@
 
+
+#:disorder="true" 即可打开乱序键盘
+
 ```
 <template>
     
@@ -29,3 +32,5 @@
 </script>
 
 ```
+
+![预览](./preview.png)
