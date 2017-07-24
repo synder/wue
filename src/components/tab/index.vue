@@ -38,7 +38,7 @@
                 this.navList.push(panel);
             },
             getPanels() {
-                return this.$children.filter(item => item.$options.name === 'wue-scroll-tab-panel');
+                return this.$children.filter(item => item.$options.name === 'wue-scroll-tab-item');
             },
             bindEvent() {
                 this.scrollView.addEventListener('scroll', this.scrollHandler);

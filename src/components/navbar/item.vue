@@ -9,7 +9,10 @@
         name: 'wue-navbar-item',
 
         props: {
-            id: String,
+            id: {
+                type: String | Number,
+                required: true
+            },
             disabled: Boolean
         },
         
@@ -23,12 +26,13 @@
             onClick(){
                 this.$emit('input', this.id);
                 this.$emit('on-item-click', this.id);
+                this.$parent.currentValue = this.id;
             },
         },
 
         computed: {
             isSelected () {
-                return this.id === this.$parent.value
+                return this.id === this.$parent.currentValue
             },
 
             style () {
@@ -48,7 +52,7 @@
         position: relative;
         display: block;
         flex: 1;
-        padding: 13px 0;
+        padding: 10px 0;
         text-align: center;
         font-size: 15px;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

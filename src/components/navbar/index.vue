@@ -9,6 +9,7 @@
         name: 'wue-navbar',
 
         props: {
+            value: String | Number,
             fixed: Boolean,
             color: {
                 type: String,
@@ -26,11 +27,20 @@
                 type: String,
                 default: '#cfcfcf'
             },
+            height: {
+                type:Number  
+            },
             lineWidth: {
                 type: Number,
                 default: 3
             },
-            value: {}
+           
+        },
+        
+        data(){
+            return {
+                currentValue: this.value
+            };
         },
 
         computed: {
@@ -43,8 +53,12 @@
         },
 
         watch: {
-            value (newValue) {
-                this.$emit('change', newValue)
+            currentValue (newValue) {
+                this.$emit('input', newValue);
+            },
+            
+            value(newValue){
+                this.currentValue = newValue;
             }
         }
     }

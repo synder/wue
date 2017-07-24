@@ -1,29 +1,50 @@
 <template>
-    <div>
-        <wue-upload url="/upload" :width="100" :height="60" :on-progress="progress" :removable="true"></wue-upload>
-    </div>
+    <wue-navbar v-model="selected" fixed>
+        <wue-navbar-item id="item1" @on-item-click="handle">选项1</wue-navbar-item>
+        <wue-navbar-item id="item2" @on-item-click="handle">选项2</wue-navbar-item>
+        <wue-navbar-item id="item3" @on-item-click="handle">选项3</wue-navbar-item>
+    </wue-navbar>
 </template>
 
-<script type="text/babel">
+<style lang="less">
 
+</style>
 
-    import upload from '../../../src/components/upload/index.vue';
-    import WueUpload from "../../../src/components/upload/index";
+<script>
+
+    import navbar from '../../../src/components/navbar/index.vue';
+    import item from '../../../src/components/navbar/item.vue';
+
 
     export default {
-        components: {
-            WueUpload,
-            'wue-upload': upload
-        },
-        
         data() {
-            return {}
-        },
-        
-        methods: {
-            progress(){
-                
+            return {
+                selected: 'item1',
             }
+        },
+
+        watch: {
+            selected (newVal) {
+                console.log('a', newVal);
+            }
+        },
+
+        created(){
+         
+
+        },
+
+        methods: {
+            handle: function (id) {
+               
+            },
+            
+            
+            
+        },
+        components: {
+            'wue-navbar': navbar,
+            'wue-navbar-item': item,
         }
     }
 </script>

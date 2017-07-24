@@ -41,7 +41,7 @@
 
 <script type="text/babel">
     export default {
-        name: 'wue-scroll-tab-panel',
+        name: 'wue-scroll-tab-item',
         props: {
             label: String,
             icon: String,
