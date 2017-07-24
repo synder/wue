@@ -1,5 +1,5 @@
 <template>
-    <wue-icon name="back" color="red"></wue-icon>
+    <wue-icon name="back" color="red" :size="90"></wue-icon>
 </template>
 
 <script>

@@ -1,18 +1,17 @@
 <template>
     <div v-if="visible">
         <div class="weui-toast" :class="{ 'weui-toast_text': type === 'text' }" :style="style" ref="toast">
-            <wue-icon :type="icon" class="weui-icon_toast" v-if="type !== 'text'"></wue-icon>
+            <i class="weui-icon_toast" :class="icon" v-if="type !== 'text'"></i>
             <p class="weui-toast__content" v-text="message"></p>
         </div>
     </div>
 </template>
 
 <script>
-    import Icon from '../icon/index';
 
     export default {
         components: {
-            'wue-icon': Icon
+      
         },
 
         props: {
@@ -21,7 +20,7 @@
             },
             icon: {
                 type: String,
-                default: 'success-no-circle'
+                default: 'weui-icon-success-no-circle'
             },
             type: {
                 type: String,
@@ -36,7 +35,7 @@
         computed: {
             style () {
                 if (this.type === 'text') {
-                    const messageLength = this.message.length + 2
+                    const messageLength = this.message.length + 2;
 
                     return {
                         width: messageLength + 'em',
@@ -53,4 +52,6 @@
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
     @import '../../styles/widget/weui-tips/weui-toast.less';
+    @import '../../styles/icon/weui-font.less';
+    @import '../../styles/icon/weui-icon_font.less';
 </style>

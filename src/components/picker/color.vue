@@ -9,9 +9,7 @@
                           @click="change(color)"
                           :class="{'wue-color-white': color.toUpperCase().indexOf('#FFF') > -1}">
                         
-                        <wue-icon v-if="color === value" class="wue-color-checked" 
-                                  :style="{lineHeight: width + 'px'}" 
-                                  type="success-no-circle"></wue-icon>
+                        <i v-if="color === value" class="wue-color-checked weui-icon-success-no-circle" :style="{lineHeight: width + 'px'}"></i>
                     </span>
                 </wue-flex-item>
             </wue-flex>
@@ -20,17 +18,13 @@
 </template>
 
 <script>
-    import Icon from '../icon/index.vue';
     import Flex from '../flex/index.vue';
     import FlexItem from '../flex/item.vue';
     import Picker from './index.vue';
-    import WuePicker from "./index";
 
     export default {
         name: 'color-picker',
         components: {
-            WuePicker,
-            'wue-icon': Icon,
             'wue-flex': Flex,
             'wue-picker': Picker,
             'wue-flex-item': FlexItem,
@@ -108,6 +102,10 @@
 </script>
 
 <style lang="less">
+
+    @import '../../styles/base/reset.less';
+    @import '../../styles/icon/weui-font.less';
+    @import '../../styles/icon/weui-icon_font.less';
     
     .weui-picker__bd{
         display: block !important;

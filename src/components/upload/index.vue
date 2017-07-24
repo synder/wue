@@ -10,7 +10,7 @@
             <ul class="weui-uploader__files">
                 <li class="weui-uploader__file weui-uploader__file_status" v-for="file in files" :style="file.style">
                     <div class="weui-uploader__file-content">
-                        <wue-icon name="info" color="red" v-if="file.status === 'fail'"></wue-icon>
+                        <i class="weui-icon-info" style="color: red;" v-if="file.status === 'fail'"></i>
                         <wue-circle :value="file.percent" :diameter="(width > height ? height : width) - 20" @click="onPause(file.id)" v-else-if="file.status === 'progress'" ></wue-circle>
                     </div>
                 </li>
@@ -26,13 +26,11 @@
     @import "../../styles/base/reset.less";
     @import "../../styles/icon/weui-font.less";
     @import "../../styles/icon/weui-icon_font.less";
-    @import "../../styles/icon/weui-icon_font.less";
     @import "../../styles/widget/weui-cell/weui-uploader.less";
 </style>
 
 <script>
     import circle from '../circle/index.vue';
-    import icon from '../icon/index.vue';
     import compress from './compress.js';
 
     export default {
@@ -40,7 +38,6 @@
         
         components: {
             'wue-circle' : circle,
-            'wue-icon' : icon,
         },
 
         props: {

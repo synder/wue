@@ -20,19 +20,17 @@
                     @input="handleInput">
         </div>
         <div class="weui-cell__ft">
-            <wue-icon type="warn" v-if="!verification"></wue-icon>
+            <i class="weui-icon-warn" v-if="!verification"></i>
             <slot></slot>
         </div>
     </div>
 </template>
 
 <script>
-    import icon from '../icon/index.vue';
     import button from '../button/index.vue';
 
     export default {
         components: {
-            'wue-icon': icon,
             'wue-button': button,
         },
 
@@ -132,6 +130,8 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
+    @import '../../styles/icon/weui-font.less';
+    @import '../../styles/icon/weui-icon_font.less';
     @import '../../styles/widget/weui-cell/weui-cell-global.less';
     @import '../../styles/widget/weui-cell/weui-form/weui-form_common.less';
     @import '../../styles/widget/weui-cell/weui-form/weui-vcode.less';
