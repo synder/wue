@@ -161,7 +161,7 @@ export default function compress(file, options, callback) {
 
             const maxW = options.compress.width;
             const maxH = options.compress.height;
-            const quality = options.compress.quality || 0.85;
+            const quality = options.compress.quality || 0.8;
             let w = img.width;
             let h = img.height;
             let dataURL;

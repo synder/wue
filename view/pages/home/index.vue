@@ -1,6 +1,6 @@
 <template>
     <div>
-        <wue-avatar background="red" v-model="value" url="/upload" :upload="true" :on-success="success"></wue-avatar>
+        <wue-avatar :width="300" :height="300" background="red" v-model="value" url="/upload" :upload="true" :on-success="success"></wue-avatar>
     </div>
 </template>
 

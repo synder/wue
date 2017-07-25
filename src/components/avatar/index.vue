@@ -10,7 +10,7 @@
     @import "../../styles/base/reset.less";
     
     .wue-avatar {
-        background-size: contain;
+        background-size: 100%;
         background-clip: border-box;
         background-position: center center;
         .border-radius(50%);
@@ -169,9 +169,9 @@
                         
                         const compressParams = {
                             compress: {
-                                width: parseInt(self.compress && self.compress.width ? self.compress.width : self.width * 3) || 100,
-                                height: parseInt(self.compress && self.compress.height ? self.compress.height : self.height * 3) || 100,
-                                quality: parseInt(self.compress && self.compress.quality ? self.compress.quality : self.quality * 3) || 0.85 ,
+                                width: parseInt(self.compress && self.compress.width ? self.compress.width : self.width * 1.5) || 100,
+                                height: parseInt(self.compress && self.compress.height ? self.compress.height : self.height * 1.5) || 100,
+                                quality: parseInt(self.compress && self.compress.quality ? self.compress.quality : self.quality) || 0.8 ,
                             },
                             type: 'file'
                         };
