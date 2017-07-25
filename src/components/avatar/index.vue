@@ -33,7 +33,7 @@
 
 <script>
     //集成上传功能的头像
-    import compress from '../../utils/compress.js';
+    import compress from '../../lib/file/compress.js';
     
     export default {
         name: 'wue-avatar',

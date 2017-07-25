@@ -11,6 +11,7 @@
 </template>
 
 <script>
+    import uuid from '../../lib/string/uuid.js';
     import Badge from '../badge/index.vue';
     
     export default {
@@ -37,7 +38,7 @@
 
         created(){
             if(!this.id){
-                this.id = Math.random().toString() + Date.now();
+                this.id = uuid();
             }
         },
 

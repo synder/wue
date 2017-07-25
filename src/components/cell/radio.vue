@@ -24,6 +24,9 @@
 </style>
 
 <script>
+
+    import uuid from '../../lib/string/uuid.js';
+    
     export default{
         name: 'wue-radio-cell',
         
@@ -34,18 +37,13 @@
         
         data(){
             return {
-                currentValue: this.value
+                currentValue: this.value,
+                name: uuid()
             };
         },
         
         methods: {
           
-        },
-        
-        computed: {
-            name(){
-               return Math.random().toString(36).substring(3, 8) + Math.random().toString(36).substring(3, 8);
-            }
         },
         
         watch: {

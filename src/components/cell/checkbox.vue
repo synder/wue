@@ -22,6 +22,9 @@
 </style>
 
 <script>
+    
+    import uuid from '../../lib/string/uuid.js';
+    
     export default{
         name: 'wue-checkbox-cell',
 
@@ -32,18 +35,13 @@
 
         data(){
             return {
-                currentValue: []
+                currentValue: [],
+                name: uuid()
             };
         },
 
         methods: {
             
-        },
-
-        computed: {
-            name(){
-                return Math.random().toString(36).substring(3, 8) + Math.random().toString(36).substring(3, 8);
-            }
         },
 
         watch: {

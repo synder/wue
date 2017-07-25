@@ -1,24 +1,40 @@
-const pageScroll = (function () {
-    const fn = function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-    };
-    let islock = false;
 
-    return {
-        lock: function () {
-            if (islock)return;
-            islock = true;
-            document.addEventListener('touchmove', fn);
-        },
-        unlock: function () {
-            islock = false;
-            document.removeEventListener('touchmove', fn);
+const isIOS = function () {
+    let userAgent = window.navigator && window.navigator.userAgent || '';
+    return !!userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+};
+
+const isAndroid = function () {
+    let userAgent = window.navigator && window.navigator.userAgent || '';
+    return /(Android);?[\s/]+([\d.]+)?/.test(userAgent);
+};
+
+const isWechat = function () {
+    let userAgent = window.navigator && window.navigator.userAgent || '';
+    return /micromessenger/i.test(userAgent);
+};
+
+const pageScroll = {
+    locked: false,
+    lock: function () {
+        if (this.locked){
+            return;
         }
-    };
-})();
+        this.locked = true;
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    },
+    unlock: function () {
+        this.locked = false;
+        document.removeEventListener('touchmove', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    }
+};
 
-const isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 
 const isColor = function (value) {
     const colorReg = /^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$/;
@@ -45,9 +61,9 @@ const checkInView = function (scrollView, el) {
     const contentTop = scrollView === window ? 0 : scrollView.getBoundingClientRect().top;
 
     const post = el.getBoundingClientRect().top - contentTop;
-    const posb = post + el.offsetHeight;
+    const postOffset = post + el.offsetHeight;
 
-    return (post >= 0 && post < contentHeight) || (posb > 0 && posb <= contentHeight);
+    return (post >= 0 && post < contentHeight) || (postOffset > 0 && postOffset <= contentHeight);
 };
 
 const hasClass = function (elem, cls) {
@@ -72,7 +88,6 @@ const removeClass = function (ele, cls) {
     }
 };
 
-//Copy from iView. https://www.iviewui.com/
 const scrollTop = function (el, from = 0, to, duration = 500) {
     if (!window.requestAnimationFrame) {
         window.requestAnimationFrame = (
@@ -106,4 +121,5 @@ const scrollTop = function (el, from = 0, to, duration = 500) {
     scroll(from, to, step);
 };
 
-export {pageScroll, isIOS, isColor, getScrollView, checkInView, addClass, removeClass, scrollTop};
+
+export {pageScroll, isIOS, isAndroid, isWechat, isColor, getScrollView, checkInView, addClass, removeClass, scrollTop};

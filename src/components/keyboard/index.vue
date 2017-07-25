@@ -40,7 +40,7 @@
 
 <script type="text/babel">
     
-    import {addClass, removeClass, getScrollView, pageScroll, isIOS} from '../../utils/dom.js';
+    import {addClass, removeClass, getScrollView, pageScroll, isIOS} from '../../lib/dom/index.js';
 
     export default {
         name: 'yd-keyboard',

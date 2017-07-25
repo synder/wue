@@ -5,6 +5,9 @@
 </template>
 
 <script>
+
+    import uuid from '../../lib/string/uuid.js';
+    
     export default {
         name: 'wue-navbar-item',
 
@@ -18,7 +21,7 @@
         
         created(){
             if(!this.id){
-                this.id = Math.random().toString() + Date.now();
+                this.id = uuid();
             }  
         },
 

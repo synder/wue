@@ -31,7 +31,7 @@
 
 <script>
     import circle from '../circle/index.vue';
-    import compress from '../../utils/compress.js';
+    import compress from '../../lib/file/compress.js';
 
     export default {
         name: 'wue-uploader',

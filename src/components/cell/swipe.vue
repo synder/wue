@@ -16,8 +16,11 @@
 </template>
 
 <script>
+
+    import uuid from '../../lib/string/uuid.js';
     import Transform from 'css3transform';
     import Cell from './index.vue';
+  
 
     export default {
         name: 'wue-cell-swipe',
@@ -30,7 +33,7 @@
             id: {
                 type: String,
                 default: function () {
-                    return Math.random().toString(36).substring(3, 8);
+                    return uuid();
                 }
             },
             icon: String,
