@@ -8,7 +8,7 @@
 
 <script>
     export default {
-        name: '',
+        name: 'wue-count',
 
         props: {
             direction: {

@@ -10,7 +10,7 @@
     
     //倒计时器
     export default {
-        name: '',
+        name: 'wue-clock',
 
         props: {},
 

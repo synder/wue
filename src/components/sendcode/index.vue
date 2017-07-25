@@ -8,7 +8,7 @@
 
 <script>
     export default {
-        name: '',
+        name: 'wue-send-code',
 
         props: {},
 
