@@ -141,7 +141,7 @@ function orientationHelper(canvas, ctx, orientation) {
 /**
  * 压缩图片
  */
-function compress(file, options, callback) {
+export default function compress(file, options, callback) {
     const reader = new FileReader();
     reader.onload = function (evt) {
         if(options.compress === false){
@@ -215,7 +215,3 @@ function compress(file, options, callback) {
     };
     reader.readAsDataURL(file);
 }
-
-export default {
-    compress
-};
