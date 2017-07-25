@@ -30,7 +30,6 @@ function detectVerticalSquash(img) {
     try {
         data = ctx.getImageData(0, 0, 1, ih).data;
     } catch (err) {
-        console.log('Cannot check verticalSquash: CORS?');
         return 1;
     }
     let sy = 0;
@@ -144,7 +143,7 @@ function orientationHelper(canvas, ctx, orientation) {
 export default function compress(file, options, callback) {
     const reader = new FileReader();
     reader.onload = function (evt) {
-        if(options.compress === false){
+        if(!options.compress){
             // 不启用压缩 & base64上传 的分支，不做任何处理，直接返回文件的base64编码
             file.base64 = evt.target.result;
             callback(file);
@@ -153,6 +152,7 @@ export default function compress(file, options, callback) {
 
         // 启用压缩的分支
         const img = new Image();
+        
         img.onload = function () {
             const ratio = detectVerticalSquash(img);
             const orientation = getOrientation(dataURItoBuffer(img.src));
@@ -161,6 +161,7 @@ export default function compress(file, options, callback) {
 
             const maxW = options.compress.width;
             const maxH = options.compress.height;
+            const quality = options.compress.quality || 0.85;
             let w = img.width;
             let h = img.height;
             let dataURL;
@@ -182,15 +183,13 @@ export default function compress(file, options, callback) {
             ctx.drawImage(img, 0, 0, w, h / ratio);
 
             if(/image\/jpeg/.test(file.type) || /image\/jpg/.test(file.type)){
-                dataURL = canvas.toDataURL('image/jpeg', options.compress.quality);
+                dataURL = canvas.toDataURL('image/jpeg', quality);
             }else{
                 dataURL =  canvas.toDataURL(file.type);
             }
 
             if(options.type === 'file'){
                 if(/;base64,null/.test(dataURL) || /;base64,$/.test(dataURL)){
-                    // 压缩出错，以文件方式上传的，采用原文件上传
-                    console.warn('Compress fail, dataURL is ' + dataURL + '. Next will use origin file to upload.');
                     callback(file);
                 }else{
                     let blob = dataURItoBlob(dataURL);
@@ -202,9 +201,7 @@ export default function compress(file, options, callback) {
                 }
             }else{
                 if(/;base64,null/.test(dataURL) || /;base64,$/.test(dataURL)){
-                    // 压缩失败，以base64上传的，直接报错不上传
-                    options.onError(file, new Error('Compress fail, dataURL is ' + dataURL + '.'));
-                    callback();
+                    callback(file);
                 }else{
                     file.base64 = dataURL;
                     callback(file);

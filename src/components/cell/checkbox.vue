@@ -47,8 +47,6 @@
         watch: {
             currentValue (val) {
                 this.$emit('input', val);
-                
-                console.log(val);
             },
 
             value (val) {

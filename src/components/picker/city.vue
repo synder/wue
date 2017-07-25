@@ -5877,8 +5877,6 @@
             returnValue() {
                 this.done(this.active);
                 
-                console.log(this.active);
-                
                 this.close();
             },
             close() {

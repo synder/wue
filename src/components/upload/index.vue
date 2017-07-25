@@ -11,12 +11,14 @@
                 <li class="weui-uploader__file weui-uploader__file_status" v-for="file in files" :style="file.style">
                     <div class="weui-uploader__file-content">
                         <i class="weui-icon-info" style="color: red;" v-if="file.status === 'fail'"></i>
-                        <wue-circle :value="file.percent" :diameter="(width > height ? height : width) - 20" @click="onPause(file.id)" v-else-if="file.status === 'progress'" ></wue-circle>
+                        <wue-circle :value="file.percent" :diameter="(width > height ? height : width) - 20"
+                                    @click="onPause(file.id)" v-else-if="file.status === 'progress'"></wue-circle>
                     </div>
                 </li>
             </ul>
             <div class="weui-uploader__input-box" :style="style">
-                <input class="weui-uploader__input" ref="file" type="file" :accept="accept" :capture="capture" :multiple="!!multiple">
+                <input class="weui-uploader__input" ref="file" type="file" :accept="accept" :capture="capture"
+                       :multiple="!!multiple">
             </div>
         </div>
     </div>
@@ -35,9 +37,9 @@
 
     export default {
         name: 'wue-uploader',
-        
+
         components: {
-            'wue-circle' : circle,
+            'wue-circle': circle,
         },
 
         props: {
@@ -48,7 +50,7 @@
                 type: Boolean,
                 default: true
             },
-            accept:{
+            accept: {
                 type: String,
                 default: 'image/jpg,image/png'
             },
@@ -154,13 +156,13 @@
 
                     if (self.onSuccess) {
                         let url = self.onSuccess(file, result);
-                        if(url && typeof url === 'string'){
+                        if (url && typeof url === 'string') {
                             file.url = url;
                         }
                     }
 
                     self.files.forEach(function (item) {
-                        if(item.id === file.id){
+                        if (item.id === file.id) {
                             self.$set(self.files, file.id, file);
                         }
                     });
@@ -172,7 +174,7 @@
                     file.percent = percent;
 
                     self.files.forEach(function (item) {
-                        if(item.id === file.id){
+                        if (item.id === file.id) {
                             self.$set(self.files, file.id, file);
                         }
                     });
@@ -186,17 +188,17 @@
                     file.status = 'fail';
 
                     self.files.forEach(function (item) {
-                        if(item.id === file.id){
+                        if (item.id === file.id) {
                             self.$set(self.files, file.id, file);
                         }
                     });
 
-                    if(self.onError){
+                    if (self.onError) {
                         self.onError.call(file, err);
                     }
                 };
             },
-            
+
             init(){
                 const self = this;
 
@@ -231,9 +233,12 @@
                                 }
 
                                 compress(file, {
-                                    width: self.compress.width,
-                                    height: self.compress.height,
-                                    quality: self.compress.quality || 0.8
+                                    compress: {
+                                        width: self.compress.width || 200,
+                                        height: self.compress.height || 200,
+                                        quality: self.compress.quality || 0.85,
+                                    },
+                                    type: self.type
                                 }, function (blob) {
                                     if (blob) {
                                         self.uploadFile(blob);
@@ -349,17 +354,17 @@
             onPause(id){
                 const self = this;
                 let file = null;
-                
+
                 self.files.forEach(function (item) {
-                    if(item.id === id){
+                    if (item.id === id) {
                         file = item;
                     }
                 });
-                
-                if(file){
-                    if(file.status === 'pause'){
+
+                if (file) {
+                    if (file.status === 'pause') {
                         file.upload();
-                    }else{
+                    } else {
                         file.stop();
                         file.status = 'pause';
                     }

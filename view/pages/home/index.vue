@@ -17,12 +17,13 @@
             }
         },
         watch: {
-            
+            value(val){
+                console.log(val);
+            }
         },
         
         methods: {
             success(file, result){
-                console.log(file, result);
                 return result;
             }
         }

@@ -87,10 +87,6 @@
                 if(result === true){
                     this.href = this.src;
                 }
-                
-                console.log(result);
-                
-               
             }
             
         }

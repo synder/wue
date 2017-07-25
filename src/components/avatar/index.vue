@@ -41,7 +41,6 @@
         props: {
             value: {
                 type: String,
-                required: true
             },
             accept:{
                 type: String,
@@ -124,8 +123,6 @@
                     temp.border = '0.01rem solid ' + this.border;
                 }
                 
-                console.log(temp);
-                
                 return temp;
             }
         },
@@ -140,7 +137,9 @@
                 }
 
                 self._onQueued = function (file) {
-                    self.currentValue =  file.url || file.base64;
+                    if(file.base64 || file.url){
+                        self.currentValue =  file.base64 || file.url;
+                    }
                 };
 
                 self._onSuccess = function (file, result) {
@@ -149,7 +148,7 @@
                     const url = self.onSuccess && self.onSuccess(file, result);
                     
                     if(url){
-                        self.currentValue =  'url("' + url + '")';
+                        self.currentValue =  url;
                     }
                 };
 
@@ -168,15 +167,16 @@
                         
                         self.file = files[0];
                         
-                        self.compress = self.compress || {
-                            
-                            };
+                        const compressParams = {
+                            compress: {
+                                width: parseInt(self.compress && self.compress.width ? self.compress.width : self.width * 3) || 100,
+                                height: parseInt(self.compress && self.compress.height ? self.compress.height : self.height * 3) || 100,
+                                quality: parseInt(self.compress && self.compress.quality ? self.compress.quality : self.quality * 3) || 0.85 ,
+                            },
+                            type: 'file'
+                        };
 
-                        compress(self.file, {
-                            width: self.compress.width,
-                            height: self.compress.height,
-                            quality: self.compress.quality || 0.8
-                        }, function (blob) {
+                        compress(self.file, compressParams, function (blob) {
                             if (blob) {
                                 self.uploadFile(blob);
                                 self._onQueued(self.file);
