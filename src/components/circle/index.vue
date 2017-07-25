@@ -112,6 +112,9 @@
 </script>
 
 <style scoped lang="less">
+
+    @import "../../styles/base/reset.less";
+    
     .wue-circle {
         position: relative;
         text-align: center;

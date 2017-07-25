@@ -10,7 +10,10 @@
     }
 </script>
 
-<style>
+<style lang="less" scoped>
+
+    @import "../../styles/base/reset.less";
+    
     .wue-divider {
         display: table;
         white-space: nowrap;

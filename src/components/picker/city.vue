@@ -5923,18 +5923,9 @@
         right: 0;
         left: 0;
         top: 0;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
+        .flex();
+        .flex-justify-content(center);
+        .flex-align-items(center);
     }
 
     .line-clamp(@line: 2, @line-height: .38rem) {
@@ -5956,10 +5947,8 @@
         left: 0;
         width: 100%;
         border-bottom: 1px solid @color;
-        -webkit-transform: scaleY(.5);
-        transform: scaleY(.5);
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
+        .scaleY(.5);
+        .transform-origin(0 0);
     }
 
     .mask-city-picker {
@@ -5974,10 +5963,10 @@
         height: 75%;
         background-color: #fff;
         z-index: @base-zindex * 500;
-        transform: translate(0, 100%);
-        transition: transform .3s;
+        .translate(0, 100%);
+        .transition(transform .3s);
         &.wue-city-picker-active {
-            transform: translate(0, 0);
+            .translate(0, 0);
         }
     }
 
@@ -6008,7 +5997,7 @@
         width: 100%;
         padding-left: .2rem;
         overflow: hidden;
-        display: flex;
+        .flex();
         > a {
             font-size: 1rem;
             color: #222;
@@ -6042,15 +6031,15 @@
         height: 100%;
         padding-top: 85px;
         width: 100%;
-        display: flex;
+        .flex();
         &.wue-city-picker-move-animate {
-            transition: transform .3s;
+            .transition(transform .3s);
         }
         &.wue-city-picker-next {
-            transform: translate(-50%, 0);
+            .translate(-50%, 0);
         }
         &.wue-city-picker-prev {
-            transform: translate(0, 0);
+            .translate(0, 0);
         }
         > .wue-city-picker-item {
             display: block;
@@ -6079,8 +6068,8 @@
             height: 40px;
             line-height: 40px;
             overflow: hidden;
-            display: flex;
-            align-items: center;
+            .flex();
+            .flex-align-items(center);
             width: 100%;
             position: relative;
             z-index: 1;
@@ -6110,9 +6099,9 @@
     .wue-city-picker-loading {
         width: 100%;
         height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        .flex();
+        .flex-align-items(center);
+        .flex-justify-content(center);
         font-size: 1rem;
         color: #999;
     }

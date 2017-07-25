@@ -113,6 +113,9 @@
 </script>
 
 <style scoped lang="less">
+
+    @import "../../styles/base/reset.less";
+    
     .wue-rater {
         text-align: left;
         display: inline-block;

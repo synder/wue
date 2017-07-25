@@ -33,5 +33,6 @@
 </script>
 
 <style scoped lang="less">
+  @import "../../styles/base/reset.less";
   @import '../../styles/widget/weui-flex/weui-flex.less';
 </style>

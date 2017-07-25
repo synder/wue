@@ -122,10 +122,8 @@
         left: 0;
         width: 100%;
         border-bottom: 1px solid @color;
-        -webkit-transform: scaleY(.5);
-        transform: scaleY(.5);
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
+        .scaleX(o.5);
+        .transform-origin(0 0);
     }
 
     .right-line(@color, @zindex: 0) {
@@ -136,10 +134,8 @@
         right: 0;
         height: 100%;
         border-right: 1px solid @color;
-        -webkit-transform: scaleX(.5);
-        transform: scaleX(.5);
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
+        .scaleX(o.5);
+        .transform-origin(0 0);
     }
 
 
@@ -149,7 +145,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        display: flex;
+        .flex();
     }
 
     .wue-scroll-tab-nav {
@@ -167,8 +163,8 @@
     .wue-scroll-tab-item {
         padding: 0 .4rem;
         height: 2.5rem;
-        display: flex;
-        align-items: center;
+        .flex();
+        .flex-align-items(center);
         position: relative;
         z-index: 1;
         &.wue-scroll-tab-active {
@@ -194,9 +190,9 @@
     .wue-scroll-tab-icon {
         margin-right: .5rem;
         font-size: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        .flex();
+        .flex-align-items(center);
+        .flex-justify-content(center);
         > img {
             height: 1rem;
             display: inline-block;
@@ -217,7 +213,7 @@
         background-color: #FFF;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-        flex: 1;
+        .flex(1);
         padding: 0 .5rem .5rem .5rem;
         position: relative;
     }

@@ -42,6 +42,7 @@
 </script>
 
 <style scoped lang="less">
+    @import "../../styles/base/reset.less";
     @import '../../styles/widget/weui-tips/weui-mask.less';
     @import '../../styles/widget/weui-tips/weui-toast.less';
     @import '../../styles/widget/weui-loading/weui-loading.less';
@@ -59,10 +60,10 @@
     }
 
     .wue-mask-enter, .wue-mask-leave-active {
-        opacity: 0;
+        .opacity(0);
     }
   
     .wue-mask-leave-active, .wue-mask-enter-active {
-        transition: opacity 300ms;
+        .transition(opacity 300ms);
     }
 </style>

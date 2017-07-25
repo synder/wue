@@ -6,6 +6,8 @@
 </template>
 
 <style lang="less" scoped>
+    
+    @import "../../styles/base/reset.less";
 
     @line-high-color: #B2B2B2;
 
@@ -17,10 +19,8 @@
         left: 0;
         width: 100%;
         border-bottom: 1px solid @color;
-        -webkit-transform: scaleY(.5);
-        transform: scaleY(.5);
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
+        .scaleY(.5);
+        .transform-origin(0 0);
     }
     
     .wue-scroll-tab-content-title {

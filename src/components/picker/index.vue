@@ -17,7 +17,7 @@
 </template>
 
 <style lang='less' scoped>
-    @import '../../styles/variable.less';
+    @import '../../styles/base/reset.less';
     @import '../../styles/widget/weui-tips/weui-mask.less';
     @import '../../styles/widget/weui-animate/weui-animate.less';
     @import '../../styles/widget/weui-picker/weui-picker.less';

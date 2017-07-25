@@ -75,10 +75,12 @@
 </script>
 
 <style lang="less">
+    @import "../../styles/base/reset.less";
     @import '../../styles/widget/weui-button/weui-button.less';
     @import '../../styles/widget/weui-loading/weui-loading.less';
     
+    
     .weui-btn:after{
-        border-radius: 0;
+       .border-radius(50%);
     }
 </style>

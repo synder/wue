@@ -52,5 +52,6 @@
 </script>
 
 <style scoped lang="less">
+    @import "../../styles/base/reset.less";
     @import '../../styles/icon/wue-icon.less';
 </style>

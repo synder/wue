@@ -10,7 +10,8 @@
 
 <style scoped lang="less">
 
-    @import '../../styles/base/mixin/setOnepx.less';
+    @import "../../styles/base/reset.less";
+    @import '../../styles/base/mixin/set-one-px.less';
 
     .wue-hr {
         padding-top: 15px;

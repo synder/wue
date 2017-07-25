@@ -29,6 +29,7 @@
 </script>
 
 <style lang="less">
+    @import "../../styles/base/reset.less";
     @import '../../styles/icon/weui-icon_font.less';
     @import '../../styles/widget/weui-page/weui-msg.less';
 </style>

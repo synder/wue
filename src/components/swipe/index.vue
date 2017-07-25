@@ -11,7 +11,7 @@
 </template>
 
 <style scoped lang="less">
-
+    @import "../../styles/base/reset.less";
 </style>
 
 <script>
@@ -541,6 +541,9 @@
 </script>
 
 <style scoped lang="less">
+
+    @import "../../styles/base/reset.less";
+    
     .wue-swipe {
         overflow: hidden;
         position: relative;
@@ -575,10 +578,10 @@
                 display: inline-block;
                 width: 7px;
                 height: 7px;
-                border-radius: 50%;
+                .border-radius(50%);
                 margin: 0 4px;
                 background-color: #000;
-                opacity: 0.3;
+                .opacity(0.3);
             }
 
             .is-active {

@@ -102,6 +102,7 @@
 </script>
 
 <style scoped lang="less">
+    @import "../../styles/base/reset.less";
     @import '../../styles/icon/weui-font.less';
     @import '../../styles/icon/weui-icon_font.less';
     @import '../../styles/widget/weui-progress/weui-progress.less';

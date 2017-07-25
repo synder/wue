@@ -8,7 +8,8 @@
     </div>
 </template>
 
-<style lang='less' rel="stylesheet/less">
+<style lang='less' scoped>
+    @import "../../styles/base/reset.less";
     @import '../../styles/widget/weui-picker/weui-picker.less';
 </style>
 

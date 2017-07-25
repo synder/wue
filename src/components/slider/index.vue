@@ -119,5 +119,6 @@
 </script>
 
 <style scoped lang="less">
+    @import "../../styles/base/reset.less";
     @import '../../styles/widget/weui-slider/weui-slider.less';
 </style>

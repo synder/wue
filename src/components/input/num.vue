@@ -231,7 +231,7 @@
     
     .wue-number-input {
         border: 1px solid #EAE8E8;
-        border-radius: 1px;
+        .border-radius(1px);
         display: inline-block;
         overflow: hidden;
         height: 2.3rem;

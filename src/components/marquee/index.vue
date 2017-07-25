@@ -106,6 +106,7 @@
 </script>
 
 <style lang="less" scoped>
+    @import "../../styles/base/reset.less";
     
     .wue-marquee {
         overflow: hidden;
@@ -118,21 +119,14 @@
         height: inherit;
         
         &.align-left {
-            justify-content: flex-start;
+            .flex-justify-content(flex-start);
         }
         &.align-right {
-            justify-content: flex-end;
+            .flex-justify-content(flex-end);
         }
         &.align-center {
-            justify-content: center;
+            .flex-justify-content(center);
         }
-    }
-
-    .wue-marquee-item {
-        height: inherit;
-        display: flex;
-        align-items: center;
-        justify-content: inherit;
     }
 
 </style>

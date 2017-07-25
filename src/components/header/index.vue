@@ -39,9 +39,9 @@
     @headerHeight: 45px;
 
     .wue-header {
-        display: flex;
-        align-items: center;
-        box-sizing: border-box;
+        .flex();
+        .flex-align-items(center);
+        .box-sizing(border-box);
         width: 100%;
         height: @headerHeight;
         padding: 0 10px;

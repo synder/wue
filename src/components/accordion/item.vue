@@ -16,6 +16,8 @@
 </template>
 
 <style lang="less" scoped>
+    
+    @import "../../styles/base/reset.less";
 
     @line-color: #E5E5E5;
     @arrow-color: #A0A0A0;
@@ -28,16 +30,14 @@
         left: 0;
         width: 100%;
         border-bottom: 1px solid @color;
-        -webkit-transform: scaleY(.5);
-        transform: scaleY(.5);
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
+        .scaleY(0.5);
+        .transform-origin(0 0);
     }
 
     .accordion-title {
         min-height: 1rem;
-        display: flex;
-        align-items: center;
+        .flex();
+        .flex-align-items(center);
         position: relative;
         user-select: none;
         padding: 0.8rem;
@@ -61,11 +61,11 @@
                 border-right: 5px solid transparent;
                 border-bottom: 7px solid @arrow-color;
                 display: block;
-                transition: transform .25s cubic-bezier(0.4, 0.6, 0.2, 1);
-                transform: rotate(0deg);
+                .transition(transform .25s cubic-bezier(0.4, 0.6, 0.2, 1));
+                .rotate(0deg);
             }
             &.accordion-rotated:after {
-                transform: rotate(-180deg);
+                .rotate(-180deg);
             }
         }
     }
@@ -73,7 +73,7 @@
     .accordion-content {
         position: relative;
         overflow: hidden;
-        transition: height .25s cubic-bezier(0.4, 0.6, 0.2, 1);
+        .transition(height .25s cubic-bezier(0.4, 0.6, 0.2, 1));
         &:after {
             .bottom-line(@line-color);
         }

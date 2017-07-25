@@ -5,6 +5,7 @@
 </template>
 
 <style lang='less' rel="stylesheet/less">
+    @import "../../styles/base/reset.less";
     @import '../../styles/widget/weui-tips/weui-mask.less';
     @import '../../styles/widget/weui-animate/weui-animate.less';
 </style>

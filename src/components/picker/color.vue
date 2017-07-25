@@ -125,7 +125,7 @@
     .wue-color-item {
         display: inline-block;
         text-align: center;
-        box-sizing: border-box;
+        .box-sizing(border-box);
         position: relative
     }
 

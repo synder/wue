@@ -45,6 +45,6 @@
 </script>
 
 <style lang="less">
-    @import '../../styles/variable.less';
+    @import '../../styles/base/reset.less';
     @import "../../styles/widget/weui-tips/weui-badge.less";
 </style>

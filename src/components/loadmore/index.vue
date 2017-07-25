@@ -24,6 +24,7 @@
 </script>
 
 <style scoped lang="less">
+  @import "../../styles/base/reset.less";
   @import '../../styles/widget/weui-tips/weui-mask.less';
   @import '../../styles/widget/weui-tips/weui-loadmore.less';
 </style>

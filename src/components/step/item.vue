@@ -79,7 +79,7 @@
         left: 0;
         top: 12px;
         padding: 0 0;
-        transition: all 0.4s ease 0s;
+        .transition(all 0.4s ease 0s);
     }
 
     .wue-step-item-tail-finish {
@@ -123,10 +123,10 @@
             width: 22px;
             height: 22px;
             line-height: 22px;
-            border-radius: 99px;
+            .border-radius(99px);
             text-align: center;
             font-size: 14px;
-            transition: all 0.4s ease 0s;
+            .transition(all 0.4s ease 0s);
             background: #fff none repeat scroll 0 0;
         }
     }

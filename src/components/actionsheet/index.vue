@@ -79,15 +79,15 @@
 </script>
 
 <style scoped lang="less">
-    @import '../../styles/variable.less';
+    @import '../../styles/base/reset.less';
     @import '../../styles/widget/weui-tips/weui-mask.less';
     @import '../../styles/widget/weui-tips/weui-actionsheet.less';
 
     .actionsheet__mask_show {
         display: block;
-        transform-origin: 0 0 0;
-        opacity: 1;
-        transform: scale(1, 1);
+        .transform-origin(0 0);
+        .opacity(1);
+        .scale(1, 1);
         background-color: rgba(0, 0, 0, 0.6);
     }
 </style>

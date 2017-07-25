@@ -38,5 +38,6 @@
 </script>
 
 <style scoped lang="less">
+    @import "../../styles/base/reset.less";
     @import '../../styles/widget/weui-cell/weui-form/weui-form-preview.less';
 </style>

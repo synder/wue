@@ -1,12 +1,14 @@
 <!--懒加载图片-->
 <template>
-    <div class="lazy-image-loader">
+    <div class="wue-lazy-image-loader">
         <img :alt="alt" :src="href" :class="classes">
     </div>
 </template>
 
 <style scoped lang="less">
-    .lazy-image-loader{
+    @import "../../styles/base/reset.less";
+    
+    .wue-lazy-image-loader{
         min-height: 10px;
     }
 </style>

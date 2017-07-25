@@ -56,7 +56,9 @@
 </script>
 
 <style lang="less">
+    @import "../../styles/base/reset.less";
+    
     .wue-step {
-        display: flex;
+        .display-flex();
     }
 </style>

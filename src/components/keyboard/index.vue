@@ -157,11 +157,14 @@
 </script>
 
 <style lang="less">
+
+    @import "../../styles/base/reset.less";
+    
     @icon-font-path: "../../styles/fonts/";
     @base-zindex: 1;
     @line-color: #E5E5E5;
     
-    @import "../../styles/base/reset.less";
+   
 
     @font-face {
         font-family: 'icon';
@@ -185,18 +188,9 @@
         right: 0;
         left: 0;
         top: 0;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
+        .flex();
+        .flex-justify-content(center);
+        .flex-align-items(center);
     }
 
     .top-line(@color, @zindex: 0) {
@@ -207,10 +201,8 @@
         left: 0;
         width: 100%;
         border-top: 1px solid @color;
-        -webkit-transform: scaleY(.5);
-        transform: scaleY(.5);
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
+        .scaleY(0.5);
+        .transform-origin(0 0);
     }
 
     .bottom-line(@color, @zindex: 0) {
@@ -221,10 +213,8 @@
         left: 0;
         width: 100%;
         border-bottom: 1px solid @color;
-        -webkit-transform: scaleY(.5);
-        transform: scaleY(.5);
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
+        .scaleY(.5);
+        .transform-origin(0 0);
     }
 
     .left-line(@color, @zindex: 0) {
@@ -235,10 +225,8 @@
         left: 0;
         height: 100%;
         border-left: 1px solid @color;
-        -webkit-transform: scaleX(.5);
-        transform: scaleX(.5);
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
+        .scaleX(.5);
+        .transform-origin(0 0);
     }
 
     .right-line(@color, @zindex: 0) {
@@ -249,10 +237,8 @@
         right: 0;
         height: 100%;
         border-right: 1px solid @color;
-        -webkit-transform: scaleX(.5);
-        transform: scaleX(.5);
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
+        .scaleX(.5);
+        .transform-origin(0 0);
     }
 
 
@@ -266,11 +252,11 @@
         left: 0;
         width: 100%;
         z-index: @base-zindex * 500;
-        transform: translate(0, 100%);
-        transition: transform .3s;
+        .translate(0, 100%);
+        .transition(transform .3s);
         background-color: #F7F7F7;
         &.keyboard-active {
-            transform: translate(0, 0);
+            .translate(0, 0);
         }
     }
 
@@ -298,16 +284,16 @@
         background-color: #FFF;
         > li {
             width: 100%;
-            display: flex;
+            .flex();
             > a {
                 width: 1%; /* for old android */
                 flex: 1;
                 color: #686868;
                 height: 3rem;
                 position: relative;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                .flex();
+                .flex-justify-content(center);
+                .flex-align-items(center);
                 &:not(:last-child):after {
                     .right-line(@line-color);
                 }
@@ -340,9 +326,9 @@
 
     .wue-keyboard-head {
         height: 3rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        .flex();
+        .flex-justify-content(center);
+        .flex-align-items(center);
         color: #686868;
         font-size: 1rem;
         position: relative;
@@ -353,27 +339,27 @@
 
     .wue-keyboard-password {
         margin: 0 1rem;
-        display: flex;
+        .flex();
         position: relative;
         background-color: #FFF;
         &:after {
             content: '';
             width: 200%;
             height: 200%;
-            transform: scale(.5);
+            .scale(.5);
             position: absolute;
             border: 1px solid @line-color;
             top: 0;
             left: 0;
-            transform-origin: 0 0;
-            border-radius: 4px;
+            .transform-origin(0 0);
+            .border-radius(4px);
         }
         li {
             flex: 1;
             position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            .flex();
+            .flex-justify-content(center);
+            .flex-align-items(center);
             height: 3rem;
             &:not(:last-child):after {
                 content: '';
@@ -383,7 +369,7 @@
                 right: 0;
                 top: 25%;
                 background-color: @line-color;
-                transform: scaleX(.5);
+                .scaleX(.5);
             }
             i {
                 width: 6px;

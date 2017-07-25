@@ -6,11 +6,14 @@
 </template>
 
 <style lang='less' scoped>
+    
+    @import "../../styles/base/reset.less";
+    
     .wue-avatar {
         background-size: contain;
         background-clip: border-box;
         background-position: center center;
-        border-radius: 50%;
+        .border-radius(50%);
         overflow: hidden;
         display: inline-block;
 
@@ -21,7 +24,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0;
+            .opacity(0);
             display: inline-block;
         }
     }
@@ -165,21 +168,20 @@
                         
                         self.file = files[0];
                         
-                        if (!self.compress && self.type === 'file') {
-                            self.uploadFile(self.file);
-                            self._onQueued(self.file);
-                        } else {
-                            compress(self.file, {
-                                width: self.compress.width,
-                                height: self.compress.height,
-                                quality: self.compress.quality || 0.8
-                            }, function (blob) {
-                                if (blob) {
-                                    self.uploadFile(blob);
-                                    self._onQueued(self.file);
-                                }
-                            });
-                        }
+                        self.compress = self.compress || {
+                            
+                            };
+
+                        compress(self.file, {
+                            width: self.compress.width,
+                            height: self.compress.height,
+                            quality: self.compress.quality || 0.8
+                        }, function (blob) {
+                            if (blob) {
+                                self.uploadFile(blob);
+                                self._onQueued(self.file);
+                            }
+                        });
                     };
                 }
 

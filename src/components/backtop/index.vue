@@ -110,8 +110,10 @@
 </script>
 
 <style lang="less" scoped>
-    
+
+    @import "../../styles/base/reset.less";
     @import "../../styles/icon/wue-icon.less";
+  
 
     @base-zindex: 1;
     
@@ -120,12 +122,12 @@
         height: 3rem;
         background-color: rgba(230, 230, 230, .85);
         position: fixed;
-        border-radius: 50%;
+        .border-radius(50%);
         right: 5%;
         bottom: 5%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        .flex();
+        .flex-align-items(center);
+        .flex-justify-content(center);
         z-index: @base-zindex * 1000;
         border: none;
         color: #0BB20C;

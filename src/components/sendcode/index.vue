@@ -3,7 +3,7 @@
 </template>
 
 <style lang='less' scoped>
-
+    @import "../../styles/base/reset.less";
 </style>
 
 <script>

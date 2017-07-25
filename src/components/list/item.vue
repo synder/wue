@@ -50,7 +50,6 @@
 
     @import "../../styles/base/reset.less";
 
-
     @line-color: #D9D9D9;
 
     .text-overflow(@align: justify) {
@@ -69,10 +68,8 @@
         left: 0;
         width: 100%;
         border-top: 0.1rem solid @color;
-        -webkit-transform: scaleY(.5);
-        transform: scaleY(.5);
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
+        .scaleY(.5);
+        .transform-origin(0 0);
     }
 
     .bottom-line(@color, @zindex: 0) {
@@ -83,10 +80,8 @@
         left: 0;
         width: 100%;
         border-bottom: 0.1rem solid @color;
-        -webkit-transform: scaleY(.5);
-        transform: scaleY(.5);
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
+        .scaleY(.5);
+        .transform-origin(0 0);
     }
 
     .left-line(@color, @zindex: 0) {
@@ -97,10 +92,8 @@
         left: 0;
         height: 100%;
         border-left:0.1rem solid @color;
-        -webkit-transform: scaleX(.5);
-        transform: scaleX(.5);
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
+        .scaleX(.5);
+        .transform-origin(0 0);
     }
 
     .right-line(@color, @zindex: 0) {
@@ -111,10 +104,8 @@
         right: 0;
         height: 100%;
         border-right: 0.1rem solid @color;
-        -webkit-transform: scaleX(.5);
-        transform: scaleX(.5);
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
+        .scaleX(.5);
+        .transform-origin(0 0);
     }
 
 
@@ -137,7 +128,7 @@
             width: 100%;
             background-color: #FFF;
             border: none;
-            border-radius: 0.1rem;
+            .border-radius(0.1rem);
         }
     }
 
@@ -180,7 +171,7 @@
             padding: 0 0.2rem;
             margin: 0.2rem 0;
             float: left;
-            border-radius: 1rem;
+            .border-radius(1rem);
 
             .wue-list-mes {
                 padding: .3rem;
@@ -225,7 +216,7 @@
         background-color: #FFF;
         .wue-list-item {
             overflow: hidden;
-            display: flex;
+            .flex();
             padding: 7px 0 8px 0;
             position: relative;
             &:not(:last-child):after {

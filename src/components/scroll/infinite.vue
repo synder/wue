@@ -144,6 +144,8 @@
 </script>
 
 <style lang="less" scoped>
+
+    @import "../../styles/base/reset.less";
     
     .wue-infinite-list-loading {
         margin-top: 0.8rem;

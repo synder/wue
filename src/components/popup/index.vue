@@ -91,7 +91,7 @@
         left: 0;
         bottom: 0;
         z-index: 5000;
-        transform: translateY(100%);
-        transition: transform .3s;
+        .translate(translateY(100%));
+        .transition(transform .3s);
     }
 </style>

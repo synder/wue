@@ -48,6 +48,9 @@
 </script>
 
 <style scoped lang="less">
+
+    @import "../../styles/base/reset.less";
+    
     .wue-navbar__item {
         position: relative;
         display: block;
