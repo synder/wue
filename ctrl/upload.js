@@ -36,13 +36,13 @@ exports.batch = function (req, res, next) {
     form.multiples = true;
     form.maxFields = 10;
 
-    let result = '';
+    let filename = '';
 
     form.onPart = function (stream) {
         let self = this;
 
         let name = stream.name;
-        let filename = stream.filename;
+        filename = stream.filename;
         let filemime = stream.mime;
         
         if (!filename) {
@@ -60,7 +60,6 @@ exports.batch = function (req, res, next) {
         writeStream.on('close', function () {
             self._flushing--;
             self._maybeEnd();
-            result = '/upload/' + filename;
         });
 
         writeStream.on('error', function (error) {
@@ -77,7 +76,7 @@ exports.batch = function (req, res, next) {
             return next(err);
         })
         .on('end', function () {
-            res.json(result);
+            res.json('/upload/' + filename);
         })
         .parse(req);
 };

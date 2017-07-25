@@ -16,7 +16,7 @@
                 </li>
             </ul>
             <div class="weui-uploader__input-box" :style="style">
-                <input class="weui-uploader__input" ref="file" type="file" accept="image/png" :capture="capture" :multiple="!!multiple" v-if="update">
+                <input class="weui-uploader__input" ref="file" type="file" :accept="accept" :capture="capture" :multiple="!!multiple">
             </div>
         </div>
     </div>
@@ -31,10 +31,10 @@
 
 <script>
     import circle from '../circle/index.vue';
-    import compress from './compress.js';
+    import compress from '../../utils/compress.js';
 
     export default {
-        name: '',
+        name: 'wue-uploader',
         
         components: {
             'wue-circle' : circle,
@@ -47,6 +47,10 @@
             auto: {
                 type: Boolean,
                 default: true
+            },
+            accept:{
+                type: String,
+                default: 'image/jpg,image/png'
             },
             capture: {
                 type: String,
@@ -89,7 +93,10 @@
             onBeforeQueued: Function,
             onQueued: Function,
             onBeforeSend: Function,
-            onSuccess: Function,
+            onSuccess: {
+                type: Function,
+                required: true
+            },
             onProgress: Function,
             onError: Function,
         },
@@ -98,7 +105,6 @@
             return {
                 id: 0,
                 files: [],
-                update: true
             };
         },
 
@@ -146,15 +152,18 @@
                 self._onSuccess = function (file, result) {
                     file.status = 'success';
 
+                    if (self.onSuccess) {
+                        let url = self.onSuccess(file, result);
+                        if(url && typeof url === 'string'){
+                            file.url = url;
+                        }
+                    }
+
                     self.files.forEach(function (item) {
                         if(item.id === file.id){
                             self.$set(self.files, file.id, file);
                         }
                     });
-
-                    if (self.onSuccess) {
-                        self.onSuccess(file, result);
-                    }
                 };
 
                 self._onProgress = function (file, percent) {
@@ -190,8 +199,6 @@
             
             init(){
                 const self = this;
-                
-                console.log(self.$refs.file);
 
                 if (self.$refs.file) {
                     self.$refs.file.onchange = function (event) {
