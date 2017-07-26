@@ -6,6 +6,7 @@
 
 const express     = require('express');
 const webpack = require('webpack');
+const body = require('body-parser');
 
 const app = express();
 
@@ -18,11 +19,20 @@ const compiler = webpack(config);
 
 app.use(webpackDev(compiler, config));
 app.use(webpackHot(compiler, config));
+app.use(body.json());
+app.use(body.urlencoded({
+    extended: true
+}));
 
 //ctrl====================================
 const upload = require('./ctrl/upload');
+const ajax = require('./ctrl/ajax');
 
 app.post('/upload', upload.batch);
+app.get('/ajax', ajax.get);
+app.delete('/ajax', ajax.del);
+app.post('/ajax', ajax.post);
+app.put('/ajax', ajax.put);
 
 app.use(express.static('./static'));
 

@@ -292,9 +292,7 @@
                     if (xhr.readyState === 4) {
                         if (xhr.status === 200) {
                             try {
-                                // 只支持json
-                                const ret = JSON.parse(xhr.responseText);
-                                self._onSuccess(file, ret);
+                                self._onSuccess(file, xhr.responseText);
                             } catch (err) {
                                 self._onError(file, err);
                             }
