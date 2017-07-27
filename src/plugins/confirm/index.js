@@ -9,17 +9,19 @@ import ConfirmComponents from '../../components/confirm/index.vue';
 
 export default {
     install (Vue) {
+        
+        let $vm;
 
         Vue.prototype.$confirm = {
             show (title, content, callback) {
 
-                const Confirm = Vue.extend(ConfirmComponents);
-
-                let $vm =  new Confirm({
-                    el: document.createElement('div')
-                });
-
-                document.body.appendChild($vm.$el);
+                if(!$vm){
+                    const Confirm = Vue.extend(ConfirmComponents);
+                    $vm =  new Confirm({
+                        el: document.createElement('div')
+                    });
+                    document.body.appendChild($vm.$el);
+                }
 
                 $vm.show(title, content);
 

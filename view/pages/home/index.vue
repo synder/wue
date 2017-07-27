@@ -27,7 +27,7 @@
 
         mounted(){
            
-            console.log(this.$wechat);
+            this.$toptip.show('显示');
            
           
         }

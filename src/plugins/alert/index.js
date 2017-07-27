@@ -9,16 +9,20 @@ import AlertComponents from '../../components/alert/index.vue';
 
 export default {
     install (Vue) {
+        
+        let $vm;
+        
         Vue.prototype.$alert =  {
             
             show (title, content, callback) {
-                const Alert = Vue.extend(AlertComponents);
-
-                let $vm =  new Alert({
-                    el: document.createElement('div')
-                });
-
-                document.body.appendChild($vm.$el);
+                
+                if(!$vm){
+                    const Alert = Vue.extend(AlertComponents);
+                    $vm =  new Alert({
+                        el: document.createElement('div')
+                    });
+                    document.body.appendChild($vm.$el);
+                }
                 
                 $vm.show(title, content);
                 

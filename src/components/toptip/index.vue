@@ -1,9 +1,14 @@
 <template>
-    <div class="weui-toptips weui-toptips_warn" v-if="currentValue" v-html="message"></div>
+    <transition name="wue-mask">
+        <div class="weui-toptips weui-toptips_warn" v-show="currentValue" v-html="message"></div>
+    </transition>
 </template>
 
 <script>
     export default {
+        
+        name: 'wue-toptip',
+        
         props: {
             value: {
                 type: Boolean,
@@ -45,6 +50,7 @@
 
 <style scoped lang="less">
   @import '../../styles/base/reset.less';
+  @import '../../styles/vue/transition.less';
   @import '../../styles/widget/weui-cell/weui-form/weui-form_common.less';
 
   .weui-toptips {

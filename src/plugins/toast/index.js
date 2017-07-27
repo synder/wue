@@ -9,17 +9,18 @@ import ToastComponents from '../../components/toast/index.vue';
 
 export default {
     install (Vue) {
+        let $vm;
         Vue.prototype.$toast = {
             show (text, callback) {
-
-                const Toast = Vue.extend(ToastComponents);
-
-                let $vm =  new Toast({
-                    el: document.createElement('div')
-                });
-
-                document.body.appendChild($vm.$el);
-
+                
+                if(!$vm){
+                    const Toast = Vue.extend(ToastComponents);
+                    $vm =  new Toast({
+                        el: document.createElement('div')
+                    });
+                    document.body.appendChild($vm.$el);
+                }
+                
                 $vm.message = text;
 
                 $vm.show();

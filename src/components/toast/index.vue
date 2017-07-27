@@ -1,10 +1,12 @@
 <template>
-    <div v-if="currentValue">
-        <div class="weui-toast" :class="{ 'weui-toast_text': !icon }" :style="style">
-            <i class="weui-icon_toast" :class="classes" v-if="icon"></i>
-            <p class="weui-toast__content" v-text="message" :style="text"></p>
+    <transition name="wue-mask">
+        <div v-show="currentValue">
+            <div class="weui-toast" :class="{ 'weui-toast_text': !icon }" :style="style">
+                <i class="weui-icon_toast" :class="classes" v-if="icon"></i>
+                <p class="weui-toast__content" v-text="message" :style="text"></p>
+            </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -98,6 +100,7 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
+    @import '../../styles/vue/transition.less';
     @import '../../styles/widget/weui-tips/weui-toast.less';
     @import '../../styles/icon/weui-font.less';
     @import '../../styles/icon/weui-icon_font.less';

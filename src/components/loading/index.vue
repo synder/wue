@@ -1,6 +1,6 @@
 <template>
     <transition name="wue-mask">
-        <div class="weui-loading_toast wue-loading" v-if="currentValue">
+        <div class="weui-loading_toast wue-loading" v-show="currentValue">
             <div class="weui-mask_transparent"></div>
             <div class="weui-toast">
                 <i class="weui-loading weui-icon_toast"></i>
@@ -52,6 +52,7 @@
 
 <style scoped lang="less">
     @import "../../styles/base/reset.less";
+    @import '../../styles/vue/transition.less';
     @import '../../styles/widget/weui-tips/weui-mask.less';
     @import '../../styles/widget/weui-tips/weui-toast.less';
     @import '../../styles/widget/weui-loading/weui-loading.less';
