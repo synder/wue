@@ -26,7 +26,7 @@
         },
 
         mounted(){
-            let toast = this.$toast.show('正在加载中');
+            this.$toptip.show('正在加载中');
         }
     }
 </script>
