@@ -19,28 +19,33 @@ const plugins = function (htmlPath) {
 
     let temp = [];
 
-
     let env = new webpack.DefinePlugin({
-        'process.env': {
-            NODE_ENV: '"production"'
-        }
+        'process.env.NODE_ENV': '"production"'
     });
 
     let compress = new webpack.optimize.UglifyJsPlugin({
         compress: {
-            warnings: false
+            warnings: true,
+            drop_console: true,
+            drop_debugger: true,
+            unused: true
         },
-        except: ['$', 'exports', 'require']
+        except: ['$super', '$', 'exports', 'require']
     });
+    
     
     let html = new HtmlWebpackPlugin({
         filename: 'index.html',
         template: htmlPath,
         inject: true,
+        minify: {
+            removeComments: true
+        }
     });
 
     let css = new ExtractTextPlugin({
-        filename: 'css/[name].css?[contenthash]'
+        filename: 'css/[name].css?[contenthash]',
+        allChunks: true
     });
     
     temp.push(env);
@@ -54,8 +59,6 @@ const plugins = function (htmlPath) {
 module.exports = {
     entry: {
         main: './view/main.js',
-        vue: ['vue',  'vue-router'],
-        vuex: ['vuex'],
     },
     output: {
         path: resolve('./static'),
