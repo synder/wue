@@ -26,9 +26,7 @@
         },
 
         mounted(){
-            this.$confirm.show('你确认要展示', '已经删除', function (result) {
-                console.log(result);
-            });
+            let toast = this.$toast.show('正在加载中');
         }
     }
 </script>

@@ -21,9 +21,11 @@ export default {
         const alert = {
             show (title, content, callback) {
                 $vm.show(title, content);
-                $vm.$on('click', function () {
-                    callback();
-                });
+                if(callback){
+                    $vm.$on('click', function () {
+                        callback();
+                    });
+                }
                 return this;
             },
             hide () {

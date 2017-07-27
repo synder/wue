@@ -1,8 +1,8 @@
 <template>
-    <div v-if="visible">
-        <div class="weui-toast" :class="{ 'weui-toast_text': type === 'text' }" :style="style" ref="toast">
-            <i class="weui-icon_toast" :class="icon" v-if="type !== 'text'"></i>
-            <p class="weui-toast__content" v-text="message"></p>
+    <div v-show="currentValue">
+        <div class="weui-toast" :class="{ 'weui-toast_text': !icon }" :style="style">
+            <i class="weui-icon_toast" :class="classes" v-if="icon"></i>
+            <p class="weui-toast__content" v-text="message" :style="text"></p>
         </div>
     </div>
 </template>
@@ -15,35 +15,82 @@
         },
 
         props: {
-            visible: {
+            value: {
+                type: Boolean,
                 default: true
             },
             icon: {
                 type: String,
-                default: 'weui-icon-success-no-circle'
-            },
-            type: {
-                type: String,
-                default: 'success'
             },
             message: {
                 type: String,
                 default: ''
+            },
+            
+            height: {
+                type: Number
+            }
+        },
+        
+        data(){
+            return {
+                currentValue : this.value,
+            };
+        },
+        
+        methods: {
+            show(){
+                this.currentValue = true;
+            },
+            
+            hide(){
+                this.currentValue = false;
+            }
+        },
+        
+        watch: {
+            value (val) {
+                this.currentValue = val;
+            },
+
+            currentValue (val) {
+                if(!val){
+                    this.$emit('hidden');
+                }
+                this.$emit('input', val);
             }
         },
 
         computed: {
+            classes(){
+                if(this.icon){
+                    return [icon];
+                }else{
+                    return [];
+                }
+            },
+            
             style () {
-                if (this.type === 'text') {
-                    const messageLength = this.message.length + 2;
-
+                
+                if(!this.icon){
                     return {
-                        width: messageLength + 'em',
-                        marginLeft: '-' + (messageLength / 2) + 'em'
+                        minHeight: '0.1rem',
+                        lineHeight: '1rem',
+                        top: '80%',
                     }
                 }
+                
+                return {};
+            },
 
-                return {}
+            text(){
+                if(!this.icon){
+                    return {
+                        margin: '0.3rem',
+                        fontSize: '0.8rem'
+                    }
+                }
+                return {};
             }
         }
     }

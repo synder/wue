@@ -32,7 +32,10 @@
             'wue-dialog': Dialog
         },
         props: {
-            value: Boolean,
+            value: {
+                type: Boolean,
+                default: false
+            },
             title: String,
             content: String,
             button: {

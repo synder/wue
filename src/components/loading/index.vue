@@ -1,12 +1,10 @@
 <template>
     <transition name="wue-mask">
-        <div class="weui-loading_toast wue-loading" v-show="show">
+        <div class="weui-loading_toast wue-loading" v-show="currentValue">
             <div class="weui-mask_transparent"></div>
             <div class="weui-toast">
                 <i class="weui-loading weui-icon_toast"></i>
-                <p class="weui-toast__content">{{ text || '加载中' }}
-                    <slot></slot>
-                </p>
+                <p class="weui-toast__content" v-html="showText || '加载中'"></p>
             </div>
         </div>
     </transition>
@@ -22,19 +20,30 @@
             },
             text: String,
         },
-        created () {
-            this.show = this.value
-        },
         data () {
             return {
-                show: false
+                currentValue: this.value,
+                showText: this.text,
+            }
+        },
+        methods: {
+            show(text){
+                this.showText = text;
+                this.currentValue = true;
+            },
+            
+            hide(){
+                this.currentValue = false;
             }
         },
         watch: {
             value (val) {
-                this.show = val
+                this.currentValue = val
             },
-            show (val) {
+            currentValue (val) {
+                if(val === false){
+                    this.$emit('hidden', val)
+                }
                 this.$emit('input', val)
             }
         }

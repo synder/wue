@@ -21,13 +21,16 @@ export default {
         const confirm = {
             show (title, content, callback) {
                 $vm.show(title, content);
-                $vm.$on('confirm', function () {
-                    callback(true);
-                });
 
-                $vm.$on('cancel', function () {
-                    callback(false);
-                });
+                if(callback){
+                    $vm.$on('confirm', function () {
+                        callback(true);
+                    });
+
+                    $vm.$on('cancel', function () {
+                        callback(false);
+                    });
+                }
 
                 return this;
             },
