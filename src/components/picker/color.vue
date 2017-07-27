@@ -1,4 +1,4 @@
-<!--颜色选择器-->
+
 <template>
     <wue-picker v-show="visible" title="选择颜色">
         <div v-for="colors in rowsColors" style="display: block;width: 100%;">

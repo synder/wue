@@ -1,10 +1,10 @@
 <template>
-    <div @touchmove="onTouchMove">
+    <div @touchmove="onTouchMove" v-if="currentValue">
         <transition name="wue-mask">
-            <div class="weui-mask" @click="hideOnBlur && (currentValue = false)" v-show="currentValue"></div>
+            <div class="weui-mask" @click="hideOnBlur && (currentValue = false)" ></div>
         </transition>
         <transition name="wue-dialog">
-            <div :class="dialogClass" v-show="currentValue" :style="dialogStyle">
+            <div :class="dialogClass" :style="dialogStyle">
                 <slot></slot>
             </div>
         </transition>

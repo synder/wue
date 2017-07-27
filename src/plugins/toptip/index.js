@@ -9,36 +9,30 @@ import ToptipComponents from '../../components/toptip/index.vue';
 
 export default {
     install (Vue) {
-
-        const Toptip = Vue.extend(ToptipComponents);
-        
-        let $vm =  new Toptip({
-            el: document.createElement('div')
-        });
-
-        document.body.appendChild($vm.$el);
-        
-        const toptip = {
+        Vue.prototype.$toptip = {
             show (message, callback) {
-                
+
+                const Toptip = Vue.extend(ToptipComponents);
+
+                let $vm =  new Toptip({
+                    el: document.createElement('div')
+                });
+
+                document.body.appendChild($vm.$el);
+
                 $vm.message = message;
                 $vm.show();
-                
+
                 if(callback){
                     $vm.$on('hidden', callback);
                 }
-                
+
                 setTimeout(function () {
                     $vm.hide();
                 }, 1500);
-                
-                return this;
-            },
-            hide () {
-                $vm.hide();
-            }
-        };
 
-        Vue.prototype.$toptip = toptip;
+                return $vm;
+            },
+        };
     }
 }

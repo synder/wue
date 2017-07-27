@@ -1,5 +1,4 @@
 <template>
-    <!--单列表选项-->
     <div class="weui-cells weui-cells_radio">
         <label class="weui-cell weui-check__label" v-for="item in options" :for="name + item">
             <div class="weui-cell__bd" v-html="item">

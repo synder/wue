@@ -1,4 +1,3 @@
-<!--懒加载图片-->
 <template>
     <div class="wue-lazy-image-loader">
         <img :alt="alt" :src="href" :class="classes">

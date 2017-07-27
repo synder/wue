@@ -1,4 +1,4 @@
-<!--跑马灯实现-->
+
 <template>
     <div class="wue-marquee" :style="{height: height + 'px'}">
         <div class="wue-marquee-box" :style="styles" :class="'align-' + align">

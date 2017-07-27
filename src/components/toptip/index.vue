@@ -1,5 +1,5 @@
 <template>
-    <div class="weui-toptips weui-toptips_warn" v-show="currentValue" v-html="message"></div>
+    <div class="weui-toptips weui-toptips_warn" v-if="currentValue" v-html="message"></div>
 </template>
 
 <script>
@@ -7,7 +7,7 @@
         props: {
             value: {
                 type: Boolean,
-                default: true
+                default: false
             },
             message: String
         },

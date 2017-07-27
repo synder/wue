@@ -1,5 +1,5 @@
 <template>
-    <!--点赞组件-->
+ 
 </template>
 
 <style lang='less' scoped>

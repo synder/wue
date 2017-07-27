@@ -26,7 +26,16 @@
         },
 
         mounted(){
-            this.$toptip.show('正在加载中');
+            const self = this;
+            setInterval(function () {
+                if(Math.random() > 0.5){
+                    self.$toptip.show('正在加载中');
+                }else{
+                    self.$toast.show('正在加载中');
+                }
+            }, 2000);
+           
+          
         }
     }
 </script>

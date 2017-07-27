@@ -10,16 +10,17 @@ import ConfirmComponents from '../../components/confirm/index.vue';
 export default {
     install (Vue) {
 
-        const Confirm = Vue.extend(ConfirmComponents);
-        
-        let $vm =  new Confirm({
-            el: document.createElement('div')
-        });
-
-        document.body.appendChild($vm.$el);
-        
-        const confirm = {
+        Vue.prototype.$confirm = {
             show (title, content, callback) {
+
+                const Confirm = Vue.extend(ConfirmComponents);
+
+                let $vm =  new Confirm({
+                    el: document.createElement('div')
+                });
+
+                document.body.appendChild($vm.$el);
+
                 $vm.show(title, content);
 
                 if(callback){
@@ -32,13 +33,8 @@ export default {
                     });
                 }
 
-                return this;
+                return $vm;
             },
-            hide () {
-                $vm.hide();
-            }
         };
-
-        Vue.prototype.$confirm = confirm;
     }
 }
