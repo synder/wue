@@ -50,7 +50,7 @@
                 immediate: true
             },
             currentValue (val) {
-                this.$emit(val ? 'on-show' : 'on-hide');
+                this.$emit(val ? 'show' : 'hide');
                 this.$emit('input', val);
             }
         },

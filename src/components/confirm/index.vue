@@ -1,13 +1,13 @@
 <template>
     <wue-dialog
-            v-model="show"
+            v-model="currentValue"
             :dialogClass="theme === 'android' ? 'weui-dialog weui-skin_android' : 'weui-dialog'"
             :hide-on-blur="hideOnBlur"
             @on-hide="$emit('on-hide')"
             @on-show="$emit('on-show')">
         
         <div class="weui-dialog__hd" v-if="!!title">
-            <strong class="weui-dialog__title">{{title}}</strong>
+            <strong class="weui-dialog__title" v-html="title"></strong>
         </div>
         <div class="weui-dialog__bd">
             <slot><div v-html="content"></div></slot>
@@ -25,7 +25,7 @@
     import Dialog from '../dialog/index.vue';
     
     export default {
-        name: 'confirm',
+        name: 'wue-confirm',
         components: {
             'wue-dialog': Dialog
         },
@@ -47,36 +47,38 @@
             cancel: String,
             content: String,
         },
-        created () {
-            if (this.value) {
-                this.show = this.value;
+        data () {
+            return {
+                msg: '',
+                currentValue: this.value
             }
         },
         watch: {
             value (val) {
-                this.show = val;
+                this.currentValue = val;
             },
-            show (val) {
+            currentValue (val) {
                 this.$emit('input', val);
-            }
-        },
-        data () {
-            return {
-                msg: '',
-                show: false
-            }
+            },
         },
         methods: {
-            hidden: function () {
-                this.show = false;  
+            hide: function () {
+                this.currentValue = false;  
+            },
+
+            show(title, content){
+                this.title = title;
+                this.content = content;
+                this.currentValue = true;
             },
             
             onConfirm () {
-                this.$emit('on-confirm', this);
+                this.hide();
+                this.$emit('confirm', this);
             },
             onCancel () {
-                this.show = false;
-                this.$emit('on-cancel');
+                this.hide();
+                this.$emit('cancel', this);
             }
         }
     }

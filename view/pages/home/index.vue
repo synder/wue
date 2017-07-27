@@ -4,10 +4,6 @@
 
 <script type="text/babel">
 
-    import  {Store} from '../../../src/plugins/storage/index.js';
-    
-    
-
     export default {
         components: {
            
@@ -30,21 +26,9 @@
         },
 
         mounted(){
-            let store = new Store(window.localStorage);
-            
-            store.set('info', {
-                name: 1,
-                age: 2,
-                show: true
-            }, 10000);
-
-            console.log(store.get('info'));
-            console.log(store.ttl('info'));
-
-            setTimeout(function () {
-                console.log(store.get('info'));
-            }, 200);
-          
+            this.$confirm.show('你确认要展示', '已经删除', function (result) {
+                console.log(result);
+            });
         }
     }
 </script>

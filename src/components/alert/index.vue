@@ -1,15 +1,15 @@
 <template>
-    <div class="vux-alert">
+    <div class="wue-alert">
         <wue-dialog
                 v-model="showValue"
-                @on-hide="$emit('on-hide')"
-                @on-show="$emit('on-show')">
+                @hide="$emit('hide')"
+                @show="$emit('show')">
             <div class="weui-dialog__hd">
-                <strong class="weui-dialog__title">{{title}}</strong>
+                <strong class="weui-dialog__title" v-html="showTitle"></strong>
             </div>
             <div class="weui-dialog__bd">
                 <slot>
-                    <div v-html="content"></div>
+                    <div v-html="showContent"></div>
                 </slot>
             </div>
             <div class="weui-dialog__ft">
@@ -42,7 +42,9 @@
         },
         data () {
             return {
-                showValue: false
+                showValue: false,
+                showTitle: this.title,
+                showContent: this.content
             }
         },
         
@@ -53,12 +55,19 @@
         },
         
         methods: {
-            hidden: function () {
+            show: function (title, content) {
+                this.showTitle = title;
+                this.showContent = content;
+                this.showValue = true;
+            },
+            
+            hide: function () {
                 this.showValue = false;
             },
             
             click: function () {
-                this.$emit('on-click', this);
+                this.hide();
+                this.$emit('click', this);
             }
         },
         
