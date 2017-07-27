@@ -6,7 +6,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const glob = require('glob');
 const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -18,52 +17,45 @@ const resolve = function (p) {
 
 const plugins = function (htmlPath) {
 
-    let htmlPlugins = [];
+    let temp = [];
 
-    let conf = {
-        filename: 'index.html',
-        template: htmlPath,
-        inject: true,
-    };
 
-    htmlPlugins.push(new HtmlWebpackPlugin(conf));
-
-    let otherPlugins = [];
-
-    let vendor = new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        filename: 'js/vendor/vendor.js',
-        minChunks: function (module, count) {
-            return module.resource && /\.js$/.test(module.resource) && module.resource.indexOf(path.join(__dirname, '../node_modules')) === 0;
+    let env = new webpack.DefinePlugin({
+        'process.env': {
+            NODE_ENV: '"production"'
         }
     });
 
-    let manifest = new webpack.optimize.CommonsChunkPlugin({
-        name: 'manifest',
-        filename: 'js/vendor/manifest.js',
-        chunks: ['vendor']
+    let compress = new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        },
+        except: ['$', 'exports', 'require']
+    });
+    
+    let html = new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: htmlPath,
+        inject: true,
     });
 
     let css = new ExtractTextPlugin({
-        filename: 'css/[name].css'
+        filename: 'css/[name].css?[contenthash]'
     });
-
-    let jquery = new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery"
-    });
-
-    otherPlugins.push(vendor);
-    otherPlugins.push(manifest);
-    otherPlugins.push(css);
-    otherPlugins.push(jquery);
-
-    return htmlPlugins.concat(otherPlugins);
+    
+    temp.push(env);
+    temp.push(compress);
+    temp.push(html);
+    temp.push(css);
+    
+    return temp;
 };
 
 module.exports = {
     entry: {
-        main: './view/main.js'
+        main: './view/main.js',
+        vue: ['vue',  'vue-router'],
+        vuex: ['vuex'],
     },
     output: {
         path: resolve('./static'),
@@ -75,11 +67,6 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             vue: 'vue/dist/vue.js',
-            src: resolve('./view'),
-            theme: 'element-ui/lib/theme-default/index.css',
-            assets: resolve('./view/assets'),
-            awesome: 'font-awesome/css/font-awesome.css',
-            components: resolve('./view/components'),
         }
     },
     module: {
@@ -112,7 +99,7 @@ module.exports = {
                                 },
                                 {
                                     loader: 'less-loader',
-                                    options:  {
+                                    options: {
                                         sourceMap: true
                                     }
                                 }
@@ -156,7 +143,7 @@ module.exports = {
                 loader: 'url-loader',
                 query: {
                     limit: 10000,
-                    name:  'fonts/[name].[ext]'
+                    name: 'fonts/[name].[ext]'
                 }
             }
         ]

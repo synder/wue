@@ -7,6 +7,7 @@
 const express     = require('express');
 const webpack = require('webpack');
 const body = require('body-parser');
+const compression    = require('compression');
 
 const app = express();
 
@@ -17,6 +18,7 @@ const webpackDev = require('./webpack/dev');
 
 const compiler = webpack(config);
 
+app.use(compression());
 app.use(webpackDev(compiler, config));
 app.use(webpackHot(compiler, config));
 app.use(body.json());
