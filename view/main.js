@@ -1,6 +1,7 @@
 
 
 import Vue from 'vue';
+import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 
 import App from './App.vue';
@@ -19,11 +20,26 @@ Vue.use(Toast);
 Vue.use(Toptip);
 Vue.use(Wechat);
 Vue.use(VueRouter);
+Vue.use(Vuex);
+
+const store = new Vuex.Store({
+    state: {
+        count: 0
+    },
+    mutations: {
+        increment (state) {
+            state.count++
+        }
+    }
+});
+
+import HomePage from './pages/home/index.vue';
+
 const router = new VueRouter({
     routes: [
         {
             path: '/',
-            component:  import('./pages/home/index.vue')
+            component:  HomePage
         }
     ]
 });
@@ -31,6 +47,7 @@ const router = new VueRouter({
 new Vue({
     el: '#app',
     router: router,
+    store: store,
     template: '<App/>',
     components: {
         App: App,

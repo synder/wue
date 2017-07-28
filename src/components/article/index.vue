@@ -16,7 +16,7 @@
     export default {
         name: 'wue-article',
         props: {
-            title: String
+            title: String | Number
         }
     }
 </script>

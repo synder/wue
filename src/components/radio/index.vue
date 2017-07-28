@@ -20,8 +20,8 @@
         name: 'wue-radio',
 
         props: {
-            value: String,
-            title: String,
+            value: String | Number,
+            title: String | Number,
             items: Array
         },
 

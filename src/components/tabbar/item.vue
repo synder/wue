@@ -23,7 +23,7 @@
 
         props: {
             id: String,
-            label: String,
+            label: String | Number,
             icon: String,
             onIcon: String,
             badge: Number | String,

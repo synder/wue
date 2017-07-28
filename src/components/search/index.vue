@@ -32,14 +32,14 @@
         },
 
         props: {
-            value: String,
+            value: String | Number,
             focus: Boolean,
             placeholder: {
                 type: String,
                 default: '搜索'
             },
             cancel: {
-                type: String,
+                type: String | Number,
                 default: '取消'
             },
         },

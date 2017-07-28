@@ -16,7 +16,7 @@
         default: 'default'
       },
       text: {
-        type: String,
+        type: String | Number,
         default: '正在加载'
       }
     }

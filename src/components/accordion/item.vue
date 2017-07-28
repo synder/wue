@@ -91,7 +91,7 @@
             }
         },
         props: {
-            title: String,
+            title: String | Number,
             open: {
                 type: Boolean,
                 default: false

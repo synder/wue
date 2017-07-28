@@ -42,10 +42,10 @@
                 type: Boolean,
                 default: false
             },
-            title: String,
-            confirm: String,
-            cancel: String,
-            content: String,
+            title: String | Number,
+            confirm: String | Number,
+            cancel: String | Number,
+            content: String | Number,
         },
         data () {
             return {

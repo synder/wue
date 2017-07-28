@@ -43,7 +43,7 @@
     export default {
         name: 'wue-scroll-tab-item',
         props: {
-            label: String,
+            label: String | Number,
             icon: String,
             active: Boolean
         },

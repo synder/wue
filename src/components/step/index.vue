@@ -10,8 +10,8 @@
         props: {
             value: Number,
             gutter: {
-                type: String,
-                default: '10px'
+                type: Number,
+                default: 10
             }
         },
         created () {

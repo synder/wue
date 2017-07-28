@@ -39,13 +39,13 @@
                 type: String,
                 default: 'ios'
             },
-            title: String,
+            title: String | Number,
             options: {
                 type: Array,
                 default: []
             },
             cancel: {
-                type: String,
+                type: String | Number,
             },
         },
 

@@ -12,7 +12,7 @@
         name: 'wue-cells',
 
         props: {
-            title: String,
+            title: String | Number,
             color: String,
             background: String
         },

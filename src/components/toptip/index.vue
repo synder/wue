@@ -14,7 +14,7 @@
                 type: Boolean,
                 default: false
             },
-            message: String
+            message: String | Number
         },
         
         data(){

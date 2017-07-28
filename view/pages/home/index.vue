@@ -1,7 +1,7 @@
 <template>
     <div>
-        <wue-avatar v-model="value"></wue-avatar>
-        <wue-alert v-model="value"></wue-alert>
+        <wue-avatar v-model="avatar"></wue-avatar>
+        <wue-alert v-model="value" :title="count"></wue-alert>
     </div>
     
 </template>
@@ -18,12 +18,19 @@
         },
         data() {
             return {
-                value: '/img/logo.png'
+                value: true,
+                avatar: '/img/logo.png'
             }
         },
         watch: {
             value(val){
                 console.log(val);
+            }
+        },
+        
+        computed: {
+            count(){
+                return this.$store.state.count
             }
         },
 

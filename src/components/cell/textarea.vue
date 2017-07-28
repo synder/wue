@@ -18,8 +18,8 @@
         name: 'wue-textarea',
 
         props: {
-            value: String,
-            placeholder: String,
+            value: String | Number,
+            placeholder: String | Number,
             rows: {
                 type: Number,
                 default: 3

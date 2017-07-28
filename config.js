@@ -23,15 +23,15 @@ const plugins = function (htmlPath) {
         'process.env.NODE_ENV': '"production"'
     });
 
-    let compress = new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: true,
-            drop_console: true,
-            drop_debugger: true,
-            unused: true
-        },
-        except: ['$super', '$', 'exports', 'require']
-    });
+    // let compress = new webpack.optimize.UglifyJsPlugin({
+    //     compress: {
+    //         warnings: true,
+    //         drop_console: true,
+    //         drop_debugger: true,
+    //         unused: true
+    //     },
+    //     except: ['$super', '$', 'exports', 'require']
+    // });
     
     
     let html = new HtmlWebpackPlugin({
@@ -51,7 +51,7 @@ const plugins = function (htmlPath) {
     });
     
     temp.push(env);
-    temp.push(compress);
+    //temp.push(compress);
     temp.push(html);
     temp.push(css);
     

@@ -41,8 +41,8 @@
                 type: String,
                 default: 'text'
             },
-            label: String,
-            placeholder: String,
+            label: String | Number,
+            placeholder: String | Number,
             value: String | Number,
             readonly: Boolean,
             disabled: Boolean,
@@ -55,9 +55,7 @@
                 type: Boolean,
                 default: false
             },
-            button: {
-                type: String
-            }
+            button: String | Number
         },
 
         data () {

@@ -3,7 +3,7 @@
         
         <div :class="'wue-step-item-tail ' + 'wue-step-item-tail-' + currentStatus" 
              v-show="!currentStepLast"
-             :style="{right: $parent.gutter}"></div>
+             :style="{right: $parent.gutter + 'px'}"></div>
         
         <div :class="'wue-step-item-head ' + 'wue-step-item-head-' + currentStatus">
             <div class="wue-step-item-head-inner">
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div :class="'wue-step-item-main ' + 'wue-step-item-main-' + currentStatus"
-             :style="{paddingRight: currentStepLast ? 0 : $parent.gutter}">
+             :style="{paddingRight: currentStepLast ? 0 : $parent.gutter + 'px'}">
             <span class="wue-step-item-title" v-text="title"></span>
         </div>
         
@@ -27,7 +27,7 @@
         name: 'wue-step-item',
         
         props: {
-            title: String,
+            title: String | Number,
             stepNumber: Number,
             stepLast: Boolean,
             icon: String,

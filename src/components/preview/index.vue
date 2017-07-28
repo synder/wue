@@ -23,7 +23,7 @@
         name: 'wue-preview',
 
         props: {
-            title: String,
+            title: String | Number,
             value: String,
             dataItems: {
                 type: Array,

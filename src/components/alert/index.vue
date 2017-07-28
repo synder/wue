@@ -36,8 +36,8 @@
                 type: Boolean,
                 default: false
             },
-            title: String,
-            content: String,
+            title: String | Number,
+            content: String | Number,
             button: {
                 type: String,
                 default: '确认'

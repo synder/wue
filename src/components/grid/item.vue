@@ -19,7 +19,7 @@
         name: 'wue-grid-item',
         props: {
             icon: String,
-            label: String,
+            label: String | Number,
             link: String,
         },
         mounted () {

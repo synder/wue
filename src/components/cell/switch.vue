@@ -22,7 +22,7 @@
         name: 'wue-switch',
 
         props: {
-            title: String,
+            title: String | Number,
             disabled: Boolean,
             value: Boolean,
         },

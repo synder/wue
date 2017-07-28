@@ -22,7 +22,7 @@
                 type: String,
                 default: 'text'
             },
-            placeholder: String,
+            placeholder: String | Number,
             readonly: Boolean,
             disabled: Boolean
         },

@@ -20,7 +20,7 @@
         name: 'wue-header',
 
         props: {
-            title: String,
+            title: String | Number,
             fixed: {
                 type: Boolean,
                 default: true

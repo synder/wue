@@ -72,7 +72,7 @@
                 },
                 default: 60
             },
-            title: String,
+            title: String | Number,
             limit: Number,
             type: {
                 type: String,

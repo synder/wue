@@ -18,7 +18,7 @@
                 type: Boolean,
                 default: false
             },
-            text: String,
+            text: String | Number,
         },
         data () {
             return {
