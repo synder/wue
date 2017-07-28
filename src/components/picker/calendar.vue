@@ -89,7 +89,7 @@
         },
         created () {
             this.currentValue = this.value ? new Date(this.value) : new Date();
-            this.days = this.getMonthDays();
+            this.days = this.getMonthDays(this.currentValue);
         },
         mounted () {
             const self = this;
@@ -136,7 +136,7 @@
         },
         computed: {
             year(){
-                return this.currentValue.getFullYear();
+                return this.currentValue.getFullYear(this.currentValue);
             },
 
             month(){
@@ -193,12 +193,19 @@
                 return days;
             },
 
-            getMonthDays(){
-
-                let time = this.currentValue;
-
+            getMonthDays(time){
                 let temp = new Date(time);
-
+                
+                if(this.days.length !== 0){
+                    if(this.currentValue.getFullYear() === temp.getFullYear()
+                        && this.currentValue.getMonth() === temp.getMonth() 
+                        && this.currentValue.getDate() === temp.getDate()){
+                        this.currentValue = time;
+                        return this.days;
+                    }
+                }
+                
+                this.currentValue = time;
                 let totalDayCount = this.getMonthDayCount(temp);
 
                 temp.setDate(1);
@@ -281,29 +288,25 @@
             nextMonth(){
                 let temp = new Date(this.currentValue);
                 temp.setMonth(temp.getMonth() + 1);
-                this.currentValue = temp;
-                this.days = this.getMonthDays();
+                this.days = this.getMonthDays(temp);
             },
 
             nextYear(){
                 let temp = new Date(this.currentValue);
                 temp.setFullYear(temp.getFullYear() + 1);
-                this.currentValue = temp;
-                this.days = this.getMonthDays();
+                this.days = this.getMonthDays(temp);
             },
 
             prevMonth(){
                 let temp = new Date(this.currentValue);
                 temp.setMonth(temp.getMonth() - 1);
-                this.currentValue = temp;
-                this.days = this.getMonthDays();
+                this.days = this.getMonthDays(temp);
             },
 
             prevYear(){
                 let temp = new Date(this.currentValue);
                 temp.setFullYear(temp.getFullYear() - 1);
-                this.currentValue = temp;
-                this.days = this.getMonthDays();
+                this.days = this.getMonthDays(temp);
             },
 
             select(day){
@@ -311,8 +314,7 @@
                 temp.setFullYear(day.year);
                 temp.setMonth(day.month);
                 temp.setDate(day.date);
-                this.currentValue = temp;
-                this.days = this.getMonthDays();
+                this.days = this.getMonthDays(temp);
             }
         }
     }
