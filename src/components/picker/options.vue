@@ -67,8 +67,61 @@
             const self = this;
             const wrapper = self.$refs.wrapper; //滑动框
             const element = self.$el;
+            
+            let ticker = null;
 
             Transform(wrapper, true);
+
+            const move = function (step) {
+
+                let direction;
+                
+                if(self.dragState.velocityTranslate > 0){
+                    direction = 'up';
+                }else if(self.dragState.velocityTranslate < 0){
+                    direction = 'down';
+                }
+
+                let translate = Math.round(wrapper.translateY + self.dragState.velocityTranslate * 1);
+
+                if(step === true){
+                    translate = Math.round(wrapper.translateY / self.itemHeight) * self.itemHeight;
+                }else{
+                    if(self.dragState.velocityTranslate === 0) {
+                        if(direction === 'up'){
+                            translate = Math.ceil(wrapper.translateY / self.itemHeight) * self.itemHeight;
+                        }else if(direction === 'down'){
+                            translate = Math.floor(wrapper.translateY / self.itemHeight) * self.itemHeight;
+                        }else{
+                            translate = Math.round(wrapper.translateY / self.itemHeight) * self.itemHeight;
+                        }
+                    }
+                }
+
+                translate = Math.max(Math.min(translate, self.maxTranslateY), self.minTranslateY);
+
+                wrapper.translateY = translate;
+
+                if(self.dragState.velocityTranslate === 0){
+                    if(ticker){
+                        clearInterval(ticker);
+                    }
+                    self.currentValue = self.translate2value(translate);
+                    self.$emit('change', self.id, self.currentValue);
+                }
+
+                if(direction === 'up'){
+                    if(self.dragState.velocityTranslate > 0){
+                        self.dragState.velocityTranslate -= 1;
+                    }
+                }else if(direction === 'down'){
+                    if(self.dragState.velocityTranslate < 0){
+                        self.dragState.velocityTranslate += 1;
+                    }
+                }
+
+            };
+
 
             element.addEventListener('touchstart', function (event) {
                 event.preventDefault();
@@ -97,46 +150,26 @@
                 } else {
                     wrapper.translateY = self.dragState.startTranslateY + deltaY;
                 }
-
+                
                 self.dragState.currentPosifionY = touch.clientY;
                 self.dragState.currentTranslateY = wrapper.translateY;
-                self.dragState.velocityTranslate = self.dragState.currentTranslateY - self.dragState.prevTranslateY;
-
+                self.dragState.velocityTranslate = (self.dragState.currentTranslateY - self.dragState.prevTranslateY) || 0;
                 self.dragState.prevTranslateY = self.dragState.currentTranslateY;
             });
 
             element.addEventListener('touchend', function (event) {
                 event.preventDefault();
                 self.isDragging = false;
-                
-                
-                let momentumRatio = 7;
-                let currentTranslate = wrapper.translateY;
-                let duration = new Date() - self.dragState.start;
-
-                let momentumTranslate;
-                if (duration < 300) {
-                    momentumTranslate = currentTranslate + self.dragState.velocityTranslate * momentumRatio;
-                }
-
-                self.$nextTick(function () {
-                    let translate;
-                    if (momentumTranslate) {
-                        translate = Math.round(momentumTranslate / self.itemHeight) * self.itemHeight;
-                    } else {
-                        translate = Math.round(currentTranslate / self.itemHeight) * self.itemHeight;
+                if(Math.abs(self.dragState.velocityTranslate) < 20){
+                    move(true);
+                }else{
+                    if(ticker){
+                        clearInterval(ticker);
                     }
-
-                    translate = Math.max(Math.min(translate, self.maxTranslateY), self.minTranslateY);
-
-                    wrapper.translateY = translate;
-
-                    self.currentValue = self.translate2value(translate);
-                    
-                    self.$emit('change', self.id, self.currentValue);
-                });
-                
-                self.dragState = {}
+                    ticker = setInterval(function () {
+                        move(false);
+                    }, 30);
+                }
             });
 
             element.addEventListener('touchcancel', function (event) {
