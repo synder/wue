@@ -116,14 +116,14 @@
                 let X = moveEndX - startX;
                 let Y = moveEndY - startY;
                 
-                if(Math.abs(X) > 50 || Math.abs(Y) > 50){
+                if(Math.abs(X) > 30 || Math.abs(Y) > 30){
                     if ( Math.abs(X) > Math.abs(Y) &&  X > 0 ) {
                         self.prevMonth();
-                    } else if ( Math.abs(X) > Math.abs(Y) && X < 50 ) {
+                    } else if ( Math.abs(X) > Math.abs(Y) && X < 0 ) {
                         self.nextMonth();
-                    } else if ( Math.abs(Y) > Math.abs(X) && Y > 50) {
+                    } else if ( Math.abs(Y) > Math.abs(X) && Y > 0) {
                         self.nextYear();
-                    } else if ( Math.abs(Y) > Math.abs(X) && Y < 50 ) {
+                    } else if ( Math.abs(Y) > Math.abs(X) && Y < 0 ) {
                         self.prevYear();
                     } else {
                         event.returnValue = true;
