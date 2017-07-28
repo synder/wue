@@ -34,7 +34,7 @@
                     <table>
                         <thead>
                         <tr>
-                            <th v-for="val in weeks" class="week" v-text="val"></th>
+                            <th v-for="val in weeks" class="wue-calendar-week" v-text="val"></th>
                         </tr>
                         </thead>
                         <tbody>
