@@ -39,7 +39,8 @@
                         </thead>
                         <tbody>
                         <tr v-for="rows in days">
-                            <td v-for="day in rows" @click="select(day)" :class="{'is-disabled': day.disable, 'is-today': day.today, 'current': day.current}">
+                            <td v-for="day in rows" @click="select(day)"
+                                :class="{'is-disabled': day.disable, 'is-today': day.today, 'current': day.current}">
                                 <slot name="day">
                                     <span class="wue-wue-calendar-each-date" v-text="day.date"></span>
                                     <div></div>
@@ -91,7 +92,47 @@
             this.days = this.getMonthDays();
         },
         mounted () {
+            const self = this;
+            const element = self.$el;
+            let startX, startY, moveEndX, moveEndY;
 
+            element.addEventListener('touchstart', function (event) {
+                event.preventDefault();
+                let touch = event.changedTouches[0] || event.touches[0];
+
+                startX = touch.pageX;
+                startY = touch.pageY;
+                event.returnValue = true;
+                
+            }, false);
+
+            element.addEventListener('touchend', function (event) {
+                event.preventDefault();
+                let touch = event.changedTouches[0] || event.touches[0];
+
+                moveEndX = touch.pageX;
+                moveEndY = touch.pageY;
+
+                let X = moveEndX - startX;
+                let Y = moveEndY - startY;
+                
+                if(Math.abs(X) > 50 || Math.abs(Y) > 50){
+                    if ( Math.abs(X) > Math.abs(Y) &&  X > 0 ) {
+                        self.prevMonth();
+                    } else if ( Math.abs(X) > Math.abs(Y) && X < 50 ) {
+                        self.nextMonth();
+                    } else if ( Math.abs(Y) > Math.abs(X) && Y > 50) {
+                        self.nextYear();
+                    } else if ( Math.abs(Y) > Math.abs(X) && Y < 50 ) {
+                        self.prevYear();
+                    } else {
+                        event.returnValue = true;
+                    }
+                }else{
+                    event.returnValue = true;
+                }
+                
+            }, false);
         },
         computed: {
             year(){
@@ -104,24 +145,24 @@
         },
         watch: {
             value (val) {
-                if(val instanceof Date){
+                if (val instanceof Date) {
                     this.currentValue = val;
-                }else{
+                } else {
                     this.currentValue = val ? new Date(val) : new Date();
                 }
             },
             currentValue (val) {
-                if(val instanceof Date){
+                if (val instanceof Date) {
                     this.currentValue = val;
-                }else{
+                } else {
                     this.currentValue = val ? new Date(val) : new Date();
                 }
-                
+
                 this.currentValue.setHours(0);
                 this.currentValue.setMinutes(0);
                 this.currentValue.setSeconds(0);
                 this.currentValue.setMilliseconds(0);
-                
+
                 this.$emit('input', this.currentValue);
                 this.$emit('change', this.currentValue);
             },
@@ -131,7 +172,7 @@
             onHidden(){
                 this.visible = false;
             },
-            
+
             getMonthDayCount(time) {
 
                 time = new Date(time);
@@ -153,7 +194,7 @@
             },
 
             getMonthDays(){
-                
+
                 let time = this.currentValue;
 
                 let temp = new Date(time);
@@ -218,17 +259,17 @@
 
                 let showResult = [];
                 let rowTemp = [];
-                
+
                 for (let i = 0; i < result.length; i++) {
-                    if(i > 0 && i % 7 === 0){
+                    if (i > 0 && i % 7 === 0) {
                         showResult.push(rowTemp);
                         rowTemp = [];
                     }
-                    
+
                     rowTemp.push(result[i]);
                 }
-                
-                if(rowTemp.length > 0){
+
+                if (rowTemp.length > 0) {
                     showResult.push(rowTemp);
                     rowTemp = [];
                 }
@@ -277,13 +318,13 @@
     }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 
     @import '../../styles/base/reset.less';
     @import '../../styles/widget/weui-tips/weui-mask.less';
     @import '../../styles/widget/weui-animate/weui-animate.less';
     @import '../../styles/widget/weui-picker/weui-picker.less';
-    
+
     //use
     @wue-calendar-arrow-color: #04BE02;
     @wue-calendar-highlight-color: #E59313;
@@ -329,7 +370,6 @@
         top: 14px;
         right: 15px;
     }
-    
 
     .wue-inline-calendar a {
         text-decoration: none;
@@ -390,7 +430,7 @@
         opacity: 0;
         transform: translate3d(0, -10px, 0);
     }
-    
+
     .wue-inline-calendar table {
         clear: both;
         width: 100%;

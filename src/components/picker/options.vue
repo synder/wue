@@ -121,8 +121,7 @@
                 }
 
             };
-
-
+            
             element.addEventListener('touchstart', function (event) {
                 event.preventDefault();
 
