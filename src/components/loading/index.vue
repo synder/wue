@@ -42,7 +42,7 @@
             },
             currentValue (val) {
                 if(val === false){
-                    this.$emit('hidden', val)
+                    this.$emit('hidden', this);
                 }
                 this.$emit('input', val)
             }

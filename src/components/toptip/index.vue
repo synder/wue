@@ -40,7 +40,7 @@
 
             currentValue(val){
                 if(!val){
-                    this.$emit('hidden');
+                    this.$emit('hidden', this);
                 }
                 this.$emit('input', val);
             }

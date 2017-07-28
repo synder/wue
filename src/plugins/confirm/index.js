@@ -26,12 +26,12 @@ export default {
                 $vm.show(title, content);
 
                 if(callback){
-                    $vm.$on('confirm', function () {
-                        callback(true);
+                    $vm.$on('confirm', function (self) {
+                        callback(true, self);
                     });
 
-                    $vm.$on('cancel', function () {
-                        callback(false);
+                    $vm.$on('cancel', function (self) {
+                        callback(false, self);
                     });
                 }
 

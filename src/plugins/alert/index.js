@@ -27,9 +27,7 @@ export default {
                 $vm.show(title, content);
                 
                 if(callback){
-                    $vm.$on('click', function () {
-                        callback();
-                    });
+                    $vm.$on('click', callback);
                 }
                 
                 return $vm;
