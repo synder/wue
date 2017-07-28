@@ -1,33 +1,34 @@
 <template>
-    <div v-show="visible">
+    <transition name="wue-mask">
+    <div v-show="visibleValue">
         <div class="weui-mask weui-animate-fade-in"></div>
         <div class="weui-picker weui-animate-slide-up">
             <div class="weui-picker__hd">
                 <a class="weui-picker__action" @click="onHidden">取消</a>
-                <span v-text="title"></span>
+                <span v-text="showTitle"></span>
                 <a class="weui-picker__action" @click="onHidden">确认</a>
             </div>
             <div class="weui-picker__bd" :style="{height: height + 'px'}">
                 <div class="wue-inline-calendar">
                     <div class="wue-calendar-header">
                         <div class="wue-calendar-year">
-                <span @click="prevYear">
-                  <a class="year-prev wue-prev-icon" href="javascript:"></a>
-                </span>
+                            <span @click="prevYear">
+                              <a class="year-prev wue-prev-icon" href="javascript:"></a>
+                            </span>
                             <a class="wue-calendar-year-txt wue-calendar-title" href="javascript:" v-text="year"></a>
                             <span class="wue-calendar-header-right-arrow" @click="nextYear">
-                    <a class="year-next wue-next-icon" href="javascript:"></a>
-                </span>
+                                <a class="year-next wue-next-icon" href="javascript:"></a>
+                            </span>
                         </div>
 
                         <div class="wue-calendar-month">
-                <span @click="prevMonth">
-                  <a class="month-prev wue-prev-icon" href="javascript:"></a>
-                </span>
+                            <span @click="prevMonth">
+                              <a class="month-prev wue-prev-icon" href="javascript:"></a>
+                            </span>
                             <a class="wue-calendar-month-txt wue-calendar-title" href="javascript:" v-text="month"></a>
                             <span @click="nextMonth" class="wue-calendar-header-right-arrow">
-                    <a class="month-next wue-next-icon" href="javascript:"></a>
-                </span>
+                                <a class="month-next wue-next-icon" href="javascript:"></a>
+                            </span>
                         </div>
                     </div>
 
@@ -53,6 +54,7 @@
             </div>
         </div>
     </div>
+    </transition>
 </template>
 
 <script>
@@ -84,7 +86,9 @@
         data () {
             return {
                 currentValue: this.value ? new Date(this.value) : new Date(),
-                days: []
+                days: [],
+                showTitle: this.title,
+                visibleValue: this.visible
             }
         },
         created () {
@@ -103,7 +107,7 @@
                 startX = touch.pageX;
                 startY = touch.pageY;
                 event.returnValue = true;
-                
+
             }, false);
 
             element.addEventListener('touchend', function (event) {
@@ -115,23 +119,23 @@
 
                 let X = moveEndX - startX;
                 let Y = moveEndY - startY;
-                
-                if(Math.abs(X) > 30 || Math.abs(Y) > 30){
-                    if ( Math.abs(X) > Math.abs(Y) &&  X > 0 ) {
+
+                if (Math.abs(X) > 30 || Math.abs(Y) > 30) {
+                    if (Math.abs(X) > Math.abs(Y) && X > 0) {
                         self.prevMonth();
-                    } else if ( Math.abs(X) > Math.abs(Y) && X < 0 ) {
+                    } else if (Math.abs(X) > Math.abs(Y) && X < 0) {
                         self.nextMonth();
-                    } else if ( Math.abs(Y) > Math.abs(X) && Y > 0) {
+                    } else if (Math.abs(Y) > Math.abs(X) && Y > 0) {
                         self.nextYear();
-                    } else if ( Math.abs(Y) > Math.abs(X) && Y < 0 ) {
+                    } else if (Math.abs(Y) > Math.abs(X) && Y < 0) {
                         self.prevYear();
                     } else {
                         event.returnValue = true;
                     }
-                }else{
+                } else {
                     event.returnValue = true;
                 }
-                
+
             }, false);
         },
         computed: {
@@ -163,14 +167,24 @@
                 this.currentValue.setSeconds(0);
                 this.currentValue.setMilliseconds(0);
 
+                this.showTitle = this.currentValue.getFullYear() + '/' + this.zero(this.currentValue.getMonth() + 1) + '/' + this.zero(this.currentValue.getDate());
+
                 this.$emit('input', this.currentValue);
                 this.$emit('change', this.currentValue);
             },
         },
         methods: {
 
+            zero(value){
+                if (value < 10) {
+                    return '0' + value;
+                } else {
+                    return value;
+                }
+            },
+
             onHidden(){
-                this.visible = false;
+                this.visibleValue = false;
             },
 
             getMonthDayCount(time) {
@@ -195,16 +209,16 @@
 
             getMonthDays(time){
                 let temp = new Date(time);
-                
-                if(this.days.length !== 0){
-                    if(this.currentValue.getFullYear() === temp.getFullYear()
-                        && this.currentValue.getMonth() === temp.getMonth() 
-                        && this.currentValue.getDate() === temp.getDate()){
+
+                if (this.days.length !== 0) {
+                    if (this.currentValue.getFullYear() === temp.getFullYear()
+                        && this.currentValue.getMonth() === temp.getMonth()
+                        && this.currentValue.getDate() === temp.getDate()) {
                         this.currentValue = time;
                         return this.days;
                     }
                 }
-                
+
                 this.currentValue = time;
                 let totalDayCount = this.getMonthDayCount(temp);
 
@@ -323,6 +337,7 @@
 <style lang="less" scoped>
 
     @import '../../styles/base/reset.less';
+    @import '../../styles/vue/transition.less';
     @import '../../styles/widget/weui-tips/weui-mask.less';
     @import '../../styles/widget/weui-animate/weui-animate.less';
     @import '../../styles/widget/weui-picker/weui-picker.less';
