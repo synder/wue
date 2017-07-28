@@ -1,3 +1,4 @@
+```
 <template>
     <div>
        <wue-calendar-picker v-model="value" :visible="true"></wue-calendar-picker>
@@ -38,3 +39,5 @@
         }
     }
 </script>
+
+```
