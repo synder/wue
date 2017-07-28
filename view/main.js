@@ -4,7 +4,6 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import App from './App.vue';
-import HomeIndex from './pages/home/index.vue';
 
 import Alert from '../src/plugins/alert/index';
 import Confirm from '../src/plugins/confirm/index';
@@ -20,12 +19,11 @@ Vue.use(Toast);
 Vue.use(Toptip);
 Vue.use(Wechat);
 Vue.use(VueRouter);
-
 const router = new VueRouter({
     routes: [
         {
             path: '/',
-            component: HomeIndex
+            component:  import('./pages/home/index.vue')
         }
     ]
 });

@@ -1,12 +1,20 @@
 <template>
-
+    <div>
+        <wue-avatar v-model="value"></wue-avatar>
+        <wue-alert v-model="value"></wue-alert>
+    </div>
+    
 </template>
 
 <script type="text/babel">
 
+    import avatar from '../../../src/components/avatar/index.vue';
+    import alert from '../../../src/components/alert/index.vue';
+    
     export default {
         components: {
-           
+           'wue-avatar': avatar,
+           'wue-alert': alert,
         },
         data() {
             return {

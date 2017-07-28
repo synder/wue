@@ -38,13 +38,15 @@ const plugins = function (htmlPath) {
         filename: 'index.html',
         template: htmlPath,
         inject: true,
+        hash: true,
         minify: {
-            removeComments: true
+            removeComments: true,
+            collapseWhitespace: true
         }
     });
 
     let css = new ExtractTextPlugin({
-        filename: 'css/[name].css?[contenthash]',
+        filename: 'css/[name].css?[hash]',
         allChunks: true
     });
     
@@ -63,8 +65,8 @@ module.exports = {
     output: {
         path: resolve('./static'),
         publicPath: resolve('/'),
-        filename: 'js/[name].js?[chunkhash]',
-        chunkFilename: "js/chunk/chunk[id].js?[chunkhash]",
+        filename: 'js/[name].js?[hash]',
+        chunkFilename: "js/chunk/[name].js?[hash]",
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
