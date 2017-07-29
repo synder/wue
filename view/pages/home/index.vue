@@ -1,5 +1,5 @@
 <template>
-    <div class="timeline-demo">
+    <div class="timeline-demo" style="height: 2000px">
         <wue-timeline v-model="value">
             <wue-timeline-item id="a1">
                 <h4 class="recent">【广东】 广州市 已发出</h4>
