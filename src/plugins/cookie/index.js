@@ -7,6 +7,10 @@
 
 const set = function (key, value, attributes) {
     
+    if(!value){
+        return del(key, attributes);
+    }
+    
     if(!attributes.path){
         attributes.path = '/';
     }

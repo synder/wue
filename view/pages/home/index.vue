@@ -1,17 +1,21 @@
 <template>
-    <div>
-       <wue-calendar-picker v-model="value" :visible="true"></wue-calendar-picker>
+    <div class="message">
+       <wue-ribbon text="测试">
+           <div>
+               show
+           </div>
+       </wue-ribbon>
     </div>
     
 </template>
 
 <script type="text/babel">
-    import WueCalendarPicker from "../../../src/components/picker/calendar";
+    import ribbon from "../../../src/components/ribbon/index.vue";
     
     
     export default {
         components: {
-            WueCalendarPicker,
+            'wue-ribbon': ribbon,
         },
         data() {
             return {
@@ -34,7 +38,7 @@
         },
 
         mounted(){
-      
+            console.log(this);
         }
     }
 </script>
