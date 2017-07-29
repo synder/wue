@@ -57,7 +57,7 @@
     .wue-navbar__item {
         position: relative;
         display: block;
-        flex: 1;
+        .flex(1);
         padding: 10px 0;
         text-align: center;
         font-size: 15px;

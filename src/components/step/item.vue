@@ -70,7 +70,7 @@
     }
 
     .wue-step-item-with-tail {
-        flex: 1;
+        .flex(1);
     }
 
     .wue-step-item-tail {

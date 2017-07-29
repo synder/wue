@@ -125,7 +125,7 @@
         .border-radius(50%);
         right: 5%;
         bottom: 5%;
-        .flex();
+        .display-flex();
         .flex-align-items(center);
         .flex-justify-content(center);
         z-index: @base-zindex * 1000;

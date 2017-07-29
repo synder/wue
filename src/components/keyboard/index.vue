@@ -188,7 +188,7 @@
         right: 0;
         left: 0;
         top: 0;
-        .flex();
+        .display-flex();
         .flex-justify-content(center);
         .flex-align-items(center);
     }
@@ -284,14 +284,14 @@
         background-color: #FFF;
         > li {
             width: 100%;
-            .flex();
+            .display-flex();
             > a {
                 width: 1%; /* for old android */
-                flex: 1;
+                .flex(1);
                 color: #686868;
                 height: 3rem;
                 position: relative;
-                .flex();
+                .display-flex();
                 .flex-justify-content(center);
                 .flex-align-items(center);
                 &:not(:last-child):after {
@@ -326,7 +326,7 @@
 
     .wue-keyboard-head {
         height: 3rem;
-        .flex();
+        .display-flex();
         .flex-justify-content(center);
         .flex-align-items(center);
         color: #686868;
@@ -339,7 +339,7 @@
 
     .wue-keyboard-password {
         margin: 0 1rem;
-        .flex();
+        .display-flex();
         position: relative;
         background-color: #FFF;
         &:after {
@@ -355,9 +355,9 @@
             .border-radius(4px);
         }
         li {
-            flex: 1;
+            .flex(1);
             position: relative;
-            .flex();
+            .display-flex();
             .flex-justify-content(center);
             .flex-align-items(center);
             height: 3rem;

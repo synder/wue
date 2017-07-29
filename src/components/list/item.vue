@@ -216,7 +216,7 @@
         background-color: #FFF;
         .wue-list-item {
             overflow: hidden;
-            .flex();
+            .display-flex();
             padding: 7px 0 8px 0;
             position: relative;
             &:not(:last-child):after {
@@ -226,7 +226,7 @@
                 width: 6rem;
             }
             .wue-list-mes {
-                flex: 1;
+                .flex(1);
                 padding-left: 7px;
                 .wue-list-title {
                     .line-clamp(3, 1rem);

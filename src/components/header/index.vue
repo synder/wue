@@ -1,8 +1,10 @@
 <template>
     <header class="wue-header" :class="{ 'is-fixed': fixed }" @click.stop="$emit('headerClick')"
-            :style="{ 'background-color': background }">
-        <div class="wue-header-btn left">
-            <slot name="left"></slot>
+            :style="style">
+        <div class="wue-header-btn left" @click="leftBtnClick">
+            <slot name="left">
+                <i class="wue-icon-arrow-left-l"></i>
+            </slot>
         </div>
         <div class="wue-header-title">
             <slot>
@@ -10,7 +12,9 @@
             </slot>
         </div>
         <div class="wue-header-btn right">
-            <slot name="right"></slot>
+            <slot name="right">
+                <i class="wue-icon-more-dot"></i>
+            </slot>
         </div>
     </header>
 </template>
@@ -28,6 +32,25 @@
             background: {
                 type: String,
                 default: '#1AAD19'
+            },
+            color: {
+                type: String,
+                default: '#FFF'
+            }
+        },
+        
+        computed: {
+            style(){
+                return { 
+                    backgroundColor: this.background,
+                    color: this.color
+                };
+            }
+        },
+        
+        methods: {
+            leftBtnClick(){
+                window.history.go(-1);
             }
         }
     }
@@ -35,11 +58,12 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
+    @import '../../styles/icon/wue-icon.less';
     
-    @headerHeight: 45px;
+    @headerHeight: 40px;
 
     .wue-header {
-        .flex();
+        .display-flex();
         .flex-align-items(center);
         .box-sizing(border-box);
         width: 100%;
@@ -49,23 +73,24 @@
         color: white;
         position: relative;
         white-space: nowrap;
+        z-index: 1000;
 
         .left, .right {
             display: block;
             overflow: hidden;
             float: left;
-            font-weight: 100;
             height: @headerHeight;
-            line-height: @headerHeight - 2;
+            line-height: @headerHeight + 2;
+            font-size: @headerHeight - 20;
         }
 
         .wue-header-title {
-            font-size: @headerHeight - 25;
+            font-size: @headerHeight - 22;
+            line-height: @headerHeight;
             font-weight: 100;
             text-align: center;
-            flex: 1;
+            .flex(1);
         }
-
     }
 
     .is-fixed {

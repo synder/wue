@@ -9,7 +9,7 @@
 
     .wue-marquee-item {
         height: inherit;
-        .flex();
+        .display-flex();
         .flex-align-items(center);
         .flex-justify-content(inherit);
     }

@@ -69,7 +69,7 @@
     @import "../../styles/base/reset.less";
     
     .wue-navbar {
-        .flex();
+        .display-flex();
         width: 100%;
         z-index: 5000;
         background-color: #fff;

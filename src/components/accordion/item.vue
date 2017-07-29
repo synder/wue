@@ -36,7 +36,7 @@
 
     .accordion-title {
         min-height: 1rem;
-        .flex();
+        .display-flex();
         .flex-align-items(center);
         position: relative;
         user-select: none;
@@ -47,7 +47,7 @@
         }
         > span {
             display: block;
-            flex: 1;
+            .flex(1);
             font-size: 1rem;
             color: #444;
         }
