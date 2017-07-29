@@ -1,9 +1,7 @@
 <template>
     <li class="wue-timeline-item">
-        <div :class="['wue-timeline-item-color', {'wue-timeline-item-head': !isFirst,'wue-timeline-item-head-first': isFirst }]"
-             :style="headStyle">
-            <icon v-show="isFirst && $parent.isShowIcon" type="success_no_circle"
-                  class="wue-timeline-item-checked"></icon>
+        <div :class="classes">
+            <i v-show="active" class="weui-icon-success-no-circle wue-timeline-item-checked"></i>
         </div>
         <div class="wue-timeline-item-tail" :style="tailStyle"></div>
         <div class="wue-timeline-item-content">
@@ -14,6 +12,8 @@
 
 <style lang="less" scoped>
     @import "../../styles/base/reset.less";
+    @import "../../styles/icon/weui-icon_font.less";
+    @import "../../styles/icon/weui-font.less";
 
     @timeline-item-bg-color: #04BE02;
 
@@ -85,36 +85,52 @@
 </style>
 
 <script>
-    import Icon from '../icon/index.vue';
 
     export default {
         name: 'wue-timeline-item',
+        
+        props: {
+            id: String,
+        },
+        
         data () {
             return {
                 isLast: true,
-                isFirst: true,
-                headStyle: {backgroundColor: this.$parent.color}
+                headStyle: {backgroundColor: this.$parent.color},
+                count: 0,
+                uuid: null,
+                active: false
             }
         },
         mounted () {
-            this.$parent.setChildProps()
+            this.uuid = this.id ? this.$parent.prevID + this.id : undefined;
+            this.$parent.setChildProps();
         },
         beforeDestroy () {
-            // this will be null
-            const $parent = this.$parent
+            const $parent = this.$parent;
+            
             this.$nextTick(() => {
                 $parent.setChildProps()
-            })
-        },
-        components: {
-            Icon
+            });
         },
         computed: {
             tailStyle () {
-                return this.isLast ? {display: 'none', backgroundColor: this.$parent.color} : {
+                return this.isLast ? {
+                    display: 'none', backgroundColor: this.$parent.color
+                } : {
                     display: 'block',
                     backgroundColor: this.$parent.color
-                }
+                };
+            },
+            
+            classes(){
+                return [
+                    'wue-timeline-item-color', 
+                    {
+                        'wue-timeline-item-head': !this.active,
+                        'wue-timeline-item-head-first': this.active
+                    }
+                ];
             }
         }
     }

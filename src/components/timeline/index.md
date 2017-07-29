@@ -1,3 +1,5 @@
+
+```
 <template>
     <div class="timeline-demo">
         <wue-timeline v-model="value">
@@ -40,3 +42,5 @@
         }
     }
 </script>
+
+```
