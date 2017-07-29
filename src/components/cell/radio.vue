@@ -14,8 +14,7 @@
 
 <style lang='less' rel="stylesheet/less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/icon/weui-font.less';
-    @import '../../styles/icon/weui-icon_font.less';
+    @import '../../styles/icon/weui-icon.less';
     @import '../../styles/widget/weui-cell/weui-cell-global.less';
     @import '../../styles/widget/weui-cell/weui-check/weui-radio.less';
     @import '../../styles/widget/weui-cell/weui-check/weui-check_common.less';

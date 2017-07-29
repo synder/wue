@@ -60,8 +60,7 @@
 
 <style lang="less" scoped>
     @import "../../styles/base/reset.less";
-    @import '../../styles/icon/weui-font.less';
-    @import '../../styles/icon/weui-icon_font.less';
+    @import '../../styles/icon/weui-icon.less';
     
     .wue-step-item {
         display: inline-block;

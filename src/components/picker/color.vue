@@ -104,8 +104,7 @@
 <style lang="less">
 
     @import '../../styles/base/reset.less';
-    @import '../../styles/icon/weui-font.less';
-    @import '../../styles/icon/weui-icon_font.less';
+    @import '../../styles/icon/weui-icon.less';
     
     .weui-picker__bd{
         display: block !important;

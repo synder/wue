@@ -12,8 +12,7 @@
 
 <style lang="less" scoped>
     @import "../../styles/base/reset.less";
-    @import "../../styles/icon/weui-icon_font.less";
-    @import "../../styles/icon/weui-font.less";
+    @import '../../styles/icon/weui-icon.less';
 
     @timeline-item-bg-color: #04BE02;
 

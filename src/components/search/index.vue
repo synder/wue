@@ -107,7 +107,6 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/icon/weui-font.less';
-    @import '../../styles/icon/weui-icon_font.less';
+    @import '../../styles/icon/weui-icon.less';
     @import '../../styles/widget/weui-searchbar/weui-searchbar.less';
 </style>

@@ -26,8 +26,7 @@
 
 <style lang='less' scoped>
     @import "../../styles/base/reset.less";
-    @import "../../styles/icon/weui-font.less";
-    @import "../../styles/icon/weui-icon_font.less";
+    @import '../../styles/icon/weui-icon.less';
     @import "../../styles/widget/weui-cell/weui-uploader.less";
 </style>
 

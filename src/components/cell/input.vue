@@ -128,8 +128,7 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/icon/weui-font.less';
-    @import '../../styles/icon/weui-icon_font.less';
+    @import '../../styles/icon/weui-icon.less';
     @import '../../styles/widget/weui-cell/weui-cell-global.less';
     @import '../../styles/widget/weui-cell/weui-form/weui-form_common.less';
     @import '../../styles/widget/weui-cell/weui-form/weui-vcode.less';

@@ -102,6 +102,5 @@
     @import '../../styles/base/reset.less';
     @import '../../styles/vue/transition.less';
     @import '../../styles/widget/weui-tips/weui-toast.less';
-    @import '../../styles/icon/weui-font.less';
-    @import '../../styles/icon/weui-icon_font.less';
+    @import '../../styles/icon/weui-icon.less';
 </style>

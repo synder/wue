@@ -5907,7 +5907,7 @@
 <style lang="less" scoped>
 
     @import "../../styles/base/reset.less";
-    @import "../../styles/icon/weui-icon_font.less";
+    @import "../../styles/icon/weui-icon.less";
 
     @base-zindex: 1;
     @line-color: #D9D9D9;
