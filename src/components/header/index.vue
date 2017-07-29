@@ -3,7 +3,7 @@
             :style="style">
         <div class="wue-header-btn left" @click="leftBtnClick">
             <slot name="left">
-                <i class="wue-icon-arrow-left-l"></i>
+                <i class="weui-icon-arrow-left"></i>
             </slot>
         </div>
         <div class="wue-header-title">
@@ -13,7 +13,7 @@
         </div>
         <div class="wue-header-btn right">
             <slot name="right">
-                <i class="wue-icon-more-dot"></i>
+                <i class="weui-icon-more"></i>
             </slot>
         </div>
     </header>
@@ -58,7 +58,7 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/icon/wue-icon.less';
+    @import '../../styles/icon/weui-icon.less';
     
     @headerHeight: 40px;
 

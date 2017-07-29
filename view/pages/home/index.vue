@@ -15,15 +15,19 @@
             </wue-timeline-item>
         </wue-timeline>
         <button @click="next"> Set to 6 nodes</button>
+        
+        <wue-backtop></wue-backtop>
     </div>
 </template>
 
 <script>
     import WueTimeline from '../../../src/components/timeline/index.vue';
     import WueTimelineItem from '../../../src/components/timeline/item.vue';
+    import WueBacktop from "../../../src/components/backtop/index";
 
     export default {
         components: {
+            WueBacktop,
             WueTimeline,
             WueTimelineItem,
         },
