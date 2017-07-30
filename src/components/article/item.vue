@@ -48,7 +48,7 @@
     import WueLazyImage from "../lazyload/index";
     
     export default {
-        name: 'wue-article-list',
+        name: 'wue-article-list-item',
 
         components: {
             WueLazyImage,

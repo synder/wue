@@ -1,46 +1,17 @@
 <template>
    <div>
-      <wue-article-list :images="images1" :title="title" link="http://www.baidu.com"></wue-article-list>
-      <wue-article-list :images="images2" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
-      <wue-article-list :images="images" :title="title"></wue-article-list>
+      <wue-article-detail></wue-article-detail>
    </div>
 </template>
 
 <script>
-    import WueTimeline from '../../../src/components/timeline/index.vue';
-    import WueTimelineItem from '../../../src/components/timeline/item.vue';
-    import WueBacktop from "../../../src/components/backtop/index.vue";
-    import WueArticleList from "../../../src/components/article/list.vue";
+    import WueArticleListItem from "../../../src/components/article/item.vue";
+    import WueArticleDetail from "../../../src/components/article/detail";
 
     export default {
         components: {
-            WueArticleList,
-            WueBacktop,
-            WueTimeline,
-            WueTimelineItem,
+            WueArticleDetail,
+            WueArticleListItem,
         },
         data () {
             return {
