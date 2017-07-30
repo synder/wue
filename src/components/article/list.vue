@@ -1,40 +1,42 @@
 <template>
     
     <section class="middle-mode wue-article-section" v-if="video || images && images.length < 3">
-        <a class="article-link clearfix">
-            <div class="article-item-detail">
+        <a class="article-link clearfix" :href="link || 'javascript: void(0)'">
+            <div class="article-item-detail" :style="style">
                 <h3 class="article-title image-margin-right">印度的大阅兵，阅兵不都是严肃的吗？但是我为什么觉得特别有喜感</h3>
                 <div class="other-item-info">
                     <slot>
-                        <span class="hot">热</span>
-                        <span class="author">很懂武器的小哥</span>
-                        <span >评论</span>
-                        <span class="comment">415</span>
+                        <span class="hot" v-if="hot">热</span>
+                        <span class="author" v-text="author"></span>
+                        <span v-if="comment != null">评论</span>
+                        <span class="comment" v-text="comment"></span>
                     </slot>
                 </div>
             </div>
-            <div class="article-image">
-                <img src="http://p3.pstatp.com/video1609/31b90002786a93d3ca73">
+            <div class="article-image" v-if="images && images.length > 0">
+                <wue-lazy-image :src="images[0]"></wue-lazy-image>
                 <span class="video-btn" v-if="video"></span>
             </div>
         </a>
     </section>
 
     <section class="wue-article-section" v-else>
-        <a class="article-link clearfix">
+        <a class="article-link clearfix" :href="link || 'javascript: void(0)'">
             <div class="article-item-detail">
                 <h3 class="article-title" v-text="title"></h3>
                 <div class="article-image-list">
                     <ul class="clearfix">
-                        <li class="list-img-holder" v-for="img in showImages"><img :src="img"></li>
+                        <li class="list-img-holder" v-for="img in showImages">
+                            <wue-lazy-image :src="img"></wue-lazy-image>
+                        </li>
                     </ul>
                 </div>
                 <div class="other-item-info">
                     <slot>
-                        <span class="hot">热</span>
-                        <span class="author">很懂武器的小哥</span>
-                        <span >评论</span>
-                        <span class="comment">415</span>
+                        <span class="hot" v-if="hot">热</span>
+                        <span class="author" v-text="author"></span>
+                        <span v-if="comment != null">评论</span>
+                        <span class="comment" v-text="comment"></span>
                     </slot>
                 </div>
             </div>
@@ -43,8 +45,14 @@
 </template>
 
 <script>
+    import WueLazyImage from "../lazyload/index";
+    
     export default {
         name: 'wue-article-list',
+
+        components: {
+            WueLazyImage,
+        },
 
         props: {
             title: {
@@ -69,6 +77,13 @@
 
             images: {
                 type: Array
+            },
+
+            hot: Boolean,
+            author: String,
+            comment: {
+                type: Number,
+                default: 0
             }
         },
 
@@ -78,7 +93,15 @@
             };
         },
 
-        computed: {},
+        computed: {
+            style(){
+                let temp = {};
+                if(!(this.images && this.images.length > 0)){
+                    temp.width = '100%';
+                }
+                return temp;
+            }
+        },
 
         methods: {},
 
@@ -170,7 +193,6 @@
 
                             img {
                                 border: none;
-                                display: block;
                                 width: 100%;
                                 .transition(opacity .3s ease);
                             }
@@ -203,6 +225,7 @@
                             text-align: center;
                             line-height: 0.9rem;
                             font-size: 0.7rem;
+                            margin-bottom: 0.1rem;
                         }
                     }
                 }
@@ -213,31 +236,36 @@
             
             .article-link{
 
-                display: block;
+                .display-flex;
                 height: 100%;
                 width: 100%;
                 
                 .article-item-detail{
                     display: inline-block;
-                    width: 60%;
+                    width: 67%;
                     vertical-align: middle;
                 }
                 
                 .article-image{
                     overflow: hidden;
                     width: 33%;
-                    display: inline-block;
-                    vertical-align: middle;
-                    height: 100%;
+                    .display-flex();
+                    .flex-align-items(center);
+                    box-orient: vertical;
+                    box-pack: center;
                     background-color: #eee;
-                    margin-top: 0.5rem;
+                    height: 5.2rem;
+                    margin-top: 0.8rem;
                     
                     img{
                         border: none;
-                        display: block;
                         width: 100%;
-                        height: 100%;
                         .transition(opacity .3s ease);
+                    }
+                    
+                    &:after{
+                        content:'';
+                        height:100%;
                     }
                 }
                 
