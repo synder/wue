@@ -126,8 +126,8 @@
                 
                 const el = this.$el;
 
-                let scrollTop = window.pageYOffset  || document.body.scrollTop || document.documentElement.scrollTop;
-                let scrollLeft = window.pageXOffset  || document.body.scrollLeft || document.documentElement.scrollLeft;
+                let scrollTop = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
+                let scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft || window.pageXOffset;
                 
                 let temp = this.getPosition(el);
                 

@@ -104,8 +104,8 @@
                 event.preventDefault();
                 let touch = event.changedTouches[0] || event.touches[0];
 
-                startX = touch.pageX;
-                startY = touch.pageY;
+                startX = touch.clientX;
+                startY = touch.clientY;
                 event.returnValue = true;
 
             }, false);
@@ -114,8 +114,8 @@
                 event.preventDefault();
                 let touch = event.changedTouches[0] || event.touches[0];
 
-                moveEndX = touch.pageX;
-                moveEndY = touch.pageY;
+                moveEndX = touch.clientX;
+                moveEndY = touch.clientY;
 
                 let X = moveEndX - startX;
                 let Y = moveEndY - startY;

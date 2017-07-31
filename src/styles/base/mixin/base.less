@@ -103,6 +103,14 @@
   transform: rotate(@degrees);
 }
 
+.translate3d(@a, @b, @c){
+  transform: translate3d(@a, @b, @c);
+  -webkit-transform: translate3d(@a, @b, @c);
+  -moz-transform: translate3d(@a, @b, @c);
+  -ms-transform: translate3d(@a, @b, @c);
+  -o-transform: translate3d(@a, @b, @c);
+}
+
 .transition(@transition) {
   -webkit-transition: @transition;
   -moz-transition: @transition;

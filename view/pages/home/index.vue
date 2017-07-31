@@ -1,42 +1,35 @@
 <template>
-   <div>
-      <wue-article-detail></wue-article-detail>
-   </div>
+      <wue-fullpage :direction="true">
+         <wue-fullpage-page bg="red"></wue-fullpage-page>
+         <wue-fullpage-page bg="blue"></wue-fullpage-page>
+         <wue-fullpage-page bg="green"></wue-fullpage-page>
+         <wue-fullpage-page bg="yellow"></wue-fullpage-page>
+      </wue-fullpage>
 </template>
 
 <script>
-    import WueArticleListItem from "../../../src/components/article/item.vue";
-    import WueArticleDetail from "../../../src/components/article/detail";
+    import WueFullpage from "../../../src/components/fullpage/index";
+    import WueFullpagePage from "../../../src/components/fullpage/page";
 
     export default {
         components: {
-            WueArticleDetail,
-            WueArticleListItem,
+            WueFullpagePage,
+            WueFullpage,
         },
         data () {
             return {
-                value: null,
-                title: '张艺谋显赫家世曝光，千万豪宅六辆豪车，但和冯小刚比还是太寒酸！',
-                images1: [
-                    
-                ],
-
-                images2: [
-                    'https://p3.pstatp.com/list/31d40002062af65dd383'
-                ],
-                
-                images: [
-                    'https://p3.pstatp.com/list/31d600014dce7c04cf4c',
-                    'https://p3.pstatp.com/list/31d600014dce7c04cf4c',
-                    'https://p3.pstatp.com/list/31d40002062af65dd383'
-                ]
+                selected: 'item1'
             }
         },
         
         methods: {
-            next(){
-                this.value = 'a3';
+            handle(){
+                
             }
+        },
+        
+        mounted(){
+            
         }
     }
 </script>
