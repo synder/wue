@@ -10,8 +10,9 @@ class AjaxRequest {
 
         this.onBefore = options.onBefore;
         this.onSuccess = options.onSuccess;
-        this.onError = options.onError;
+        this.onError = options.onError || function (err) { console.error(err);};
         this.onAfter = options.onAfter;
+        this.onProgress = options.onProgress;
 
         this.url = options.url;
         this.method = options.method;
@@ -147,18 +148,26 @@ class AjaxRequest {
     }
 
     _setTimeout() {
-        if (this.timeout > 0) {
-            const self = this;
-
-            if (self.timeout < 100) {
-                console.warn('param timeout less than 100ms');
-            }
-
-            self.ticker = setTimeout(function () {
-                self.hasTimeout = true;
-                self.abort();
+        const self = this;
+        
+        if(this.xhr.hasOwnProperty('ontimeout')){
+            this.xhr.timeout = this.timeout;
+            this.xhr.ontimeout = function (e) {
                 self.onError(new Error('request timeout in ' + self.timeout + 'ms'));
-            }, self.timeout);
+            };
+        }else{
+            if (this.timeout > 0) {
+
+                if (self.timeout < 100) {
+                    console.warn('param timeout less than 100ms');
+                }
+
+                self.ticker = setTimeout(function () {
+                    self.hasTimeout = true;
+                    self.abort();
+                    self.onError(new Error('request timeout in ' + self.timeout + 'ms'));
+                }, self.timeout);
+            }
         }
     }
 
@@ -215,6 +224,10 @@ class AjaxRequest {
                 self.onError(error);
             }
         };
+        
+        if(self.onProgress){
+            self.xhr.addEventListener("progress", self.onProgress, false);
+        }
     }
 
     _setData(){
@@ -427,12 +440,34 @@ const del = function (url, data, callback, loading) {
     });
 };
 
-const upload = function (url, data, callback) {
+const upload = function (file, domain = 'upload', options) {
+    const formData = new FormData();
     
+    let ajax = new AjaxRequest({
+        url: options.url,
+        method: options.method,
+        async: options.async,
+        type: options.type,
+        timeout: options.timeout,
+        username: options.username,
+        password: options.password,
+        onBefore: options.onBefore,
+        onSuccess: options.onSuccess,
+        onProgress: options.onProgress,
+        onError: options.onError,
+        onAfter: options.onAfter,
+        data: options.data,
+        headers: options.headers,
+        fields: options.fields,
+    });
+    
+    formData.append(domain, file);
+
+    return ajax.send(formData);
 };
 
 
-export {ajax, get, post, put, del};
+export {ajax, get, post, put, del, upload};
 
 export default {
     install (Vue) {
@@ -442,6 +477,7 @@ export default {
             post: post,
             put: put,
             del: del,
+            upload: upload
         };
     }
 };
