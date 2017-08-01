@@ -221,7 +221,7 @@ class AjaxRequest {
         
         if(this.data && Object.prototype.toString.call(this.data) === '[object Object]'){
             
-            if(this.data instanceof FormData){
+            if(FormData && this.data instanceof FormData){
                 return;
             }
             

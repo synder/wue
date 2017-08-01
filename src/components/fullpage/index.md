@@ -1,3 +1,4 @@
+```
 <template>
     <wue-fullpage :direction="true" :indicator="true" v-model="value">
         <wue-fullpage-page bg="red">
@@ -44,3 +45,5 @@
         }
     }
 </script>
+
+```
