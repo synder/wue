@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="overflow: hidden;">
         <div class="wue-full-page-box" :style="style" ref="box">
             <slot></slot>
         </div>

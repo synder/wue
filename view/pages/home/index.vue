@@ -9,7 +9,6 @@
         <wue-fullpage-page bg="green"></wue-fullpage-page>
         <wue-fullpage-page bg="yellow"></wue-fullpage-page>
         <wue-fullpage-page bg="pink"></wue-fullpage-page>
-        <div></div>
     </wue-fullpage>
 </template>
 
