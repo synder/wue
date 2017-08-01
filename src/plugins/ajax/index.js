@@ -427,6 +427,10 @@ const del = function (url, data, callback, loading) {
     });
 };
 
+const upload = function (url, data, callback) {
+    
+};
+
 
 export {ajax, get, post, put, del};
 
