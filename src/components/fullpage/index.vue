@@ -59,12 +59,12 @@
                 let transform, flexDirection;
                 let width, height;
                 if(this.direction){
-                    transform = 'matrix(1, 0, 0, 1, 0, '+ this.current +')';
+                    transform = 'translate(0, '+ this.current +'px)';
                     width = this.width;
                     height = this.height  * this.children.length;
                     flexDirection = 'column';
                 }else{
-                    transform = 'matrix(1, 0, 0, 1, '+ this.current + ', 0)';
+                    transform = 'translate('+ this.current +'px, 0)';
                     width = this.width * this.children.length;
                     height = this.height;
                     flexDirection = 'row';
@@ -164,21 +164,21 @@
 
             next(){
 
-                let threshold = this.direction ? 0.45 : 0.2;
+                let threshold = this.direction ? 0.08 : 0.1;
                 
                 let moveUnit = this.direction ? this.height : this.width;
                 
                 let result = this.current / moveUnit;
                 
-                let move = Math.abs(result);
-                move = move - Math.floor(move);
-                move = Math.abs(0.5 - move);
+                let moveLength = this.direction ? this.touch.endY - this.touch.startY : this.touch.endX - this.touch.startX;
+                
+                let move = Math.abs(moveLength) / moveUnit;
                 
                 if(this.direction){
                     if(this.touch.endY > this.touch.startY){
-                        result = move < threshold ? Math.ceil(result) : Math.floor(result);
+                        result = move > threshold ? Math.ceil(result) : Math.floor(result);
                     }else{
-                        result = move < threshold ? Math.floor(result) : Math.ceil(result);
+                        result = move > threshold ? Math.floor(result) : Math.ceil(result);
                     }
                 }else{
                     if(this.touch.endX > this.touch.startX){
