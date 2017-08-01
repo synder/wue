@@ -9,47 +9,6 @@
     </div>
 </template>
 
-<style lang='less' scoped>
-
-    @import "../../styles/base/reset";
-
-    .wue-full-page-box {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        .display-flex();
-    }
-
-    .wue-full-page-indicator{
-        .display-flex();
-        position: absolute;
-        bottom: 1.5rem;
-        left: 25%;
-        width: 50%;
-        height: 1rem;
-
-        div{
-            .flex(1);
-            width: 0;
-            z-index: 10000;
-            text-align: center;
-
-            &:after{
-                content: "";
-                width: .4rem;
-                height: .4rem;
-                background: rgba(255,255,255,.5);
-                border-radius: 50%;
-                position: absolute;
-            }
-            
-            &.active:after{
-                background: rgba(255,255,255,.9);
-            }
-        }
-    }
-</style>
-
 <script>
     export default {
         name: 'wue-fullpage',
@@ -59,11 +18,10 @@
                 type: Boolean,
                 default: true
             },
-
             value: {
-                type: String
+                type: Number,
+                default: 0
             },
-
             indicator: Boolean,
             animation:{
                 type: Number,
@@ -77,7 +35,7 @@
                 width: window.innerWidth || document.body.clientWidth,
                 current: 0,
                 children: [],
-                active: 0,
+                active: this.value,
                 showIndicator: !this.direction && this.indicator,
                 duration: this.animation,
                 touch: {
@@ -143,10 +101,17 @@
         },
 
         methods: {
+
+            activation(){
+                this.current = -this.active * (this.direction ? this.height : this.width);
+            },
+           
             init(){
                 const self = this;
                 
-                this.$el.addEventListener("touchstart", function (event) {
+                this.activation();
+
+                self.$el.addEventListener("touchstart", function (event) {
                     event.preventDefault();
                     const touch = event.touches[0];
 
@@ -160,8 +125,8 @@
                     };
                 });
 
-                this.$el.addEventListener("touchmove", function (event) {
-                    event.preventDefault();
+                self.$el.addEventListener("touchmove", function (event) {
+                    
 
                     const touch = event.changedTouches[0] || event.touches[0];
                     
@@ -183,9 +148,9 @@
                         }
                     }
                 });
-                
-                this.$el.addEventListener("touchend", function (event) {
-                    event.preventDefault();
+
+                self.$el.addEventListener("touchend", function (event) {
+                   
                     const touch = event.changedTouches[0] || event.touches[0];
 
                     self.duration = self.animation;
@@ -238,10 +203,23 @@
             },
         },
 
-        watch: {},
+        watch: {
+            active(val){
+                this.$emit('input', val);
+                this.activation();
+            },
+            
+            value(val){
+                val = val && parseInt(val) ? parseInt(val) : 0;
+                val = val < 0 ? 0 : val;
+                val = val > this.children.length - 1 ? this.children.length - 1 : val;
+                this.active = val;
+            }
+        },
 
         mounted(){
             const self = this;
+            
             self.$children.forEach(function (item, index) {
                 self.children.push(index);
                 item.width = self.width;
@@ -252,3 +230,49 @@
         }
     }
 </script>
+
+
+<style lang='less' scoped>
+
+    @import "../../styles/base/reset";
+
+    body{
+        overflow: hidden;
+    }
+
+    .wue-full-page-box {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        .display-flex();
+    }
+
+    .wue-full-page-indicator{
+        .display-flex();
+        position: absolute;
+        bottom: 1.5rem;
+        left: 25%;
+        width: 50%;
+        height: 1rem;
+
+        div{
+            .flex(1);
+            width: 0;
+            z-index: 10000;
+            text-align: center;
+
+            &:after{
+                content: "";
+                width: .4rem;
+                height: .4rem;
+                background: rgba(255,255,255,.5);
+                border-radius: 50%;
+                position: absolute;
+            }
+
+            &.active:after{
+                background: rgba(255,255,255,.9);
+            }
+        }
+    }
+</style>

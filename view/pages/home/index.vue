@@ -1,6 +1,8 @@
 <template>
-    <wue-fullpage :direction="true" :indicator="true">
+    <wue-fullpage :direction="true" :indicator="true" v-model="value">
         <wue-fullpage-page bg="red">
+            <div>show</div>
+            <div>show</div>
             <div>show</div>
         </wue-fullpage-page>
         <wue-fullpage-page bg="blue">
@@ -23,18 +25,22 @@
         },
         data () {
             return {
-                selected: 'item1'
+                value: 0
+            }
+        },
+        
+        watch: {
+            value(val){
+                console.log(val);
             }
         },
 
         methods: {
-            handle(){
-
-            }
+           
         },
 
         mounted(){
-
+            const self = this;
         }
     }
 </script>
