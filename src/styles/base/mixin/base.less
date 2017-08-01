@@ -87,6 +87,14 @@
   transform: scaleY(@ratio);
 }
 
+.transition-duration(@time){
+  transition-duration: @time;
+  -moz-transition-duration: @time;
+  -webkit-transition-duration: @time;
+  -o-transition-duration: @time;
+}
+
+
 .translate(@x, @y) {
   -webkit-transform: translate(@x, @y);
   -moz-transform: translate(@x, @y);

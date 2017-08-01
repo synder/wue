@@ -5,11 +5,14 @@
 </template>
 
 <style lang='less' scoped>
+    
+    @import "../../styles/base/reset";
+    
     .wue-fullpage-page{
-        overflow: hidden;
-        border: none;
         margin: 0;
         padding: 0;
+        .flex(1);
+        .box-sizing(border-box);
     }
 </style>
 
@@ -30,7 +33,9 @@
         data(){
             return {
                 uuid: null,
-                show: false
+                show: false,
+                width: null,
+                height: null
             };
         },
 
@@ -38,8 +43,8 @@
             style(){
                 return {
                     background: this.bg,
-                    height: this.$parent.height + 'px',
-                    width: this.$parent.width + 'px'
+                    height: this.height + 'px',
+                    width: this.width + 'px'
                 }
             }
         },
