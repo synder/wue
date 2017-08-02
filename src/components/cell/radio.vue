@@ -5,7 +5,7 @@
             </div>
             <div class="weui-cell__ft">
                 <input type="radio" class="weui-check" :name="name" v-model="currentValue" :value="item" :id="name + item">
-                <span class="weui-icon-checked"></span>
+                <span class="weui-icon-radio-checked"></span>
             </div>
         </label>
     </div>

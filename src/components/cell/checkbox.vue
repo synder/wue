@@ -4,7 +4,7 @@
         <label class="weui-cell weui-check__label" v-for="item in options" :for="name + item">
             <div class="weui-cell__hd">
                 <input type="checkbox" class="weui-check" :name="name" :id="name + item" v-model="currentValue" :value="item">
-                <i class="weui-icon-checked"></i>
+                <i class="weui-icon-checkbox-checked"></i>
             </div>
             <div class="weui-cell__bd" v-html="item">
             </div>
