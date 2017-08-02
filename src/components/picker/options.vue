@@ -15,9 +15,7 @@
 
 <script>
     
-    //todo 实现值初始化和三级联动
-
-    import Transform from 'css3transform';
+    import Transform from '../../lib/transform/index';
 
     export default {
         name: 'wue-picker-options',

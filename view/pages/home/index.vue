@@ -4,9 +4,7 @@
         <wue-checkbox-cell :options="options" v-model="check"></wue-checkbox-cell>
         <wue-switch-cell  v-model="switches">你好</wue-switch-cell>
         <wue-textarea-cell  v-model="value">你好</wue-textarea-cell>
-        <wue-swipe-cell icon="/img/logo.png" id="show" @swipe-button-click="onClick">
-            查看
-        </wue-swipe-cell>
+        <wue-swipe-cell icon="/img/logo.png" id="show" @swipe-button-click="onClick" title="查看"></wue-swipe-cell>
     </wue-cells>
 </template>
 

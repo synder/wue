@@ -18,7 +18,7 @@
 <script>
 
     import uuid from '../../lib/string/uuid.js';
-    import Transform from 'css3transform';
+    import Transform from '../../lib/transform/index.js';
     import Cell from './index.vue';
   
 
@@ -60,8 +60,8 @@
 
         mounted () {
             this.isDragging = false;
-            const cellBd = this.$refs.cell;
-            Transform(cellBd, true);
+            const cellBody = this.$refs.cell;
+            Transform(cellBody, true);
         },
 
         methods: {
@@ -70,13 +70,13 @@
 
                 if (this.isDragging) return;
 
-                const cellBd = this.$refs.cell;
+                const cellBody = this.$refs.cell;
 
                 this.dragState.startPositionX = event.changedTouches[0].clientX;
-                this.dragState.startTranslateX = cellBd.translateX;
+                this.dragState.startTranslateX = cellBody.translateX;
                 this.dragState.startTimestamp = new Date();
 
-                cellBd.style.transition = ''
+                cellBody.style.transition = '';
             },
 
             touchMove (event) {
@@ -84,16 +84,16 @@
                 this.isDragging = true;
 
                 const deltaX = event.changedTouches[0].clientX - this.dragState.startPositionX;
-                const cellBd = this.$refs.cell;
+                const cellBody = this.$refs.cell;
                 const buttonsWidth = this.$refs.buttons.clientWidth;
 
                 let targetTranslateX;
                 if (deltaX < 0) {
-                    targetTranslateX = Math.abs(this.dragState.startTranslateX + deltaX) < buttonsWidth ? this.dragState.startTranslateX + deltaX : -1 * buttonsWidth
+                    targetTranslateX = Math.abs(this.dragState.startTranslateX + deltaX) < buttonsWidth ? this.dragState.startTranslateX + deltaX : -1 * buttonsWidth;
                 } else {
-                    targetTranslateX = this.dragState.startTranslateX + deltaX < 0 ? this.dragState.startTranslateX + deltaX : 0
+                    targetTranslateX = this.dragState.startTranslateX + deltaX < 0 ? this.dragState.startTranslateX + deltaX : 0;
                 }
-                cellBd.translateX = targetTranslateX
+                cellBody.translateX = targetTranslateX;
             },
 
             touchEnd (event) {
@@ -101,10 +101,10 @@
 
                 this.isDragging = false;
 
-                const cellBd = this.$refs.cell;
-                const btnsWidth = this.$refs.buttons.clientWidth;
+                const cellBody = this.$refs.cell;
+                const buttonsWidth = this.$refs.buttons.clientWidth;
                 this.dragState.endPositionX = event.changedTouches[0].clientX;
-                this.dragState.endTranslateX = cellBd.translateX;
+                this.dragState.endTranslateX = cellBody.translateX;
                 this.dragState.totalDeltaX = this.dragState.endPositionX - this.dragState.startPositionX;
 
                 this.dragState.endTimestamp = new Date();
@@ -118,18 +118,18 @@
 
                 if (this.dragState.startTranslateX === 0 && this.dragState.totalDeltaX < 0) {
                     if (Math.abs(this.dragState.totalDeltaX) >= 30) {
-                        cellBd.translateX = -btnsWidth
+                        cellBody.translateX = -buttonsWidth
                     } else {
-                        cellBd.translateX = 0
+                        cellBody.translateX = 0
                     }
-                    cellBd.style.transition = 'all 200ms ease'
-                } else if (this.dragState.startTranslateX === -btnsWidth && this.dragState.totalDeltaX > 0) {
+                    cellBody.style.transition = 'all 200ms ease'
+                } else if (this.dragState.startTranslateX === -buttonsWidth && this.dragState.totalDeltaX > 0) {
                     if (Math.abs(this.dragState.totalDeltaX) >= 30) {
-                        cellBd.translateX = 0
+                        cellBody.translateX = 0
                     } else {
-                        cellBd.translateX = -btnsWidth;
+                        cellBody.translateX = -buttonsWidth;
                     }
-                    cellBd.style.transition = 'all 200ms ease';
+                    cellBody.style.transition = 'all 200ms ease';
                 }
                 this.dragState = {};
             },
