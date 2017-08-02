@@ -32,9 +32,9 @@ export default function (money) {
             temp[index] = [];
         }
 
-        if(index == 0){
-            if(temp[index].length == 0){
-                if(number[i] != '0'){
+        if(index === 0){
+            if(temp[index].length === 0){
+                if(number[i] !== '0'){
                     temp[index].push(NUM[number[i]]);
                 }
             }else{
@@ -48,14 +48,14 @@ export default function (money) {
 
     let result = '';
 
-    while (temp[0].length == 0){
+    while (temp[0].length === 0){
         temp = temp.slice(1);
     }
 
     for(let j = 0; j < temp.length; j++){
         for(let k = 0, len = temp[j].length; k < len; k++){
-            temp[j][k] = temp[j][k] == NUM[0] ? temp[j][k] : temp[j][k] + BASE_UNIT[len - k - 1];
-            if(k == 3 && temp[j][k] == NUM[0]){
+            temp[j][k] = temp[j][k] === NUM[0] ? temp[j][k] : temp[j][k] + BASE_UNIT[len - k - 1];
+            if(k === 3 && temp[j][k] === NUM[0]){
                 temp[j][k] = '';
             }
         }

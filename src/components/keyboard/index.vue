@@ -39,11 +39,9 @@
 </template>
 
 <script type="text/babel">
-    
-    import {addClass, removeClass, getScrollView, pageScroll, isIOS} from '../../lib/dom/index.js';
 
     export default {
-        name: 'yd-keyboard',
+        name: 'wue-keyboard',
         data() {
             return {
                 passwords: '',
@@ -74,16 +72,19 @@
         },
         watch: {
             value(val) {
-                if (isIOS) {
-                    if (val) {
-                        pageScroll.lock();
-                        addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-                    } else {
-                        pageScroll.unlock();
-                        removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-                    }
-                }
 
+                if (val) {
+                    document.addEventListener('touchmove', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    });
+                } else {
+                    document.removeEventListener('touchmove', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    });
+                }
+                
                 this.passwords = '';
                 this.error = '';
                 this.show = val;
@@ -100,7 +101,6 @@
         },
         methods: {
             init() {
-                this.scrollView = getScrollView(this.$el);
 
                 this.$on('error', (error) => {
                     this.setError(error);
@@ -108,6 +108,7 @@
 
                 this.$on('close', this.close);
             },
+            
             numberClick(num) {
                 this.error = '';
                 if (this.passwords.length >= 6)return;
@@ -139,7 +140,6 @@
                 return arr;
             },
             close() {
-                isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
                 this.$emit('input', false);
             },
             setError(error) {

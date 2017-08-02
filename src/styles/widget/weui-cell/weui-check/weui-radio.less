@@ -15,8 +15,8 @@
 */
 
 @import "../../../base/fn";
+@import "../../../icon/weui-icon-var";
 
-// method2 accessbility
 .weui-cells_radio{
     .weui-cell__ft {
         padding-left: @weuiCellInnerGapH;
@@ -29,7 +29,7 @@
             & + .weui-icon-checked {
                 &:before {
                     display: block;
-                    content: '\EA08';
+                    content: @weui-icon-success-no-circle;
                     color: #09BB07;
                     font-size: 16px;
                 }

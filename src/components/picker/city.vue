@@ -32,8 +32,6 @@
 
 <script type="text/babel">
 
-    const isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-
     const getScrollView = function (el) {
         let currentNode = el;
         while (currentNode && currentNode.tagName !== 'HTML' && currentNode.tagName !== 'BODY' && currentNode.nodeType === 1) {
@@ -45,28 +43,7 @@
         }
         return window;
     };
-
-    const hasClass = function (elem, cls) {
-        cls = cls || '';
-        if (cls.replace(/\s/g, '').length === 0) return false;
-        return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
-    };
-
-    const addClass = function (ele, cls) {
-        if (!hasClass(ele, cls)) {
-            ele.className = ele.className === '' ? cls : ele.className + ' ' + cls;
-        }
-    };
-
-    const removeClass = function (ele, cls) {
-        if (hasClass(ele, cls)) {
-            let newClass = ' ' + ele.className.replace(/[\t\r\n]/g, '') + ' ';
-            while (newClass.indexOf(' ' + cls + ' ') >= 0) {
-                newClass = newClass.replace(' ' + cls + ' ', ' ');
-            }
-            ele.className = newClass.replace(/^\s+|\s+$/g, '');
-        }
-    };
+    
 
     export default {
         name: 'wue-city-picker',
@@ -5740,14 +5717,6 @@
         },
         watch: {
             value(val) {
-                if (isIOS) {
-                    if (val) {
-                        addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-                    } else {
-                        removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-                    }
-                }
-
                 this.show = val;
             },
             ready(val) {
@@ -5756,12 +5725,12 @@
         },
         methods: {
             init() {
-                this.scrollView = getScrollView(this.$el);
-
-                if (!this.ready)return;
-
+                if (!this.ready){
+                    return;
+                }
                 this.isArray(this.items) && this.province && this.setDefaultValue(this.items, 'province', 1);
             },
+            
             navEvent(index) {
                 if (this.columnNum > 2) {
                     if (index >= this.columnNum) {
@@ -5773,11 +5742,12 @@
 
                 this.navIndex = index;
             },
+            
             itemEvent(index, name, value, children) {
 
                 if(index === 1){
                     this.active['province'] = name;
-                    this.active['provinceValue'] = ivalue;
+                    this.active['provinceValue'] = value;
                 }else if(index === 2){
                     this.active['city'] = name;
                     this.active['cityValue'] = value;
@@ -5840,7 +5810,7 @@
             },
             setDefaultValue(items, currentValue, index) {
                 items.every((item, key) => {
-                    if (item.v == this[currentValue] || item.n === this[currentValue]) {
+                    if (item.v === this[currentValue] || item.n === this[currentValue]) {
                         const childrenItems = this.columns['columnItems' + (index + 1)] = item.c;
                         const itemBox = this.$refs['itemBox' + index][0];
 
@@ -5880,8 +5850,6 @@
                 this.close();
             },
             close() {
-                isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-
                 this.$emit('input', false);
                 this.show = false;
             },

@@ -1,46 +1,64 @@
 <template>
-    <wue-fullpage :direction="true" :indicator="true" v-model="value">
-        <wue-fullpage-page bg="red">
-            <div>show</div>
-            <div>show</div>
-            <div>show</div>
-        </wue-fullpage-page>
-        <wue-fullpage-page bg="blue">
-            <div>show</div>
-        </wue-fullpage-page>
-        <wue-fullpage-page bg="green"></wue-fullpage-page>
-        <wue-fullpage-page bg="yellow"></wue-fullpage-page>
-        <wue-fullpage-page bg="pink"></wue-fullpage-page>
-    </wue-fullpage>
+    <wue-cells>
+        <wue-radio-cell :options="options" v-model="value"></wue-radio-cell>
+        <wue-checkbox-cell :options="options" v-model="check"></wue-checkbox-cell>
+        <wue-switch-cell  v-model="switches">你好</wue-switch-cell>
+        <wue-textarea-cell  v-model="value">你好</wue-textarea-cell>
+        <wue-swipe-cell icon="/img/logo.png" id="show" @swipe-button-click="onClick">
+            查看
+        </wue-swipe-cell>
+    </wue-cells>
 </template>
 
+<style lang="less">
+
+</style>
+
 <script>
-    import WueFullpage from "../../../src/components/fullpage/index";
-    import WueFullpagePage from "../../../src/components/fullpage/page";
+
+    import cells from '../../../src/components/cells/index.vue';
+    import radio from '../../../src/components/cell/radio.vue';
+    import checkbox from '../../../src/components/cell/checkbox.vue';
+    import switches from '../../../src/components/cell/switch.vue';
+    import textarea from '../../../src/components/cell/textarea.vue';
+    import swipe from '../../../src/components/cell/swipe.vue';
+
 
     export default {
-        components: {
-            WueFullpagePage,
-            WueFullpage,
-        },
-        data () {
+        data() {
             return {
-                value: 2
+                value: '女',
+                check: ['男', '女'],
+                options: [
+                    '男',
+                    '女'
+                ],
+                switches: true
             }
         },
-        
+
         watch: {
-            value(val){
-                console.log(val);
+            value (newVal) {
+                console.log(newVal);
             }
+        },
+
+        created(){
+
         },
 
         methods: {
-           
+            onClick: function (obj, text) {
+                console.log(obj, text);
+            }
         },
-
-        mounted(){
-            const self = this;
+        components: {
+            'wue-cells': cells,
+            'wue-radio-cell': radio,
+            'wue-checkbox-cell': checkbox,
+            'wue-switch-cell': switches,
+            'wue-textarea-cell': textarea,
+            'wue-swipe-cell': swipe,
         }
     }
 </script>

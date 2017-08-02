@@ -4,6 +4,6 @@
  * @desc
  */
 
-export default function precision(num, x) {
+export default function (num, x) {
     return Number.prototype.toPrecision.apply(num, x);
 }

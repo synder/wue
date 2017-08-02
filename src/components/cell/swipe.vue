@@ -85,11 +85,11 @@
 
                 const deltaX = event.changedTouches[0].clientX - this.dragState.startPositionX;
                 const cellBd = this.$refs.cell;
-                const btnsWidth = this.$refs.buttons.clientWidth;
+                const buttonsWidth = this.$refs.buttons.clientWidth;
 
                 let targetTranslateX;
                 if (deltaX < 0) {
-                    targetTranslateX = Math.abs(this.dragState.startTranslateX + deltaX) < btnsWidth ? this.dragState.startTranslateX + deltaX : -1 * btnsWidth
+                    targetTranslateX = Math.abs(this.dragState.startTranslateX + deltaX) < buttonsWidth ? this.dragState.startTranslateX + deltaX : -1 * buttonsWidth
                 } else {
                     targetTranslateX = this.dragState.startTranslateX + deltaX < 0 ? this.dragState.startTranslateX + deltaX : 0
                 }

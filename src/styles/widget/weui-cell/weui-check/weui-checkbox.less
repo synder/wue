@@ -15,6 +15,7 @@
 */
 
 @import "../../../base/fn";
+@import "../../../icon/weui-icon-var";
 
 .weui-cells_checkbox {
     .weui-cell__hd {
@@ -22,7 +23,7 @@
     }
     .weui-icon-checked {
         &:before {
-            content: '\EA01';
+            content: @weui-icon-circle;
             color: #C9C9C9;
             font-size: 23px;
             display: block;
@@ -30,14 +31,14 @@
     }
 }
 
-// method2 accessbility
+
 .weui-check {
     // checkbox
     .weui-cells_checkbox & {
         &:checked {
             & + .weui-icon-checked {
                 &:before {
-                    content: '\EA06';
+                    content: @weui-icon-success;
                     color: #09BB07;
                 }
             }
