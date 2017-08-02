@@ -11,6 +11,7 @@
                 type: String,
                 required: true
             },
+            
             size: {
                 type: Number | String,
                 default: 23

@@ -5,8 +5,8 @@
  */
 
 
-import Index from '../../pages/home/index.vue';
+import HomeIndex from '../../pages/home/index.vue';
 
 export default [
-    {path: '/', component: Index},
+    {path: '/', component: HomeIndex},
 ]

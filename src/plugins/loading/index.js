@@ -10,26 +10,24 @@ import LoadingComponents from '../../components/loading/index.vue';
 export default {
     install (Vue) {
         let $vm;
-        
-        Vue.prototype.$loading =  {
-            show (text, callback) {
-                if(!$vm) {
-                    const Loading = Vue.extend(LoadingComponents);
 
-                    $vm = new Loading({
-                        el: document.createElement('div')
-                    });
+        Vue.prototype.$loading = function (text, callback) {
+            if (!$vm) {
+                const Loading = Vue.extend(LoadingComponents);
 
-                    document.body.appendChild($vm.$el);
-                }
-                $vm.show(text);
+                $vm = new Loading({
+                    el: document.createElement('div')
+                });
 
-                if(callback){
-                    $vm.$on('hidden', callback);
-                }
+                document.body.appendChild($vm.$el);
+            }
+            $vm.show(text);
 
-                return $vm;
-            },
+            if (callback) {
+                $vm.$on('hidden', callback);
+            }
+
+            return $vm;
         };
     }
 }

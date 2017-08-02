@@ -34,7 +34,7 @@
             'wue-button': button,
         },
 
-        name: 'wue-input',
+        name: 'wue-input-cell',
 
         props: {
             type: {
@@ -51,10 +51,6 @@
                 default: false
             },
             pattern: String,
-            validate: {
-                type: Boolean,
-                default: false
-            },
             button: String | Number
         },
 
@@ -95,19 +91,17 @@
 
             validator () {
 
-                if(this.validate){
-                    if (this.required && this.currentValue === '') {
+                if (this.pattern) {
+                    const reg = new RegExp(this.pattern)
+                    if (!reg.test(this.currentValue)) {
                         this.verification = false;
                         return;
                     }
-
-                    if (this.pattern) {
-                        const reg = new RegExp(this.pattern)
-                        if (!reg.test(this.currentValue)) {
-                            this.verification = false;
-                            return;
-                        }
-                    }
+                }
+                
+                if (this.required && this.currentValue === '') {
+                    this.verification = false;
+                    return;
                 }
 
                 this.verification = true;
@@ -132,4 +126,8 @@
     @import '../../styles/widget/weui-cell/weui-cell-global.less';
     @import '../../styles/widget/weui-cell/weui-form/weui-form_common.less';
     @import '../../styles/widget/weui-cell/weui-form/weui-vcode.less';
+    
+    .weui-icon-warn{
+        color: @weuiColorWarn;
+    }
 </style>

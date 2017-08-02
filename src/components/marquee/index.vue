@@ -120,12 +120,15 @@
         
         &.align-left {
             .flex-justify-content(flex-start);
+            text-align: left;
         }
         &.align-right {
             .flex-justify-content(flex-end);
+            text-align: right;
         }
         &.align-center {
             .flex-justify-content(center);
+            text-align: center;
         }
     }
 

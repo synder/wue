@@ -2,7 +2,9 @@
     <a class="weui-tabbar__item" :class="{ 'weui-bar__item_on': active }" @click.prevent.stop="handleClick">
         <slot>
             <span class="icon-box" v-if="showIcon">
-                <img :src="showIcon" alt="" class="weui-tabbar__icon">
+                <slot name="icon">
+                     <img :src="iconSrc" alt="" class="weui-tabbar__icon">
+                </slot>
                 <wue-badge :dot="dot" v-text="badge" v-if="badge || dot"></wue-badge>
             </span>
             <p class="weui-tabbar__label" v-html="label"></p>
@@ -11,7 +13,6 @@
 </template>
 
 <script>
-    import uuid from '../../lib/string/uuid.js';
     import Badge from '../badge/index.vue';
     
     export default {
@@ -22,7 +23,7 @@
         },
 
         props: {
-            id: String,
+            id: String | Number,
             label: String | Number,
             icon: String,
             onIcon: String,
@@ -32,31 +33,29 @@
         
         data(){
             return {
-              
+               uuid: this.id || this.$parent.count++,
             };
-        },
-
-        created(){
-            if(!this.id){
-                this.id = uuid();
-            }
         },
 
         computed: {
             active () {
-                return this.id == this.$parent.value;
+                return this.uuid == this.$parent.activeID;
             },
+            
+            iconSrc(){
+                return this.active ? (this.onIcon || this.icon) : this.icon;
+            },
+            
 
             showIcon(){
-                return this.active ? (this.onIcon || this.icon) : this.icon;
+                return this.$slots.icon || this.icon;
             }
         },
 
         methods: {
             handleClick () {
                 this.$emit('click', this);
-                this.$parent.$emit('input', this.id);
-                this.$parent.$emit('active', this.id);
+                this.$parent.activeID = this.uuid;
             }
         }
     }
@@ -66,6 +65,12 @@
 
     @import '../../styles/base/reset.less';
     @import '../../styles/widget/weui-tab/weui-tabbar.less';
+    
+    .weui-bar__item_on{
+        .icon-box{
+            color: #09BB07;
+        }
+    }
     
     .icon-box{
         display: inline-block;

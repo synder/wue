@@ -1,7 +1,9 @@
 <template>
     <div>
         <div class="weui-mask_transparent actionsheet__mask actionsheet__mask_show"
-             v-show="currentValue && type === 'ios'" @click="currentValue = false"></div>
+             v-show="currentValue && type === 'ios'" 
+             @click="currentValue = false"></div>
+        
         <div class="weui-actionsheet weui-actionsheet_toggle" v-if="type === 'ios'" v-show="currentValue">
             <div class="weui-actionsheet__title" v-if="title">
                 <p class="weui-actionsheet__title-text" v-html="title"></p>

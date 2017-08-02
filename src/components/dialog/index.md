@@ -14,7 +14,5 @@
 
 
 ```
-<wue-confirm title="测试" content="内容" :hide-on-blur="true" v-model="value" @on-confirm="confirm">
-     <div>内容</div>
-</wue-confirm>
+
 ```

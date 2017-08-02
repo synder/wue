@@ -10,31 +10,29 @@ import ToastComponents from '../../components/toast/index.vue';
 export default {
     install (Vue) {
         let $vm;
-        Vue.prototype.$toast = {
-            show (text, callback) {
-                
-                if(!$vm){
-                    const Toast = Vue.extend(ToastComponents);
-                    $vm =  new Toast({
-                        el: document.createElement('div')
-                    });
-                    document.body.appendChild($vm.$el);
-                }
-                
-                $vm.message = text;
+        Vue.prototype.$toast = function(text, callback) {
 
-                $vm.show();
+            if(!$vm){
+                const Toast = Vue.extend(ToastComponents);
+                $vm =  new Toast({
+                    el: document.createElement('div')
+                });
+                document.body.appendChild($vm.$el);
+            }
 
-                if(callback){
-                    $vm.$on('hidden', callback);
-                }
+            $vm.message = text;
 
-                setTimeout(function () {
-                    $vm.hide();
-                }, 1500);
+            $vm.show();
 
-                return $vm;
-            },
+            if(callback){
+                $vm.$on('hidden', callback);
+            }
+
+            setTimeout(function () {
+                $vm.hide();
+            }, 1500);
+
+            return $vm;
         };
     }
 }

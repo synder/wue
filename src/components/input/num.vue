@@ -41,7 +41,7 @@
                     return /^((-?([1-9]\d*))|0)$/.test(val);
                 }
             },
-            longPress: {
+            longpress: {
                 type: Boolean,
                 default: true
             },

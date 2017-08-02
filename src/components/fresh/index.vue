@@ -22,6 +22,7 @@
     const ANIMATION = 'height .2s ease';
 
     export default {
+        name: 'wue-pull-fresh',
         props: {
             onRefresh: {
                 type: Function

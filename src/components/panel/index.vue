@@ -11,7 +11,6 @@
         <div class="weui-panel__ft">
             <slot name="footer"></slot>
         </div>
-        
     </div>
 </template>
 

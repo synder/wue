@@ -12,32 +12,30 @@ export default {
 
         let $vm;
         
-        Vue.prototype.$toptip = {
-            show (message, callback) {
+        Vue.prototype.$toptip = function(message, callback) {
 
-                if(!$vm){
-                    const Toptip = Vue.extend(ToptipComponents);
+            if(!$vm){
+                const Toptip = Vue.extend(ToptipComponents);
 
-                    $vm =  new Toptip({
-                        el: document.createElement('div')
-                    });
+                $vm =  new Toptip({
+                    el: document.createElement('div')
+                });
 
-                    document.body.appendChild($vm.$el);
-                }
-                
-                $vm.message = message;
-                $vm.show();
+                document.body.appendChild($vm.$el);
+            }
 
-                if(callback){
-                    $vm.$on('hidden', callback);
-                }
+            $vm.message = message;
+            $vm.show();
 
-                setTimeout(function () {
-                    $vm.hide();
-                }, 1500);
+            if(callback){
+                $vm.$on('hidden', callback);
+            }
 
-                return $vm;
-            },
+            setTimeout(function () {
+                $vm.hide();
+            }, 1500);
+
+            return $vm;
         };
     }
 }

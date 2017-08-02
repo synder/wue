@@ -1,5 +1,5 @@
 <template>
-    <div class="weui-tabbar" :style="{ position: fixed ? 'fixed' : 'absolute' }">
+    <div class="weui-tabbar" :style="style">
         <slot></slot>
     </div>
 </template>
@@ -14,7 +14,32 @@
                 type: Boolean,
                 default: true
             }
-        }
+        },
+        
+        data(){
+            return {
+                activeID: this.value,
+                count: 0
+            };  
+        },
+        
+        watch: {
+            value(val){
+                this.activeID = val;
+            },
+
+            activeID(val){
+                this.$emit('input', val);
+            }
+        },
+        
+        computed: {
+            style(){
+                return { position: this.fixed ? 'fixed' : 'absolute' };
+            }
+        },
+        
+        
     }
 </script>
 

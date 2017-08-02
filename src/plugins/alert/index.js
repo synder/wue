@@ -12,26 +12,23 @@ export default {
         
         let $vm;
         
-        Vue.prototype.$alert =  {
-            
-            show (title, content, callback) {
-                
-                if(!$vm){
-                    const Alert = Vue.extend(AlertComponents);
-                    $vm =  new Alert({
-                        el: document.createElement('div')
-                    });
-                    document.body.appendChild($vm.$el);
-                }
-                
-                $vm.show(title, content);
-                
-                if(callback){
-                    $vm.$on('click', callback);
-                }
-                
-                return $vm;
+        Vue.prototype.$alert =  function(title, content, callback) {
+
+            if(!$vm){
+                const Alert = Vue.extend(AlertComponents);
+                $vm =  new Alert({
+                    el: document.createElement('div')
+                });
+                document.body.appendChild($vm.$el);
             }
+
+            $vm.show(title, content);
+
+            if(callback){
+                $vm.$on('click', callback);
+            }
+
+            return $vm;
         };
     }
 }

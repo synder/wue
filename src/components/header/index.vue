@@ -22,7 +22,7 @@
 <script>
     export default {
         name: 'wue-header',
-
+        
         props: {
             title: String | Number,
             fixed: {
@@ -80,7 +80,7 @@
             overflow: hidden;
             float: left;
             height: @headerHeight;
-            line-height: @headerHeight + 2;
+            line-height: @headerHeight - 6;
             font-size: @headerHeight - 20;
         }
 

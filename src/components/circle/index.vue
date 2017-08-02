@@ -11,7 +11,6 @@
                 <p :style="{color: strokeColor}">
                     <span v-text="currentValue"></span>%
                 </p>
-               
             </slot>
         </div>
     </div>
@@ -119,6 +118,7 @@
         position: relative;
         text-align: center;
         margin: 0 auto;
+        display: inline-block;
 
         .wue-circle-content {
             width: 100%;

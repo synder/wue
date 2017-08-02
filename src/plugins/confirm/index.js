@@ -12,31 +12,29 @@ export default {
         
         let $vm;
 
-        Vue.prototype.$confirm = {
-            show (title, content, callback) {
+        Vue.prototype.$confirm = function (title, content, callback) {
+            
+            if(!$vm){
+                const Confirm = Vue.extend(ConfirmComponents);
+                $vm =  new Confirm({
+                    el: document.createElement('div')
+                });
+                document.body.appendChild($vm.$el);
+            }
 
-                if(!$vm){
-                    const Confirm = Vue.extend(ConfirmComponents);
-                    $vm =  new Confirm({
-                        el: document.createElement('div')
-                    });
-                    document.body.appendChild($vm.$el);
-                }
+            $vm.show(title, content);
 
-                $vm.show(title, content);
+            if(callback){
+                $vm.$on('confirm', function (self) {
+                    callback(true, self);
+                });
 
-                if(callback){
-                    $vm.$on('confirm', function (self) {
-                        callback(true, self);
-                    });
+                $vm.$on('cancel', function (self) {
+                    callback(false, self);
+                });
+            }
 
-                    $vm.$on('cancel', function (self) {
-                        callback(false, self);
-                    });
-                }
-
-                return $vm;
-            },
+            return $vm;
         };
     }
 }

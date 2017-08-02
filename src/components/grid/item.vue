@@ -1,5 +1,5 @@
 <template>
-    <a href="javascript:;" class="weui-grid" @click="onClick" :style="style">
+    <a :href="to" class="weui-grid" @click="onClick" :style="style" v-else>
         <div class="weui-grid__icon" v-if="hasIconSlot || icon">
             <slot name="icon">
                 <img :src="icon" alt="">
@@ -20,7 +20,7 @@
         props: {
             icon: String,
             label: String | Number,
-            link: String,
+            to: String,
         },
         mounted () {
             this.$slots.icon && (this.hasIconSlot = true);
@@ -33,14 +33,17 @@
                 if (!rows || rows === 3) {
                     return;
                 }
-                const styles = {}
+                const styles = {};
                 styles.width = `${100 / rows}%`;
                 return styles;
             }
         },
         methods: {
-            onClick () {
-                this.$emit('on-item-click');
+            onClick (e) {
+                if(!this.to){
+                    e.preventDefault();
+                }
+                this.$emit('click');
             }
         },
         data () {

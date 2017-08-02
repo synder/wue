@@ -27,8 +27,13 @@ class VueRouter {
 
 let router = new VueRouter();
 
+import transform from './transform/index';
 import home from './home/index';
+import components from './components/index';
 
+router.map(transform);
 router.map(home);
+router.map(components);
+
 
 export default router;

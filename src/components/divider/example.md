@@ -7,7 +7,7 @@
 | ------------- |:-------------:| -----:|-----:|-----:|
 
 ```
-<wue-divider  v-model="value">
+<wue-divider v-model="value">
      <div>内容</div>
 </wue-divider>
 ```
