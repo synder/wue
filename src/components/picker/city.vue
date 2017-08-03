@@ -1,5 +1,4 @@
 <template>
-    <transition name="wue-mask">
     <div>
         <div class="weui-mask weui-animate-fade-in" v-show="show" @click="close"></div>
         <div class="wue-city-picker" :class="show ? 'wue-city-picker-active' : ''">
@@ -29,7 +28,6 @@
             </ul>
         </div>
     </div>
-    </transition>
 </template>
 
 <script type="text/babel">

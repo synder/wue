@@ -1,5 +1,4 @@
 <template>
-    <transition name="wue-mask">
     <div v-show="show">
         <div class="weui-mask weui-animate-fade-in" @click="onCancel"></div>
         <div class="weui-picker weui-animate-slide-up">
@@ -15,7 +14,6 @@
             </div>
         </div>
     </div>
-    </transition>
 </template>
 
 <style lang='less' scoped>
