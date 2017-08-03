@@ -1,5 +1,5 @@
 <template>
-    <a :class="'weui-swiped-btn weui-swiped-btn_' + type">
+    <a :class="'weui-swiped-btn weui-swiped-btn_' + type" :style="style">
         <slot></slot>
     </a>
 </template>
@@ -14,7 +14,18 @@
         name: 'wue-swipe-cell-button',
         
         props: {
-            type: String
+            type: String,
+            background: {
+                type: String
+            }
+        },
+        
+        computed: {
+            style(){
+                return {
+                    background: this.background
+                };
+            }
         },
         
         data(){

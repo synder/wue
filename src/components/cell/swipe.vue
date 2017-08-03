@@ -88,11 +88,13 @@
                 const buttonsWidth = this.$refs.buttons.clientWidth;
 
                 let targetTranslateX;
+                
                 if (deltaX < 0) {
                     targetTranslateX = Math.abs(this.dragState.startTranslateX + deltaX) < buttonsWidth ? this.dragState.startTranslateX + deltaX : -1 * buttonsWidth;
                 } else {
                     targetTranslateX = this.dragState.startTranslateX + deltaX < 0 ? this.dragState.startTranslateX + deltaX : 0;
                 }
+                
                 cellBody.translateX = targetTranslateX;
             },
 
