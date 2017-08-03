@@ -17,13 +17,14 @@
 @import "../../base/fn";
 
 @pickerItemHeight: 34px;
+@base-zindex: 5000;
 
 .weui-picker {
     position: fixed;
     width: 100%;
     left: 0;
     bottom: 0;
-    z-index: 5000;
+    z-index: @base-zindex;
     backface-visibility: hidden;
     transform: translate(0, 100%);
     //slide up animation
@@ -60,7 +61,7 @@
     display: flex;
     position: relative;
     background-color: #fff;
-    min-height: 238px;
+    height: 238px;
     overflow: hidden;
 }
 

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="height: 1000px;">
         <wue-button @click="showCalendar">calendar</wue-button>
         <wue-button @click="showCity">city</wue-button>
         <wue-button @click="showColor">clor</wue-button>

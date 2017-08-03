@@ -1,5 +1,5 @@
 <template>
-    <div v-if="show">
+    <div v-show="show">
         <div class="weui-mask weui-animate-fade-in" @click="onCancel"></div>
         <div class="weui-picker weui-animate-slide-up">
             <div class="weui-picker__hd">

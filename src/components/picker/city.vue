@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="weui-mask weui-animate-fade-in" v-if="show" @click="close"></div>
+        <div class="weui-mask weui-animate-fade-in" v-show="show" @click="close"></div>
         <div class="wue-city-picker" :class="show ? 'wue-city-picker-active' : ''">
             <div class="wue-city-picker-header">
                 <p class="wue-city-picker-title">{{title}}</p>
@@ -5863,7 +5863,7 @@
     @import "../../styles/icon/weui-icon.less";
     @import '../../styles/widget/weui-tips/weui-mask.less';
 
-    @base-zindex: 1000;
+    @base-zindex: 5000;
     @line-color: #D9D9D9;
     @line-high-color: #B2B2B2;
     
@@ -5873,9 +5873,9 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 75%;
+        height: 25rem;
         background-color: #fff;
-        z-index: @base-zindex + 1;
+        z-index: @base-zindex;
         .translate(0, 100%);
         .transition(transform .3s);
         &.wue-city-picker-active {
@@ -5888,7 +5888,7 @@
         top: 0;
         left: 0;
         width: 100%;
-        z-index: @base-zindex + 2;
+        z-index: 2;
         &:after {
             .setBottomLine(@line-color);
         }
@@ -5943,6 +5943,7 @@
         height: 100%;
         padding-top: 85px;
         width: 100%;
+        z-index: 3;
         .display-flex();
         &.wue-city-picker-move-animate {
             .transition(transform .3s);
@@ -5975,6 +5976,7 @@
         display: block;
         padding: 0.5rem;
         overflow-y: auto;
+        z-index: 3;
         > a {
             color: #333;
             font-size: 1rem;

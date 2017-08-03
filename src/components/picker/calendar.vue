@@ -1,6 +1,6 @@
 <template>
     <wue-picker v-model="visibleValue" :title="showTitle" :height="height + 'px'">
-        <div class="wue-inline-calendar">
+        <div class="wue-inline-calendar" ref="calendar">
             <div class="wue-calendar-header">
                 <div class="wue-calendar-year">
                             <span @click="prevYear">
@@ -86,7 +86,8 @@
         },
         mounted () {
             const self = this;
-            const element = self.$el;
+            const element = self.$refs.calendar;
+            
             let startX, startY, moveEndX, moveEndY;
 
             element.addEventListener('touchstart', function (event) {
@@ -97,7 +98,7 @@
                 startY = touch.clientY;
                 event.returnValue = true;
 
-            });
+            }, false);
 
             element.addEventListener('touchend', function (event) {
                 event.preventDefault();
@@ -125,7 +126,7 @@
                     event.returnValue = true;
                 }
 
-            });
+            }, false);
         },
         computed: {
             year(){
@@ -174,10 +175,6 @@
                 } else {
                     return value;
                 }
-            },
-
-            onHidden(){
-                this.visibleValue = false;
             },
 
             getMonthDayCount(time) {

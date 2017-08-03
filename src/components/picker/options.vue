@@ -86,7 +86,7 @@
                 touch.moving = true;
                 wrapper.translateY = wrapper.translateY + touch.endY - touch.tempY;
                 
-                if(Math.abs(touch.speedY) < 15){
+                if(Math.abs(touch.speedY) < 10){
                     let translate = Math.ceil(wrapper.translateY / self.itemHeight) * self.itemHeight;
                     translate = Math.max(Math.min(translate, self.maxTranslateY), self.minTranslateY);
                     wrapper.translateY = translate;

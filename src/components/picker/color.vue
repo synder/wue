@@ -1,6 +1,6 @@
 
 <template>
-    <wue-picker v-if="visibleValue" title="选择颜色" @cancel="hide" @confirm="hide">
+    <wue-picker v-model="visibleValue" title="选择颜色" @cancel="hide" @confirm="hide">
         <div v-for="colors in rowsColors" style="display: block;width: 100%;">
             <wue-flex class="wue-color-picker" >
                 <wue-flex-item  :key="color" class="wue-color-box" v-for="color in colors">
