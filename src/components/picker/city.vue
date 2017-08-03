@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="weui-mask weui-animate-fade-in" v-show="show" @click="close"></div>
+        <div class="weui-mask weui-animate-fade-in" v-if="show" @click="close"></div>
         <div class="wue-city-picker" :class="show ? 'wue-city-picker-active' : ''">
             <div class="wue-city-picker-header">
                 <p class="wue-city-picker-title">{{title}}</p>
