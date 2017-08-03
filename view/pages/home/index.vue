@@ -24,6 +24,11 @@
                     <wue-grid-item label="input" to="#/input"><wue-icon slot="icon" name="arrow-up" :size="60"></wue-icon></wue-grid-item>
                     <wue-grid-item label="list" to="#/list"><wue-icon slot="icon" name="arrow-up" :size="60"></wue-icon></wue-grid-item>
                     <wue-grid-item label="marquee" to="#/marquee"><wue-icon slot="icon" name="arrow-up" :size="60"></wue-icon></wue-grid-item>
+                    <wue-grid-item label="mask" to="#/mask"><wue-icon slot="icon" name="arrow-up" :size="60"></wue-icon></wue-grid-item>
+                    <wue-grid-item label="msg" to="#/msg"><wue-icon slot="icon" name="arrow-up" :size="60"></wue-icon></wue-grid-item>
+                    <wue-grid-item label="navbar" to="#/navbar"><wue-icon slot="icon" name="arrow-up" :size="60"></wue-icon></wue-grid-item>
+                    <wue-grid-item label="panel" to="#/panel"><wue-icon slot="icon" name="arrow-up" :size="60"></wue-icon></wue-grid-item>
+                    <wue-grid-item label="picker" to="#/picker"><wue-icon slot="icon" name="arrow-up" :size="60"></wue-icon></wue-grid-item>
                 </wue-grid>
             </wue-group-item>
 

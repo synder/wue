@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <wue-picker @change="onChange" title="选择时间" :visible="visible" :options="options"></wue-picker>
-    </div>
+    <wue-picker @selected="onSelected" title="选择时间" v-model="visible" :options="options" @cancel="hide" @confirm="hide"></wue-picker>
 </template>
 
 <style lang="less" scoped>
@@ -13,10 +11,10 @@
     import Picker from './index.vue';
 
     export default {
-        name: 'wue-date-picker',
+        name: 'wue-time-picker',
 
         props:{
-            visible: Boolean
+            value: Boolean
         },
 
         data() {
@@ -24,7 +22,7 @@
                 hour: (new Date()).getHours(),
                 minute: (new Date()).getMinutes(),
                 second: (new Date()).getSeconds(),
-
+                visible: !!this.value,
                 options: {
                     hour: this.hours(),
                     minute: this.minutes(),
@@ -34,11 +32,17 @@
         },
 
         watch: {
+            value(val){
+                this.visible = !!val;
+            },
 
+            visible(val){
+                this.$emit('input', val);
+            }
         },
 
         methods: {
-            onChange: function (obj) {
+            onSelected: function (obj) {
 
                 if(obj){
                     this.hour = obj.hour ? obj.hour : this.hour;
@@ -79,6 +83,9 @@
 
                 return result;
             },
+            hide(){
+                this.visible = false;
+            }
         },
         components: {
             'wue-picker': Picker

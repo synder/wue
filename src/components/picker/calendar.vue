@@ -1,67 +1,60 @@
 <template>
-    <transition name="wue-mask">
-    <div v-show="visibleValue">
-        <div class="weui-mask weui-animate-fade-in"></div>
-        <div class="weui-picker weui-animate-slide-up">
-            <div class="weui-picker__hd">
-                <a class="weui-picker__action" @click="onHidden">取消</a>
-                <span v-text="showTitle"></span>
-                <a class="weui-picker__action" @click="onHidden">确认</a>
-            </div>
-            <div class="weui-picker__bd" :style="{height: height + 'px'}">
-                <div class="wue-inline-calendar">
-                    <div class="wue-calendar-header">
-                        <div class="wue-calendar-year">
+    <wue-picker v-model="visibleValue" :title="showTitle" :height="height + 'px'">
+        <div class="wue-inline-calendar">
+            <div class="wue-calendar-header">
+                <div class="wue-calendar-year">
                             <span @click="prevYear">
                               <a class="year-prev wue-prev-icon" href="javascript:"></a>
                             </span>
-                            <a class="wue-calendar-year-txt wue-calendar-title" href="javascript:" v-text="year"></a>
-                            <span class="wue-calendar-header-right-arrow" @click="nextYear">
+                    <a class="wue-calendar-year-txt wue-calendar-title" href="javascript:"
+                       v-text="year"></a>
+                    <span class="wue-calendar-header-right-arrow" @click="nextYear">
                                 <a class="year-next wue-next-icon" href="javascript:"></a>
                             </span>
-                        </div>
+                </div>
 
-                        <div class="wue-calendar-month">
+                <div class="wue-calendar-month">
                             <span @click="prevMonth">
                               <a class="month-prev wue-prev-icon" href="javascript:"></a>
                             </span>
-                            <a class="wue-calendar-month-txt wue-calendar-title" href="javascript:" v-text="month"></a>
-                            <span @click="nextMonth" class="wue-calendar-header-right-arrow">
+                    <a class="wue-calendar-month-txt wue-calendar-title" href="javascript:"
+                       v-text="month"></a>
+                    <span @click="nextMonth" class="wue-calendar-header-right-arrow">
                                 <a class="month-next wue-next-icon" href="javascript:"></a>
                             </span>
-                        </div>
-                    </div>
-
-                    <table>
-                        <thead>
-                        <tr>
-                            <th v-for="val in weeks" class="wue-calendar-week" v-text="val"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="rows in days">
-                            <td v-for="day in rows" @click="select(day)"
-                                :class="{'is-disabled': day.disable, 'is-today': day.today, 'current': day.current}">
-                                <slot name="day">
-                                    <span class="wue-wue-calendar-each-date" v-text="day.date"></span>
-                                    <div></div>
-                                </slot>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
+
+            <table>
+                <thead>
+                <tr>
+                    <th v-for="val in weeks" class="wue-calendar-week" v-text="val"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="rows in days">
+                    <td v-for="day in rows" @click="select(day)"
+                        :class="{'is-disabled': day.disable, 'is-today': day.today, 'current': day.current}">
+                        <slot name="day">
+                            <span class="wue-wue-calendar-each-date" v-text="day.date"></span>
+                            <div></div>
+                        </slot>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
-    </transition>
+    </wue-picker>
 </template>
 
 <script>
+    import WuePicker from "./index";
     export default {
-        name: 'wue-calendar',
+        components: {WuePicker},
+        name: 'wue-calendar-picker',
         props: {
-            value: {
+            value: Boolean,
+            init: {
                 type: Date | String | Number,
             },
             weeks: {
@@ -69,10 +62,6 @@
                 default () {
                     return ['日', '一', '二', '三', '四', '五', '六']
                 }
-            },
-            visible: {
-                type: Boolean,
-                default: false
             },
             height: {
                 type: Number,
@@ -85,14 +74,14 @@
         },
         data () {
             return {
-                currentValue: this.value ? new Date(this.value) : new Date(),
+                currentValue: this.init ? new Date(this.init) : new Date(),
                 days: [],
                 showTitle: this.title,
-                visibleValue: this.visible
+                visibleValue: !!this.value
             }
         },
         created () {
-            this.currentValue = this.value ? new Date(this.value) : new Date();
+            this.currentValue = this.init ? new Date(this.init) : new Date();
             this.days = this.getMonthDays(this.currentValue);
         },
         mounted () {
@@ -108,7 +97,7 @@
                 startY = touch.clientY;
                 event.returnValue = true;
 
-            }, false);
+            });
 
             element.addEventListener('touchend', function (event) {
                 event.preventDefault();
@@ -136,7 +125,7 @@
                     event.returnValue = true;
                 }
 
-            }, false);
+            });
         },
         computed: {
             year(){
@@ -149,12 +138,12 @@
         },
         watch: {
             value (val) {
-                if (val instanceof Date) {
-                    this.currentValue = val;
-                } else {
-                    this.currentValue = val ? new Date(val) : new Date();
-                }
+                this.visibleValue = !!val;
             },
+            visibleValue(val){
+                this.$emit('input', val);
+            },
+
             currentValue (val) {
                 if (val instanceof Date) {
                     this.currentValue = val;
@@ -169,11 +158,15 @@
 
                 this.showTitle = this.currentValue.getFullYear() + '/' + this.zero(this.currentValue.getMonth() + 1) + '/' + this.zero(this.currentValue.getDate());
 
-                this.$emit('input', this.currentValue);
-                this.$emit('change', this.currentValue);
+                this.$emit('selected', this.currentValue);
             },
+
         },
         methods: {
+
+            open(){
+                this.visibleValue = true;
+            },
 
             zero(value){
                 if (value < 10) {
@@ -349,6 +342,7 @@
     @wue-calendar-date-item-font-size: 16px;
     @wue-calendar-selected-bg-color: #04BE02;
     @wue-calendar-disabled-font-color: #c0c0c0;
+    
 
     .wue-calendar-year > span, .wue-calendar-month > span {
         position: absolute;
@@ -391,6 +385,7 @@
     .wue-inline-calendar a {
         text-decoration: none;
         tap-highlight-color: rgba(0, 0, 0, 0);
+        margin-bottom: 1rem;
     }
 
     .wue-calendar-year, .wue-calendar-month {

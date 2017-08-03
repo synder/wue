@@ -26,6 +26,11 @@ import infinite from '../../pages/components/infinite.vue';
 import input from '../../pages/components/input.vue';
 import list from '../../pages/components/list.vue';
 import marquee from '../../pages/components/marquee.vue';
+import mask from '../../pages/components/mask.vue';
+import msg from '../../pages/components/msg.vue';
+import navbar from '../../pages/components/navbar.vue';
+import panel from '../../pages/components/panel.vue';
+import picker from '../../pages/components/picker.vue';
 
 export default [
     {path: '/accordion', component: accordion},
@@ -49,4 +54,9 @@ export default [
     {path: '/input', component: input},
     {path: '/list', component: list},
     {path: '/marquee', component: marquee},
+    {path: '/mask', component: mask},
+    {path: '/msg', component: msg},
+    {path: '/navbar', component: navbar},
+    {path: '/panel', component: panel},
+    {path: '/picker', component: picker},
 ]

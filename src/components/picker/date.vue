@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <wue-picker @change="onChange" title="选择日期" :visible="visible" :options="options"></wue-picker>
-    </div>
+    <wue-picker @selected="onSelected" title="选择日期" v-model="visible" :options="options" @cancel="hide" @confirm="hide"></wue-picker>
 </template>
 
 <style lang="less" scoped>
@@ -10,13 +8,16 @@
 
 <script>
 
-    import Picker from './index.vue';
+    import WuePicker from './index.vue';
 
     export default {
         name: 'wue-date-picker',
+        components: {
+            WuePicker
+        },
         
         props:{
-            visible: Boolean
+            value: Boolean
         },
         
         data() {
@@ -24,21 +25,27 @@
                 year: (new Date()).getFullYear(),
                 month: (new Date()).getMonth() + 1,
                 day: (new Date()).getDate() + 1,
-
                 options: {
                     year: this.years(),
                     month: this.months(),
                     day: this.days(this.month)
-                }
+                },
+                visible: !!this.value
+            }
+        },
+        
+        watch: {
+            value(val){
+                this.visible = !!val;
+            },
+
+            visible(val){
+                this.$emit('input', val);
             }
         },
 
-        watch: {
-            
-        },
-
         methods: {
-            onChange: function (obj) {
+            onSelected: function (obj) {
                 if(obj){
                     this.year = obj.year ? obj.year : this.year;
                     this.month = obj.month ? obj.month : this.month;
@@ -46,10 +53,10 @@
 
                     this.options.day = this.days(this.year, this.month);
 
-                    this.$emit('change', {
-                        year: this.year,
-                        month: this.month,
-                        day: this.day,
+                    this.$emit('selected', {
+                        year: parseInt(this.year),
+                        month: parseInt(this.month),
+                        day: parseInt(this.day),
                     });
                 }
             },
@@ -99,9 +106,10 @@
                 
                 return result;
             },
+
+            hide(){
+                this.visible = false;
+            }
         },
-        components: {
-            'wue-picker': Picker
-        }
     }
 </script>

@@ -1,6 +1,7 @@
 <template>
+    <transition name="wue-mask">
     <div>
-        <div class="mask-city-picker" v-show="show" @click.stop="close"></div>
+        <div class="weui-mask weui-animate-fade-in" v-show="show" @click="close"></div>
         <div class="wue-city-picker" :class="show ? 'wue-city-picker-active' : ''">
             <div class="wue-city-picker-header">
                 <p class="wue-city-picker-title">{{title}}</p>
@@ -28,23 +29,11 @@
             </ul>
         </div>
     </div>
+    </transition>
 </template>
 
 <script type="text/babel">
-
-    const getScrollView = function (el) {
-        let currentNode = el;
-        while (currentNode && currentNode.tagName !== 'HTML' && currentNode.tagName !== 'BODY' && currentNode.nodeType === 1) {
-            let overflowY = document.defaultView.getComputedStyle(currentNode).overflowY;
-            if (overflowY === 'scroll' || overflowY === 'auto') {
-                return currentNode;
-            }
-            currentNode = currentNode.parentNode;
-        }
-        return window;
-    };
     
-
     export default {
         name: 'wue-city-picker',
         data() {
@@ -75,7 +64,6 @@
             province: String,
             city: String,
             area: String,
-            done: Function,
             title: {
                 type: String,
                 default: '所在地区'
@@ -5845,8 +5833,7 @@
                 });
             },
             returnValue() {
-                this.done(this.active);
-                
+                this.$emit('selected', this.active);
                 this.close();
             },
             close() {
@@ -5876,51 +5863,13 @@
 
     @import "../../styles/base/reset.less";
     @import "../../styles/icon/weui-icon.less";
+    @import '../../styles/widget/weui-tips/weui-mask.less';
 
-    @base-zindex: 1;
+    @base-zindex: 1000;
     @line-color: #D9D9D9;
     @line-high-color: #B2B2B2;
-
-    .mask(@background-color: rgba(0, 0, 0, .4), @z-index: @base-zindex * 1500) {
-        background-color: @background-color;
-        position: fixed;
-        z-index: @z-index;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        top: 0;
-        .display-flex();
-        .flex-justify-content(center);
-        .flex-align-items(center);
-    }
-
-    .line-clamp(@line: 2, @line-height: .38rem) {
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: @line;
-        -webkit-box-orient: vertical;
-        word-break: break-all;
-        text-overflow: ellipsis;
-        line-height: @line-height;
-        max-height: @line-height * @line + .2rem;
-    }
-
-    .bottom-line(@color, @zindex: 0) {
-        content: '';
-        position: absolute;
-        z-index: @zindex;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        border-bottom: 1px solid @color;
-        .scaleY(.5);
-        .transform-origin(0 0);
-    }
-
-    .mask-city-picker {
-        .mask(rgba(0, 0, 0, .4), @base-zindex * 500);
-    }
-
+    
+    
     .wue-city-picker {
         position: fixed;
         bottom: 0;
@@ -5928,7 +5877,7 @@
         width: 100%;
         height: 75%;
         background-color: #fff;
-        z-index: @base-zindex * 500;
+        z-index: @base-zindex + 1;
         .translate(0, 100%);
         .transition(transform .3s);
         &.wue-city-picker-active {
@@ -5941,9 +5890,9 @@
         top: 0;
         left: 0;
         width: 100%;
-        z-index: 1;
+        z-index: @base-zindex + 2;
         &:after {
-            .bottom-line(@line-color);
+            .setBottomLine(@line-color);
         }
     }
 
@@ -5955,7 +5904,7 @@
         line-height: 45px;
         position: relative;
         &:after {
-            .bottom-line(@line-high-color);
+            .setBottomLine(@line-high-color);
         }
     }
 
@@ -5987,7 +5936,6 @@
                     position: absolute;
                     bottom: 0;
                     left: 0;
-                    z-index: 2;
                 }
             }
         }
@@ -6028,6 +5976,7 @@
         height: inherit;
         display: block;
         padding: 0.5rem;
+        overflow-y: auto;
         > a {
             color: #333;
             font-size: 1rem;
@@ -6038,9 +5987,8 @@
             .flex-align-items(center);
             width: 100%;
             position: relative;
-            z-index: 1;
             &:before {
-                .bottom-line(@line-color);
+                .setBottomLine(@line-color);
             }
             &:active {
                 background: none;
@@ -6048,7 +5996,6 @@
             span {
                 .flex(1);
                 display: block;
-                .line-clamp(2, 16px);
             }
             &.wue-city-picker-item-active {
                 color: #09BB07;

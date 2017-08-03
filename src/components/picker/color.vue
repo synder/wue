@@ -1,6 +1,6 @@
 
 <template>
-    <wue-picker v-show="visible" title="选择颜色">
+    <wue-picker v-show="visibleValue" title="选择颜色" @cancel="hide" @confirm="hide">
         <div v-for="colors in rowsColors" style="display: block;width: 100%;">
             <wue-flex class="wue-color-picker" >
                 <wue-flex-item  :key="color" class="wue-color-box" v-for="color in colors">
@@ -18,32 +18,36 @@
 </template>
 
 <script>
-    import Flex from '../flex/index.vue';
-    import FlexItem from '../flex/item.vue';
-    import Picker from './index.vue';
+    import WueFlex from '../flex/index.vue';
+    import WueFlexItem from '../flex/item.vue';
+    import WuePicker from './index.vue';
 
     export default {
-        name: 'color-picker',
+        name: 'wue-color-picker',
         components: {
-            'wue-flex': Flex,
-            'wue-picker': Picker,
-            'wue-flex-item': FlexItem,
+            WueFlex,
+            WuePicker,
+            WueFlexItem
         },
-        created () {
-            this.currentValue = this.value;
+        data () {
+            return {
+                currentValue: '',
+                size: 'large',
+                width: 40,
+                visibleValue: !!this.value
+            }
         },
         props: {
-            visible: Boolean,
+            value: Boolean,
             colors: {
                 type: Array,
                 default: function () {
                     return [
-                        '#FF3B3B', '#FFEF7D', '#8AEEB1', '#8B8AEE', '#CC68F8', '#FFFFFF',
-                        '#09BB07', '#3366FF', '#FFBE00', '#F76260', '#10AEFF', '#009999',
+                        '#000000', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF', '#AAAAAA',
+                        '#CC68F8', '#09BB07', '#3366FF', '#F76260', '#10AEFF', '#009999',
                     ]
                 }
             },
-            value: String
         },
         computed: {
             rowsColors(){
@@ -67,21 +71,17 @@
                 return result;
             }
         },
-        data () {
-            return {
-                currentValue: '',
-                size: 'large',
-                width: 40
-            }
-        },
         watch: {
-            value (val) {
-                this.currentValue = val;
+            value (visible) {
+                this.visibleValue = !!visible;
+            },
+
+            visibleValue(visible){
+                this.$emit('input', visible);
             },
             
             currentValue (color) {
-                this.$emit('on-change', color);
-                this.$emit('input', color);
+                this.$emit('selected', color);
             }
         },
         methods: {
@@ -96,6 +96,10 @@
                     width: this.width + 'px',
                     height: this.width + 'px'
                 };
+            },
+
+            hide(){
+                this.visibleValue = false;
             }
         }
     }
@@ -106,11 +110,6 @@
     @import '../../styles/base/reset.less';
     @import '../../styles/icon/weui-icon.less';
     
-    .weui-picker__bd{
-        display: block !important;
-        width: 100% !important;
-    }
-
     .wue-color-box {
         text-align: center;
     }
@@ -118,7 +117,7 @@
     .wue-color-picker {
         font-size: 0;
         width: 100%;
-        padding: 0.5rem 0.1rem;
+        margin-top: 0.5rem !important;
     }
 
     .wue-color-item {

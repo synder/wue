@@ -1,6 +1,6 @@
 <template>
     <div class="weui-panel weui-panel_access">
-        <div class="weui-panel__hd">
+        <div class="weui-panel__hd" v-if="showHeader">
             <slot name="header"></slot>
         </div>
         
@@ -8,7 +8,7 @@
             <slot></slot>
         </div>
         
-        <div class="weui-panel__ft">
+        <div class="weui-panel__ft" v-if="showFooter">
             <slot name="footer"></slot>
         </div>
     </div>
@@ -18,11 +18,17 @@
     
     export default {
         name: 'wue-panel',
-        props: {
-            
-        },
-        methods: {
+        
+        computed: {
+            showHeader(){
+                return !!this.$slots.header;
+            },
+
+            showFooter(){
+                return !!this.$slots.footer;
+            }
         }
+        
     }
 </script>
 

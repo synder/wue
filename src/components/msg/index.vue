@@ -1,7 +1,9 @@
 <template>
     <div class="weui-msg">
         <div class="weui-msg__icon-area">
-            <i class="weui-icon_msg" :class="`weui-icon-${icon || 'success'}`"></i>
+            <slot name="icon">
+                <wue-icon :name="icon || 'success'" size="80" color="#09bb07"></wue-icon>
+            </slot>
         </div>
         <div class="weui-msg__text-area">
             <h2 class="weui-msg__title" v-html="title"></h2>
@@ -18,13 +20,15 @@
 </template>
 
 <script>
+    import WueIcon from "../icon/index";
 
     export default {
-        name: 'msg',
-        props: ['icon', 'title'],
-        methods: {
-            
-        }
+        components: {WueIcon},
+        name: 'wue-msg',
+        props: {
+            icon: String,
+            title: String
+        },
     }
 </script>
 

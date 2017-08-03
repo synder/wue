@@ -26,6 +26,7 @@
                 required: true
             },
             value: String,
+            init: String,
             items: Array,
         },
         
@@ -34,18 +35,23 @@
             return {
                 itemHeight: 34,
                 visibleCount : 7, //可见选项个数
-                currentValue: this.value,
-                isDragging : false
+                currentValue: this.init,
             };
+        },
+        
+        watch: {
+            currentValue(val){
+                this.$emit('selected', this.id, val);
+            }
         },
 
         computed: {
             minTranslateY () {
-                return this.itemHeight * (Math.ceil(this.visibleCount / 2) - this.items.length)
+                return this.itemHeight * (Math.ceil(this.visibleCount / 2) - this.items.length);
             },
 
             maxTranslateY () {
-                return this.itemHeight * Math.floor(this.visibleCount / 2)
+                return this.itemHeight * Math.floor(this.visibleCount / 2);
             },
         },
 
@@ -58,121 +64,117 @@
         },
 
         created () {
-            this.dragState = {}
+            this.touch = {
+                startTime: 0,
+                endTime: 0,
+                startY: 0,
+                tempY: 0,
+                endY: 0,
+                speedY:0,
+                moving: false
+            }
         },
 
         mounted () {
             const self = this;
             const wrapper = self.$refs.wrapper; //滑动框
             const element = self.$el;
-            
-            let ticker = null;
 
             Transform(wrapper, true);
 
-            const move = function (step) {
-
-                let direction;
+            const move = function (wrapper, touch) {
+                touch.moving = true;
+                wrapper.translateY = wrapper.translateY + touch.endY - touch.tempY;
                 
-                if(self.dragState.velocityTranslate > 0){
-                    direction = 'up';
-                }else if(self.dragState.velocityTranslate < 0){
-                    direction = 'down';
+                if(Math.abs(touch.speedY) < 15){
+                    let translate = Math.ceil(wrapper.translateY / self.itemHeight) * self.itemHeight;
+                    translate = Math.max(Math.min(translate, self.maxTranslateY), self.minTranslateY);
+                    wrapper.translateY = translate;
+                    touch.moving = false;
+                    return  self.currentValue = self.translate2value(wrapper.translateY);
                 }
 
-                let translate = Math.round(wrapper.translateY + self.dragState.velocityTranslate * 1);
+                const requestAnimation = 
+                    window.requestAnimationFrame  ||
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame || 
+                    window.msRequestAnimationFrame;
 
-                if(step === true){
-                    translate = Math.round(wrapper.translateY / self.itemHeight) * self.itemHeight;
-                }else{
-                    if(self.dragState.velocityTranslate === 0) {
-                        if(direction === 'up'){
-                            translate = Math.ceil(wrapper.translateY / self.itemHeight) * self.itemHeight;
-                        }else if(direction === 'down'){
-                            translate = Math.floor(wrapper.translateY / self.itemHeight) * self.itemHeight;
-                        }else{
-                            translate = Math.round(wrapper.translateY / self.itemHeight) * self.itemHeight;
-                        }
+                let handler = touch.speedY > 0 ? Math.ceil : Math.floor;
+                let requestAnimationID;
+                
+                const step = function () {
+                    if(touch.speedY === 0){
+                        touch.moving = false;
+                        wrapper.translateY = handler(wrapper.translateY / self.itemHeight) * self.itemHeight;
+                        self.currentValue = self.translate2value(wrapper.translateY);
+                    }else{
+                        touch.speedY = touch.speedY > 0 ? touch.speedY - 1 : touch.speedY + 1;
+                        let temp = wrapper.translateY + touch.speedY;
+                        temp = Math.max(Math.min(temp, self.maxTranslateY), self.minTranslateY);
+                        wrapper.translateY = temp;
+                        requestAnimationID = requestAnimationFrame(step);
                     }
-                }
+                };
 
-                translate = Math.max(Math.min(translate, self.maxTranslateY), self.minTranslateY);
-
-                wrapper.translateY = translate;
-
-                if(self.dragState.velocityTranslate === 0){
-                    if(ticker){
-                        clearInterval(ticker);
-                    }
-                    self.currentValue = self.translate2value(translate);
-                    self.$emit('change', self.id, self.currentValue);
-                }
-
-                if(direction === 'up'){
-                    if(self.dragState.velocityTranslate > 0){
-                        self.dragState.velocityTranslate -= 1;
-                    }
-                }else if(direction === 'down'){
-                    if(self.dragState.velocityTranslate < 0){
-                        self.dragState.velocityTranslate += 1;
-                    }
-                }
-
+                requestAnimationID = requestAnimation(step);
             };
             
             element.addEventListener('touchstart', function (event) {
                 event.preventDefault();
+                let touch = event.touches[0];
+                if(self.touch.moving){
+                    return;
+                }
 
-                let touch = event.changedTouches[0] || event.touches[0];
+                self.touch = {
+                    startTime: 0,
+                    endTime: 0,
+                    startY: 0,
+                    tempY: 0,
+                    endY: 0,
+                    speedY:0
+                };
                 
-                self.isDragging = true;
-                self.dragState.start = new Date();
-                self.dragState.startPositionY = touch.clientY;
-                self.dragState.startTranslateY = wrapper.translateY;
+                self.touch.startTime = Date.now();
+                self.touch.startY = touch.clientY;
+                self.touch.tempY = touch.clientY;
+                self.touch.startTranslateY = wrapper.translateY;
             });
 
             element.addEventListener('touchmove', function (event) {
                 event.preventDefault();
+                
+                if(self.touch.moving){
+                    return;
+                }
 
                 let touch = event.changedTouches[0] || event.touches[0];
-
-                const deltaY = touch.clientY - self.dragState.startPositionY;
-
-                const tempTranslateY = self.dragState.startTranslateY + deltaY;
-
-                if (tempTranslateY <= self.minTranslateY) {
-                    wrapper.translateY = self.minTranslateY;
-                } else if (tempTranslateY >= self.maxTranslateY) {
-                    wrapper.translateY = self.maxTranslateY;
-                } else {
-                    wrapper.translateY = self.dragState.startTranslateY + deltaY;
-                }
                 
-                self.dragState.currentPosifionY = touch.clientY;
-                self.dragState.currentTranslateY = wrapper.translateY;
-                self.dragState.velocityTranslate = (self.dragState.currentTranslateY - self.dragState.prevTranslateY) || 0;
-                self.dragState.prevTranslateY = self.dragState.currentTranslateY;
+                let tempTranslateY = wrapper.translateY + touch.clientY - self.touch.tempY;
+
+                tempTranslateY = tempTranslateY < self.minTranslateY ? self.minTranslateY : tempTranslateY;
+                tempTranslateY = tempTranslateY > self.maxTranslateY ? self.maxTranslateY : tempTranslateY;
+
+                wrapper.translateY = tempTranslateY;
+                
+                self.touch.tempY = touch.clientY;
             });
 
             element.addEventListener('touchend', function (event) {
                 event.preventDefault();
-                self.isDragging = false;
-                if(Math.abs(self.dragState.velocityTranslate) < 20){
-                    move(true);
-                }else{
-                    if(ticker){
-                        clearInterval(ticker);
-                    }
-                    ticker = setInterval(function () {
-                        move(false);
-                    }, 30);
-                }
-            });
 
-            element.addEventListener('touchcancel', function (event) {
-                event.preventDefault();
-                self.isDragging = false;
-                self.dragState = {};
+                if(self.touch.moving){
+                    return;
+                }
+
+                let touch = event.changedTouches[0] || event.touches[0];
+
+                self.touch.endY = touch.clientY;
+                self.touch.endTime = Date.now();
+                self.touch.speedY = Math.round((self.touch.endY - self.touch.startY) / (self.touch.endTime - self.touch.startTime) * 30);
+                
+                move(wrapper, self.touch);
             });
         }
     }
