@@ -1,0 +1,32 @@
+
+.blur(@px){
+  -webkit-filter: blur(unit(@px, px));
+  -moz-filter: blur(unit(@px, px));
+  -ms-filter: blur(unit(@px, px));
+  filter: blur(unit(@px, px));
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=unit(@px), MakeShadow=false);
+}
+
+
+.gray() {
+  -webkit-filter: ~'grayscale(100%)';
+  -moz-filter: ~'grayscale(100%)';
+  -ms-filter: ~'grayscale(100%)';
+  -o-filter: ~'grayscale(100%)';
+  filter: ~'grayscale(100%)';
+  filter: ~'gray';
+}
+
+.filter(@filter: grayscale(100%)) {
+  -webkit-filter: @filter;
+  -moz-filter: @filter;
+  -ms-filter: @filter;
+  -o-filter: @filter;
+  filter: @filter;
+}
+
+.opacity(@opacity) {
+  opacity: @opacity;
+  @opacity-ie: @opacity * 100;
+  filter: ~"alpha(opacity=@{opacity-ie})"; // IE8
+}

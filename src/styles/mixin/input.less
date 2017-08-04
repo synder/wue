@@ -1,0 +1,13 @@
+
+
+.placeholder(@color: #DDD) {
+  &::-webkit-input-placeholder {
+    color: @color; // Chrome, Safari, Opera
+  }
+  &::-moz-placeholder {
+    color: @color; // Firefox 19+
+  }
+  &:-ms-input-placeholder {
+    color: @color; // IE 10+
+  }
+}

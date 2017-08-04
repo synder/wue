@@ -1,0 +1,64 @@
+.line(@c: #C7C7C7, @w: 1px) {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: @w;
+  border: @w solid @c;
+  color: @c;
+  transform-origin: 0 0;
+  transform: scaleY(0.5);
+}
+
+.top-line(@c: #C7C7C7, @w: 1px) {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: @w;
+  border-top: @w solid @c;
+  color: @c;
+  transform-origin: 0 0;
+  transform: scaleY(0.5);
+}
+
+.bottom-line(@c: #C7C7C7, @w: 1px) {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: @w;
+  border-bottom: @w solid @c;
+  color: @c;
+  transform-origin: 0 100%;
+  transform: scaleY(0.5);
+}
+
+.left-line(@c: #C7C7C7, @w: 1px) {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: @w;
+  bottom: 0;
+  border-left: @w solid @c;
+  color: @c;
+  transform-origin: 0 0;
+  transform: scaleX(0.5);
+}
+
+.right-line(@c: #C7C7C7, @w: 1px) {
+  content: " ";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: @w;
+  bottom: 0;
+  border-right: @w solid @c;
+  color: @c;
+  transform-origin: 100% 0;
+  transform: scaleX(0.5);
+}

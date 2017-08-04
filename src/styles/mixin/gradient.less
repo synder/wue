@@ -1,0 +1,23 @@
+
+
+.linear-gradient(@direction: top, @fallback: #ccc, @from: #ccc, @to: #aaa) {
+
+// New Syntax has to be evaluated to old one
+  .direction () when (@direction = top) {
+    background-image: linear-gradient(to bottom, @from, @to);
+  }
+  .direction () when (@direction = left) {
+    background-image: linear-gradient(to right, @from, @to);
+  }
+
+
+  // Provide a fallback-color
+  background-color: @fallback;
+
+  // Cross-browser linear-gradients
+  background-image: -webkit-linear-gradient(@direction, @from, @to);
+  background-image:    -moz-linear-gradient(@direction, @from, @to);
+  background-image:     -ms-linear-gradient(@direction, @from, @to);
+  background-image:      -o-linear-gradient(@direction, @from, @to);
+  .direction;
+}

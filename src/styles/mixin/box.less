@@ -1,0 +1,17 @@
+
+.box-sizing(@size: border-box){
+  box-sizing:@size;
+  -moz-box-sizing:@size;
+  -webkit-box-sizing:@size;
+}
+
+.box-shadow(@shadow: 1px 1px 2px rgba(0,0,0,0.25)) {
+  -webkit-box-shadow: @shadow;
+  -moz-box-shadow: @shadow;
+  box-shadow: @shadow;
+}
+
+.resizable(@direction) {
+  resize: @direction; // Options: horizontal, vertical, both
+  overflow: auto; // Safari fix
+}
