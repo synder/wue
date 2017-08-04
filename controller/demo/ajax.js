@@ -70,3 +70,19 @@ exports.put = function (req, res, next) {
         ]
     });
 };
+
+exports.show = function (req, res, next) {
+   console.log('ok');
+   console.log('ok');
+   console.log('ok');
+   console.log('ok');
+   console.log('ok');
+   console.log('ok');
+   console.log('ok');
+   console.log('ok');
+   console.log('ok');
+   console.log('ok');
+   console.log('ok');
+   console.log('ok');
+   console.log('ok');
+};

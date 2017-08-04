@@ -4,38 +4,58 @@
  * @desc create http server
  */
 
-const express     = require('express');
+/**
+ * @author synder
+ * @date 16/1/10
+ * @desc create http server
+ */
+const fs = require('fs');
 const webpack = require('webpack');
 const body = require('body-parser');
 const compression    = require('compression');
 
-const app = express();
+const Server = require('./lib/server');
+const error = require('./lib/error');
 
-//webpack================================
-const config = require('./config');
-const webpackHot = require('./webpack/hot');
-const webpackDev = require('./webpack/dev');
+error.mount(global);
+
+const WEBPACK = process.env.WEBPACK;
+
+const server = new Server();
+
+server.config('trust proxy', true);
+server.config('x-powered-by', false);
+
+const config = require('./webpack.js');
+const webpackHot = require('./middleware/webpack/hot');
+const webpackDev = require('./middleware/webpack/dev');
 
 const compiler = webpack(config);
 
-app.use(compression());
-app.use(webpackDev(compiler, config));
-app.use(webpackHot(compiler, config));
-app.use(body.json());
-app.use(body.urlencoded({
-    extended: true
-}));
+server.use(function (app) {
+    app.use(compression());
+    app.use(body.json());
+    app.use(body.urlencoded({
+        extended: true
+    }));
 
-//ctrl====================================
-const upload = require('./ctrl/upload');
-const ajax = require('./ctrl/ajax');
+    if(WEBPACK){
+        app.use(webpackDev(compiler, config));
+        app.use(webpackHot(compiler, config));
+    }
+});
 
-app.post('/upload', upload.batch);
-app.get('/ajax', ajax.get);
-app.delete('/ajax', ajax.del);
-app.post('/ajax', ajax.post);
-app.put('/ajax', ajax.put);
+const demo = require('./router/demo');
+server.route(function (app) {
+    demo.mount(app);
+});
 
-app.use(express.static('./static'));
+const errorHandler = require('./middleware/error/index');
 
-app.listen(3000);
+server.error(function(app){
+    app.use(errorHandler.notFoundHandler());
+    app.use(errorHandler.serverErrorHandler());
+});
+
+
+module.exports = server;

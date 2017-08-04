@@ -4,4 +4,8 @@
  * @desc
  */
 
-require('../app');
+const server = require('../app');
+
+server.listen(function (msg) {
+    console.log(msg);
+});

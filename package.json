@@ -13,6 +13,7 @@
   "dependencies": {
     "body-parser": "*",
     "compression": "*",
+    "cookie-parser": "^1.4.3",
     "express": "*",
     "vue": "*",
     "vue-router": "*",
