@@ -14,7 +14,8 @@
 * limitations under the License.
 */
 
-@import "fn";
+@import "mixin.less";
+@import "variable.less";
 
 /**
  * Correct `block` display not defined in IE 8/9.
@@ -83,7 +84,7 @@ a img {
 
 a {
     text-decoration: none;
-    .setTapColor();
+    .tap-highlight-color();
 }
 
 /**

@@ -70,7 +70,7 @@
     @headerHeight: 40px;
 
     .wue-header {
-        .display-flex();
+        .flex-box();
         .flex-align-items(center);
         .box-sizing(border-box);
         width: 100%;

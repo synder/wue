@@ -160,7 +160,7 @@
 
     @import "../../styles/base/reset.less";
     
-    @icon-font-path: "../../styles/fonts/";
+    @wue-icon-font-path: "../../styles/fonts/";
     @base-zindex: 1;
     @line-color: #E5E5E5;
     
@@ -188,7 +188,7 @@
         right: 0;
         left: 0;
         top: 0;
-        .display-flex();
+        .flex-box();
         .flex-justify-content(center);
         .flex-align-items(center);
     }
@@ -284,14 +284,14 @@
         background-color: #FFF;
         > li {
             width: 100%;
-            .display-flex();
+            .flex-box();
             > a {
                 width: 1%; /* for old android */
                 .flex(1);
                 color: #686868;
                 height: 3rem;
                 position: relative;
-                .display-flex();
+                .flex-box();
                 .flex-justify-content(center);
                 .flex-align-items(center);
                 &:not(:last-child):after {
@@ -326,7 +326,7 @@
 
     .wue-keyboard-head {
         height: 3rem;
-        .display-flex();
+        .flex-box();
         .flex-justify-content(center);
         .flex-align-items(center);
         color: #686868;
@@ -339,7 +339,7 @@
 
     .wue-keyboard-password {
         margin: 0 1rem;
-        .display-flex();
+        .flex-box();
         position: relative;
         background-color: #FFF;
         &:after {
@@ -357,7 +357,7 @@
         li {
             .flex(1);
             position: relative;
-            .display-flex();
+            .flex-box();
             .flex-justify-content(center);
             .flex-align-items(center);
             height: 3rem;

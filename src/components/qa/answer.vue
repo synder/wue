@@ -58,9 +58,7 @@
 
 <style lang='less' scoped>
     @import "../../styles/base/reset";
-    @import "../../styles/mixin/float";
-    @import "../../styles/mixin/text";
-    @import "../../../vue/styles/mixin/gradient";
+    @import "../../styles/mixin/index";
     @import "../../styles/icon/icon";
     
     @avatar-height: 34px;
@@ -125,7 +123,7 @@
         padding-left: @padding-left;
         padding-right: @padding-left;
         font-size: 1rem;
-        .wrap-words();
+        .text-wrap();
         text-align: justify;
     }
 
@@ -146,7 +144,7 @@
           
             &:before{
                 width: 100%;
-                .setTopLine();
+                .top-line();
             }
 
         }
@@ -158,7 +156,7 @@
             
             &:before{
                 width: 100%;
-                .setTopLine();
+                .top-line();
             }
             
            

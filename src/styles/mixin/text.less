@@ -1,20 +1,33 @@
 
-
-.wrap-words() {
-  -ms-word-break: break-all;
-  word-break: ~'break-word';
-  word-break: break-all;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  -o-hyphens: auto;
-  hyphens: auto;
-}
-
 .user-select(@color) {
   -webkit-user-select: @color;
   -moz-user-select: @color;
   -ms-user-select: @color;
   -o-user-select: @color;
   user-select: @color;
+}
+
+.ellipsis(@w:auto) {
+  width: @w;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.ellipsis-line(@line) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: @line;
+}
+.text-wrap() {
+  word-wrap:break-word;
+  word-break:break-all;
+}
+.hyphens() {
+  word-wrap:break-word;
+  -webkit-hyphens:auto;
+  hyphens:auto;
 }

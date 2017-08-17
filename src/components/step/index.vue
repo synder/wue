@@ -59,6 +59,6 @@
     @import "../../styles/base/reset.less";
     
     .wue-step {
-        .display-flex();
+        .flex-box();
     }
 </style>

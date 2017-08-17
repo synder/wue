@@ -244,11 +244,11 @@
         margin: 0;
         padding: 0;
         overflow: hidden;
-        .display-flex();
+        .flex-box();
     }
 
     .wue-full-page-indicator{
-        .display-flex();
+        .flex-box();
         position: absolute;
         bottom: 1.5rem;
         left: 25%;

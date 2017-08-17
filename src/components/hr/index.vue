@@ -20,6 +20,6 @@
     }
 
     :before {
-        .setBottomLine()
+        .bottom-line()
     }
 </style>

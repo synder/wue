@@ -42,7 +42,7 @@
         border-collapse: collapse;
 
         &:after {
-            .setTopLine();
+            .top-line();
         }
         th {
             font-weight: 500
@@ -51,7 +51,7 @@
 
     .wue-table.wue-table-bordered {
         &:before {
-            .setLeftLine();
+            .left-line();
         }
     }
 
@@ -69,7 +69,7 @@
 
     .wue-table td, .wue-table th {
         &:before {
-            .setBottomLine();
+            .bottom-line();
         }
     }
 
@@ -87,7 +87,7 @@
 
     .wue-table td, .wue-table th {
         &:after {
-            .setRightLine();
+            .right-line();
         }
     }
 

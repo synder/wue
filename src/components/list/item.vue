@@ -216,7 +216,7 @@
         background-color: #FFF;
         .wue-list-item {
             overflow: hidden;
-            .display-flex();
+            .flex-box();
             padding: 7px 0 8px 0;
             position: relative;
             &:not(:last-child):after {

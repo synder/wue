@@ -145,7 +145,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        .display-flex();
+        .flex-box();
     }
 
     .wue-scroll-tab-nav {
@@ -163,7 +163,7 @@
     .wue-scroll-tab-item {
         padding: 0 .4rem;
         height: 2.5rem;
-        .display-flex();
+        .flex-box();
         .flex-align-items(center);
         position: relative;
         z-index: 1;
@@ -190,7 +190,7 @@
     .wue-scroll-tab-icon {
         margin-right: .5rem;
         font-size: 1rem;
-        .display-flex();
+        .flex-box();
         .flex-align-items(center);
         .flex-justify-content(center);
         > img {

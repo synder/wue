@@ -150,7 +150,7 @@
                     font-size: 1.1rem;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    .display-flex();
+                    .flex-box();
                     -webkit-box-orient: vertical;
                     color: #222;
                     -webkit-margin-before: 0.8em;
@@ -178,7 +178,7 @@
                             display: inline-block;
                             overflow: hidden;
                             width: 33.3%;
-                            box-sizing: border-box;
+                            .box-sizing(border-box);
                             height: 5rem;
                             position: relative;
                             float: left;
@@ -236,7 +236,7 @@
             
             .article-link{
 
-                .display-flex;
+                .flex-box;
                 height: 100%;
                 width: 100%;
                 
@@ -249,7 +249,7 @@
                 .article-image{
                     overflow: hidden;
                     width: 33%;
-                    .display-flex();
+                    .flex-box();
                     .flex-align-items(center);
                     box-orient: vertical;
                     box-pack: center;

@@ -80,7 +80,7 @@
     }
 
     .cell_access {
-        .setTapColor();
+        .tap-highlight-color();
         color: inherit;
         &:active {
             background-color: #ECECEC;
@@ -90,7 +90,7 @@
             position: relative;
             &:after {
                 content: " ";
-                .setArrow(right, 6px, #C8C8CD, 2px);
+                .arrow(right, 6px, #C8C8CD, 2px);
                 position: absolute;
                 top: 50%;
                 margin-top: -4px;
