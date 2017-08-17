@@ -1,14 +1,14 @@
 <template>
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
+    <div class="cell">
+        <div class="cell__bd">
       <textarea @change="$emit('change', currentValue)"
-                class="weui-textarea"
+                class="textarea"
                 :placeholder="placeholder"
                 :rows="rows"
                 :disabled="disabled"
                 :readonly="readonly"
                 v-model="currentValue"></textarea>
-            <div class="weui-textarea-counter" v-if="max"><span>{{ length }}</span>/{{ max }}</div>
+            <div class="textarea-counter" v-if="max"><span>{{ length }}</span>/{{ max }}</div>
         </div>
     </div>
 </template>
@@ -66,6 +66,6 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/widget/weui-cell/weui-cell-global.less';
-    @import '../../styles/widget/weui-cell/weui-form/weui-form_common.less';
+    @import '../../styles/widget/cell/cell-global.less';
+    @import '../../styles/widget/cell/form/form_common.less';
 </style>

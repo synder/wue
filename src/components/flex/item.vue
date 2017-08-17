@@ -1,5 +1,5 @@
 <template>
-    <div class="weui-flex__item" :class="classes" :style="style">
+    <div class="flex__item" :class="classes" :style="style">
         <slot></slot>
     </div>
 </template>
@@ -39,5 +39,5 @@
 
 <style scoped lang="less">
     @import "../../styles/base/reset.less";
-    @import '../../styles/widget/weui-flex/weui-flex.less';
+    @import '../../styles/widget/flex/flex.less';
 </style>

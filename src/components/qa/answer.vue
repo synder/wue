@@ -4,10 +4,10 @@
             <wue-common-avatar src="http://upload.jianshu.io/users/upload_avatars/7355075/bfe84d4d-c726-49df-81f7-1eec1164fafc?imageMogr2/auto-orient/strip|imageView2/1/w/102/h/102"></wue-common-avatar>
             <a class="username">我叫什么</a>
             <a class="favour">
-                <i class="weui-icon-favour"></i>122
+                <i class="icon-favour"></i>122
             </a>
             <a class="comment">
-                <i class="weui-icon-bubble"></i>133
+                <i class="icon-bubble"></i>133
             </a>
         </div>
         
@@ -61,7 +61,7 @@
     @import "../../styles/mixin/float";
     @import "../../styles/mixin/text";
     @import "../../../vue/styles/mixin/gradient";
-    @import "../../styles/icon/weui-icon";
+    @import "../../styles/icon/icon";
     
     @avatar-height: 34px;
     @line-height: @avatar-height;

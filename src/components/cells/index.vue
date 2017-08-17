@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="weui-cells__title" v-if="title" :style="style" v-html="title"></div>
-        <div class="weui-cells">
+        <div class="cells__title" v-if="title" :style="style" v-html="title"></div>
+        <div class="cells">
             <slot></slot>
         </div>
     </div>
@@ -37,5 +37,5 @@
 
 <style scoped lang="less">
     @import "../../styles/base/reset.less";
-    @import '../../styles/widget/weui-cell/weui-cell-global.less';
+    @import '../../styles/widget/cell/cell-global.less';
 </style>

@@ -1,13 +1,13 @@
 <template>
     <div v-show="show">
-        <div class="weui-mask weui-animate-fade-in" @click="onCancel"></div>
-        <div class="weui-picker weui-animate-slide-up">
-            <div class="weui-picker__hd">
-                <a class="weui-picker__action" @click="onCancel" v-text="cancel"></a>
+        <div class="mask animate-fade-in" @click="onCancel"></div>
+        <div class="picker animate-slide-up">
+            <div class="picker__hd">
+                <a class="picker__action" @click="onCancel" v-text="cancel"></a>
                 <span v-text="title"></span>
-                <a class="weui-picker__action" @click="onConfirm" v-text="confirm"></a>
+                <a class="picker__action" @click="onConfirm" v-text="confirm"></a>
             </div>
-            <div class="weui-picker__bd" :style="{height: height}">
+            <div class="picker__bd" :style="{height: height}">
                 <slot>
                     <wue-picker-options @selected="onOptionsValueSelected" v-if="options" v-for="(items, key) in options" :id="key" :items="items"></wue-picker-options>
                 </slot>
@@ -19,9 +19,9 @@
 <style lang='less' scoped>
     @import '../../styles/base/reset.less';
     @import '../../styles/vue/transition.less';
-    @import '../../styles/widget/weui-tips/weui-mask.less';
-    @import '../../styles/widget/weui-animate/weui-animate.less';
-    @import '../../styles/widget/weui-picker/weui-picker.less';
+    @import '../../styles/widget/tips/mask.less';
+    @import '../../styles/widget/animate/animate.less';
+    @import '../../styles/widget/picker/picker.less';
 </style>
 
 <script>

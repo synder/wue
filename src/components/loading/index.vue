@@ -1,10 +1,10 @@
 <template>
     <transition name="wue-mask">
-        <div class="weui-loading_toast wue-loading" v-show="currentValue">
-            <div class="weui-mask_transparent"></div>
-            <div class="weui-toast">
-                <i class="weui-loading weui-icon_toast"></i>
-                <p class="weui-toast__content" v-html="showText || '加载中'"></p>
+        <div class="loading_toast wue-loading" v-show="currentValue">
+            <div class="mask_transparent"></div>
+            <div class="toast">
+                <i class="loading icon_toast"></i>
+                <p class="toast__content" v-html="showText || '加载中'"></p>
             </div>
         </div>
     </transition>
@@ -53,15 +53,15 @@
 <style scoped lang="less">
     @import "../../styles/base/reset.less";
     @import '../../styles/vue/transition.less';
-    @import '../../styles/widget/weui-tips/weui-mask.less';
-    @import '../../styles/widget/weui-tips/weui-toast.less';
-    @import '../../styles/widget/weui-loading/weui-loading.less';
+    @import '../../styles/widget/tips/mask.less';
+    @import '../../styles/widget/tips/toast.less';
+    @import '../../styles/widget/loading/loading.less';
 
-    .wue-loading .weui-toast {
+    .wue-loading .toast {
         z-index: 5001;
     }
 
-    .weui-icon_toast.weui-loading {
+    .icon_toast.loading {
         margin: 30px 0 0;
         width: 38px;
         height: 38px;

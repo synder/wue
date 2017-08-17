@@ -1,5 +1,5 @@
 <template>
-    <div class="weui-tabbar" :style="style">
+    <div class="tabbar" :style="style">
         <slot></slot>
     </div>
 </template>
@@ -48,5 +48,5 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/widget/weui-tab/weui-tabbar.less';
+    @import '../../styles/widget/tab/tabbar.less';
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <i :class="name" :style="style" @click="click"></i>
+    <i :class="name" :style="style" @click="$emit('click')"></i>
 </template>
 
 <script>
@@ -43,15 +43,10 @@
                 return result;
             }
         },
-        
-        methods: {
-            click(){
-                this.$emit('click');
-            }
-        }
     }
 </script>
 
 <style scoped lang="less">
     @import "../../styles/base/reset.less";
+    @import "../../styles/icon/icon.less";
 </style>

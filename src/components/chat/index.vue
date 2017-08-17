@@ -27,7 +27,7 @@
 
         <div class="box-footer">
             <wue-input-cell v-model="message" @enter="send">
-                <button class="weui-vcode-btn" @click="send">发送</button>
+                <button class="vcode-btn" @click="send">发送</button>
             </wue-input-cell>
         </div>
     </div>
@@ -36,9 +36,9 @@
 <style lang='less'>
     @import '../../styles/base/reset.less';
     @import '../../styles/chat/base.less';
-    @import '../../styles/widget/weui-cell/weui-form/weui-vcode.less';
+    @import '../../styles/widget/cell/form/vcode.less';
     
-    .weui-cell{
+    .cell{
         padding: 0;
         margin: 0;
     }

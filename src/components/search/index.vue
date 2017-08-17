@@ -1,19 +1,19 @@
 <template>
     
     <div>
-        <div class="weui-search-bar" :class="{'weui-search-bar_focusing': activated}">
-            <div class="weui-search-bar__form">
-                <div class="weui-search-bar__box">
-                    <i class="weui-icon-search"></i>
-                    <input type="text" class="weui-search-bar__input" :placeholder="placeholder" v-model="currentValue" ref="input">
-                    <a href="javascript:" class="weui-icon-clear" @click="searchClear"></a>
+        <div class="search-bar" :class="{'search-bar_focusing': activated}">
+            <div class="search-bar__form">
+                <div class="search-bar__box">
+                    <i class="icon-search"></i>
+                    <input type="text" class="search-bar__input" :placeholder="placeholder" v-model="currentValue" ref="input">
+                    <a href="javascript:" class="icon-clear" @click="searchClear"></a>
                 </div>
-                <label class="weui-search-bar__label" @click="textClick" v-show="!activated">
-                    <i class="weui-icon-search"></i>
+                <label class="search-bar__label" @click="textClick" v-show="!activated">
+                    <i class="icon-search"></i>
                     <span v-text="placeholder"></span>
                 </label>
             </div>
-            <a href="javascript:" class="weui-search-bar__cancel-btn" @click="searchCancel" v-show="activated" v-text="cancel">取消</a>
+            <a href="javascript:" class="search-bar__cancel-btn" @click="searchCancel" v-show="activated" v-text="cancel">取消</a>
         </div>
 
         <slot>
@@ -107,6 +107,6 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/icon/weui-icon.less';
-    @import '../../styles/widget/weui-searchbar/weui-searchbar.less';
+    @import '../../styles/icon/icon.less';
+    @import '../../styles/widget/searchbar/searchbar.less';
 </style>

@@ -1,15 +1,15 @@
 <template>
-    <div class="weui-cell weui-cell_swiped">
-        <div class="weui-cell__bd" ref="cell" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
+    <div class="cell cell_swiped">
+        <div class="cell__bd" ref="cell" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
             <wue-cell :icon="icon" :label="label" :to="to">
                 <slot>
                     <span v-html="title"></span>
                 </slot>
             </wue-cell>
         </div>
-        <div class="weui-cell__ft" ref="buttons">
+        <div class="cell__ft" ref="buttons">
             <slot name="button">
-                <a class="weui-swiped-btn weui-swiped-btn_warn" @click="swipeButtonClick('删除')">删除</a>
+                <a class="swiped-btn swiped-btn_warn" @click="swipeButtonClick('删除')">删除</a>
             </slot>
         </div>
     </div>
@@ -145,5 +145,5 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/widget/weui-cell/weui-cell-swiped.less';
+    @import '../../styles/widget/cell/cell-swiped.less';
 </style>

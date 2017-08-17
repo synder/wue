@@ -1,23 +1,23 @@
 <template>
-    <div class="weui-uploader">
-        <div class="weui-uploader__hd" v-if="title || limit">
-            <p class="weui-uploader__title" v-if="title" v-html="title"></p>
-            <div class="weui-uploader__info" v-if="limit">
+    <div class="uploader">
+        <div class="uploader__hd" v-if="title || limit">
+            <p class="uploader__title" v-if="title" v-html="title"></p>
+            <div class="uploader__info" v-if="limit">
                 <span v-text="id"></span>/<span v-text="limit"></span>
             </div>
         </div>
-        <div class="weui-uploader__bd">
-            <ul class="weui-uploader__files">
-                <li class="weui-uploader__file weui-uploader__file_status" v-for="file in files" :style="file.style">
-                    <div class="weui-uploader__file-content">
-                        <i class="weui-icon-info" style="color: red;" v-if="file.status === 'fail'"></i>
+        <div class="uploader__bd">
+            <ul class="uploader__files">
+                <li class="uploader__file uploader__file_status" v-for="file in files" :style="file.style">
+                    <div class="uploader__file-content">
+                        <i class="icon-info" style="color: red;" v-if="file.status === 'fail'"></i>
                         <wue-circle :value="file.percent" :diameter="(width > height ? height : width) - 20"
                                     @click="onPause(file.id)" v-else-if="file.status === 'progress'"></wue-circle>
                     </div>
                 </li>
             </ul>
-            <div class="weui-uploader__input-box" :style="style">
-                <input class="weui-uploader__input" ref="file" type="file" :accept="accept" :capture="capture"
+            <div class="uploader__input-box" :style="style">
+                <input class="uploader__input" ref="file" type="file" :accept="accept" :capture="capture"
                        :multiple="!!multiple">
             </div>
         </div>
@@ -26,8 +26,8 @@
 
 <style lang='less' scoped>
     @import "../../styles/base/reset.less";
-    @import '../../styles/icon/weui-icon.less';
-    @import "../../styles/widget/weui-cell/weui-uploader.less";
+    @import '../../styles/icon/icon.less';
+    @import "../../styles/widget/cell/uploader.less";
 </style>
 
 <script>

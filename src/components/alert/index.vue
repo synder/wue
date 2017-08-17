@@ -4,17 +4,17 @@
                 v-model="showValue"
                 @hide="$emit('hide')"
                 @show="$emit('show')">
-            <div class="weui-dialog__hd">
-                <strong class="weui-dialog__title" v-html="showTitle"></strong>
+            <div class="dialog__hd">
+                <strong class="dialog__title" v-html="showTitle"></strong>
             </div>
-            <div class="weui-dialog__bd">
+            <div class="dialog__bd">
                 <slot>
                     <div v-html="showContent"></div>
                 </slot>
             </div>
-            <div class="weui-dialog__ft">
+            <div class="dialog__ft">
                 <a href="javascript:;"
-                   class="weui-dialog__btn weui-dialog__btn_primary"
+                   class="dialog__btn dialog__btn_primary"
                    @click="click"
                    v-text="button"></a>
             </div>
@@ -89,6 +89,6 @@
 <style lang="less">
     @import "../../styles/base/reset.less";
     @import '../../styles/vue/transition.less';
-    @import '../../styles/widget/weui-tips/weui-mask.less';
-    @import '../../styles/widget/weui-tips/weui-dialog.less';
+    @import '../../styles/widget/tips/mask.less';
+    @import '../../styles/widget/tips/dialog.less';
 </style>

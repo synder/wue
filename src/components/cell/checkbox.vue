@@ -1,12 +1,12 @@
 
 <template>
-    <div class="weui-cells_checkbox">
-        <label class="weui-cell weui-check__label" v-for="item in options" :for="name + item">
-            <div class="weui-cell__hd">
-                <input type="checkbox" class="weui-check" :name="name" :id="name + item" v-model="currentValue" :value="item">
-                <i class="weui-icon-checkbox-checked"></i>
+    <div class="cells_checkbox">
+        <label class="cell check__label" v-for="item in options" :for="name + item">
+            <div class="cell__hd">
+                <input type="checkbox" class="check" :name="name" :id="name + item" v-model="currentValue" :value="item">
+                <i class="icon-checkbox-checked"></i>
             </div>
-            <div class="weui-cell__bd" v-html="item">
+            <div class="cell__bd" v-html="item">
             </div>
         </label>
     </div>
@@ -14,10 +14,10 @@
 
 <style lang='less' rel="stylesheet/less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/icon/weui-icon.less';
-    @import '../../styles/widget/weui-cell/weui-cell-global.less';
-    @import '../../styles/widget/weui-cell/weui-check/weui-checkbox.less';
-    @import '../../styles/widget/weui-cell/weui-check/weui-check_common.less';
+    @import '../../styles/icon/icon.less';
+    @import '../../styles/widget/cell/cell-global.less';
+    @import '../../styles/widget/cell/check/checkbox.less';
+    @import '../../styles/widget/cell/check/check_common.less';
 </style>
 
 <script>

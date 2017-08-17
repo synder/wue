@@ -1,5 +1,5 @@
 <template>
-    <i class="weui-loading" :style="style"></i>
+    <i class="loading" :style="style"></i>
 </template>
 
 <script>
@@ -30,5 +30,5 @@
 
 <style scoped lang="less">
     @import "../../styles/base/reset.less";
-    @import '../../styles/widget/weui-loading/weui-loading.less';
+    @import '../../styles/widget/loading/loading.less';
 </style>

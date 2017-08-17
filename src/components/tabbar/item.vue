@@ -1,13 +1,13 @@
 <template>
-    <a class="weui-tabbar__item" @click.prevent.stop="handleClick" :style="style">
+    <a class="tabbar__item" @click.prevent.stop="handleClick" :style="style">
         <slot>
             <span class="icon-box" v-if="showIcon">
                 <slot name="icon">
-                     <img :src="iconSrc" alt="" class="weui-tabbar__icon">
+                     <img :src="iconSrc" alt="" class="tabbar__icon">
                 </slot>
                 <wue-badge :dot="dot" v-text="badge" v-if="badge || dot"></wue-badge>
             </span>
-            <p class="weui-tabbar__label" v-html="label" :style="style"></p>
+            <p class="tabbar__label" v-html="label" :style="style"></p>
         </slot>
     </a>
 </template>
@@ -78,14 +78,14 @@
 <style scoped lang="less">
 
     @import '../../styles/base/reset.less';
-    @import '../../styles/widget/weui-tab/weui-tabbar.less';
+    @import '../../styles/widget/tab/tabbar.less';
     
     .icon-box{
         display: inline-block;
         position: relative;
     }
     
-    .weui-badge{
+    .badge{
         position: absolute;
         top: -2px;
         right: -13px;

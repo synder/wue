@@ -1,12 +1,12 @@
 <template>
-    <select class="weui-select" v-model="currentValue">
+    <select class="select" v-model="currentValue">
         <option v-for="(option, index) in options" :value="index" v-text="option"></option>
     </select>
 </template>
 
 <style lang="less" scoped>
     @import '../../styles/base/reset.less';
-    @import '../../styles/widget/weui-cell/weui-form/weui-select.less';
+    @import '../../styles/widget/cell/form/select.less';
 </style>
 
 <script>

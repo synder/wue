@@ -1,5 +1,5 @@
 <template>
-    <input class="weui-input"
+    <input class="input"
             :type="type"
             :placeholder="placeholder"
             :value="currentValue"
@@ -69,5 +69,5 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/widget/weui-cell/weui-form/weui-form_common.less';
+    @import '../../styles/widget/cell/form/form_common.less';
 </style>

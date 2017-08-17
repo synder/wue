@@ -1,0 +1,33 @@
+
+/**color**/
+@body-background-color: #FFF;
+@text-color: #FF6600;
+@link-color: #FF6600;
+@link-hover-decoration: none;
+
+@link-hover-color: darken(@link-color, 15%);
+
+/**font**/
+@font-size-base: 14px;
+@line-height-base: 1.4285;
+
+@font-size-small: ceil((@font-size-base * 0.85));
+@font-size-h1: floor((@font-size-base * 2.6));
+@font-size-h2: floor((@font-size-base * 2.15));
+@font-size-h3: ceil((@font-size-base * 1.7));
+@font-size-h4: ceil((@font-size-base * 1.25));
+@font-size-h5: @font-size-base;
+@font-size-h6: ceil((@font-size-base * 0.85));
+
+@line-height-computed: floor((@font-size-base * @line-height-base));
+
+
+/**border**/
+@border-radius: 3px;
+
+
+/*****/
+@accordion-title-color: @text-color;
+@accordion-content-color: @text-color;
+@accordion-arrow-color: @text-color;
+@accordion-line-color: @text-color;

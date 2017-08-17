@@ -5,7 +5,7 @@
 </template>
 
 <script type="text/babel">
-    import avatar from '../../../src/components/avatar/index.vue';
+    import avatar from '../../../src/components/avatar/common.vue';
 
     export default {
         components: {

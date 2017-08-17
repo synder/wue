@@ -1,12 +1,12 @@
 <template>
-    <div class="weui-cell" :class="{ 'weui-cell_warn': !verification, 'weui-cell_vcode': !!showVCode }">
-        <div class="weui-cell__hd">
-            <label class="weui-label" v-html="label" v-if="label">
+    <div class="cell" :class="{ 'cell_warn': !verification, 'cell_vcode': !!showVCode }">
+        <div class="cell__hd">
+            <label class="label" v-html="label" v-if="label">
             </label>
         </div>
-        <div class="weui-cell__bd">
+        <div class="cell__bd">
             <input
-                    class="weui-input"
+                    class="input"
                     rel="input"
                     :type="type"
                     :placeholder="placeholder"
@@ -19,8 +19,8 @@
                     @change="onChange"
                     @input="handleInput">
         </div>
-        <div class="weui-cell__ft">
-            <i class="weui-icon-warn" v-if="!verification"></i>
+        <div class="cell__ft">
+            <i class="icon-warn" v-if="!verification"></i>
             <slot></slot>
         </div>
     </div>
@@ -122,12 +122,12 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/icon/weui-icon.less';
-    @import '../../styles/widget/weui-cell/weui-cell-global.less';
-    @import '../../styles/widget/weui-cell/weui-form/weui-form_common.less';
-    @import '../../styles/widget/weui-cell/weui-form/weui-vcode.less';
+    @import '../../styles/icon/icon.less';
+    @import '../../styles/widget/cell/cell-global.less';
+    @import '../../styles/widget/cell/form/form_common.less';
+    @import '../../styles/widget/cell/form/vcode.less';
     
-    .weui-icon-warn{
+    .icon-warn{
         color: @weuiColorWarn;
     }
 </style>

@@ -1,14 +1,14 @@
 <template>
-    <div class="weui-panel weui-panel_access">
-        <div class="weui-panel__hd" v-if="showHeader">
+    <div class="panel panel_access">
+        <div class="panel__hd" v-if="showHeader">
             <slot name="header"></slot>
         </div>
         
-        <div class="weui-panel__bd">
+        <div class="panel__bd">
             <slot></slot>
         </div>
         
-        <div class="weui-panel__ft" v-if="showFooter">
+        <div class="panel__ft" v-if="showFooter">
             <slot name="footer"></slot>
         </div>
     </div>
@@ -34,5 +34,5 @@
 
 <style lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/widget/weui-panel/weui-panel.less';
+    @import '../../styles/widget/panel/panel.less';
 </style>

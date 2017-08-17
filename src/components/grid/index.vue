@@ -1,5 +1,5 @@
 <template>
-    <div class="weui-grids">
+    <div class="grids">
         <slot></slot>
     </div>
 </template>
@@ -17,5 +17,5 @@
 </script>
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/widget/weui-grid/weui-grid.less';
+    @import '../../styles/widget/grid/grid.less';
 </style>

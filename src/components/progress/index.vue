@@ -9,12 +9,12 @@
         <slot></slot>
     </wue-circle>
     
-    <div class="weui-progress" v-else>
-        <div class="weui-progress__bar" :style="style">
-            <div class="weui-progress__inner-bar js_progress" :style="{width: value + '%', backgroundColor: strokeColor}"></div>
+    <div class="progress" v-else>
+        <div class="progress__bar" :style="style">
+            <div class="progress__inner-bar js_progress" :style="{width: value + '%', backgroundColor: strokeColor}"></div>
         </div>
-        <span v-if="clear" class="weui-progress__opr">
-            <i class="weui-icon-cancel" @click="onCancelClick"></i>
+        <span v-if="clear" class="progress__opr">
+            <i class="icon-cancel" @click="onCancelClick"></i>
         </span>
     </div>
 </template>
@@ -103,6 +103,6 @@
 
 <style scoped lang="less">
     @import "../../styles/base/reset.less";
-    @import '../../styles/icon/weui-icon.less';
-    @import '../../styles/widget/weui-progress/weui-progress.less';
+    @import '../../styles/icon/icon.less';
+    @import '../../styles/widget/progress/progress.less';
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="weui-mask weui-animate-fade-in" v-show="show" @click="close"></div>
+        <div class="mask animate-fade-in" v-show="show" @click="close"></div>
         <div class="wue-city-picker" :class="show ? 'wue-city-picker-active' : ''">
             <div class="wue-city-picker-header">
                 <p class="wue-city-picker-title">{{title}}</p>
@@ -5860,8 +5860,8 @@
 <style lang="less" scoped>
 
     @import "../../styles/base/reset.less";
-    @import "../../styles/icon/weui-icon.less";
-    @import '../../styles/widget/weui-tips/weui-mask.less';
+    @import "../../styles/icon/icon.less";
+    @import '../../styles/widget/tips/mask.less';
 
     @base-zindex: 5000;
     @line-color: #D9D9D9;

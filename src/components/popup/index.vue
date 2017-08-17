@@ -1,8 +1,8 @@
 <template>
     <div class="wue-popup" v-show="currentValue">
-        <div class="weui-mask weui-animate-fade-in" :style="{ backgroundColor: maskBackgroundColor }"
+        <div class="mask animate-fade-in" :style="{ backgroundColor: maskBackgroundColor }"
              @click="maskClick"></div>
-        <div class="wue-popup-body weui-animate-slide-up" :style="style">
+        <div class="wue-popup-body animate-slide-up" :style="style">
             <slot></slot>
         </div>
     </div>
@@ -80,8 +80,8 @@
 <style scoped lang="less">
 
     @import '../../styles/base/reset.less';
-    @import '../../styles/widget/weui-tips/weui-mask.less';
-    @import '../../styles/widget/weui-animate/weui-animate.less';
+    @import '../../styles/widget/tips/mask.less';
+    @import '../../styles/widget/animate/animate.less';
     
     .wue-popup-body {
         display: block;

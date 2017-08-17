@@ -1,12 +1,12 @@
 <template>
-    <div class="weui-slider-box">
-        <div class="weui-slider">
-            <div class="weui-slider__inner" :style="{height: width + 'px'}" ref="runway">
-                <div :style="{width: progress + '%', height: width + 'px'}" class="weui-slider__track"></div>
-                <div :style="{left: progress + '%'}" class="weui-slider__handler" ref="thumb"></div>
+    <div class="slider-box">
+        <div class="slider">
+            <div class="slider__inner" :style="{height: width + 'px'}" ref="runway">
+                <div :style="{width: progress + '%', height: width + 'px'}" class="slider__track"></div>
+                <div :style="{left: progress + '%'}" class="slider__handler" ref="thumb"></div>
             </div>
         </div>
-        <div class="weui-slider-box__value" v-if="showValueBox">
+        <div class="slider-box__value" v-if="showValueBox">
             <slot name="value-box">{{ value }}</slot>
         </div>
     </div>
@@ -120,5 +120,5 @@
 
 <style scoped lang="less">
     @import "../../styles/base/reset.less";
-    @import '../../styles/widget/weui-slider/weui-slider.less';
+    @import '../../styles/widget/slider/slider.less';
 </style>

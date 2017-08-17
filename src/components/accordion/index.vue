@@ -31,10 +31,5 @@
 </script>
 
 <style lang="less" scoped>
-
     @import "../../styles/base/reset.less";
-    
-    .wue-accordion {
-        background-color: #fff;
-    }
 </style>

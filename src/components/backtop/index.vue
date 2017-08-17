@@ -1,7 +1,7 @@
 <template>
     <div class="wue-backtop" :style="style" @click.stop="backTop" v-show="show">
         <slot>
-            <i class="weui-icon-rocket" ></i>
+            <i class="icon-rocket" ></i>
         </slot>
     </div>
 </template>
@@ -110,7 +110,7 @@
 <style lang="less" scoped>
 
     @import "../../styles/base/reset.less";
-    @import "../../styles/icon/weui-icon.less";
+    @import "../../styles/icon/icon.less";
   
 
     @base-zindex: 1;

@@ -1,21 +1,21 @@
 <template>
     <wue-dialog
             v-model="currentValue"
-            :dialogClass="theme === 'android' ? 'weui-dialog weui-skin_android' : 'weui-dialog'"
+            :dialogClass="theme === 'android' ? 'dialog skin_android' : 'dialog'"
             :hide-on-blur="hideOnBlur"
             @on-hide="$emit('on-hide')"
             @on-show="$emit('on-show')">
         
-        <div class="weui-dialog__hd" v-if="!!title">
-            <strong class="weui-dialog__title" v-html="title"></strong>
+        <div class="dialog__hd" v-if="!!title">
+            <strong class="dialog__title" v-html="title"></strong>
         </div>
-        <div class="weui-dialog__bd">
+        <div class="dialog__bd">
             <slot><div v-html="content"></div></slot>
         </div>
-        <div class="weui-dialog__ft">
+        <div class="dialog__ft">
             <slot name="footer">
-                <a class="weui-dialog__btn weui-dialog__btn_default" @click.prevent.stop="onCancel">{{confirm || '取消'}}</a>
-                <a class="weui-dialog__btn weui-dialog__btn_primary" @click.prevent.stop="onConfirm">{{cancel || '确认'}}</a>
+                <a class="dialog__btn dialog__btn_default" @click.prevent.stop="onCancel">{{confirm || '取消'}}</a>
+                <a class="dialog__btn dialog__btn_primary" @click.prevent.stop="onConfirm">{{cancel || '确认'}}</a>
             </slot>
         </div>
     </wue-dialog>
@@ -87,6 +87,6 @@
 <style lang="less">
     @import "../../styles/base/reset.less";
     @import '../../styles/vue/transition.less';
-    @import '../../styles/widget/weui-tips/weui-mask.less';
-    @import '../../styles/widget/weui-tips/weui-dialog.less';
+    @import '../../styles/widget/tips/mask.less';
+    @import '../../styles/widget/tips/dialog.less';
 </style>

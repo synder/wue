@@ -1,14 +1,14 @@
 <template>
     <a :herf="to" class="avatar" :style="style">
         <span class="add">
-            <i class="weui-icon-venus"></i>
+            <i class="icon-venus"></i>
         </span>
     </a>
 </template>
 
 <style lang='less' scoped>
     @import "../../styles/base/reset";
-    @import "../../styles/icon/weui-icon";
+    @import "../../styles/icon/icon";
     
     a.avatar {
         display: inline-block;

@@ -1,11 +1,11 @@
 <template>
-  <label class="weui-switch-cp">
-    <input class="weui-switch-cp__input"
+  <label class="switch-cp">
+    <input class="switch-cp__input"
            :disabled="disabled"
            @change="$emit('change', currentValue)"
            v-model="currentValue"
            type="checkbox">
-    <div class="weui-switch-cp__box"></div>
+    <div class="switch-cp__box"></div>
   </label>
 </template>
 
@@ -39,6 +39,6 @@
 
 <style scoped lang="less">
   @import '../../styles/base/reset.less';
-  @import '../../styles/widget/weui-cell/weui-cell-global.less';
-  @import '../../styles/widget/weui-cell/weui-switch.less';
+  @import '../../styles/widget/cell/cell-global.less';
+  @import '../../styles/widget/cell/switch.less';
 </style>

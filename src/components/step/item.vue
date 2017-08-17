@@ -9,7 +9,7 @@
             <div class="wue-step-item-head-inner">
                 <span v-if="!icon && currentStatus!='finish'" class="wue-step-item-icon">{{currentStepNumber}}</span>
                 <span v-else :class="'wue-step-item-icon ' + 'wue-step-item-' + iconName">
-                    <i class="weui-icon-success-no-circle wue-step-item-checked"></i>
+                    <i class="icon-success-no-circle wue-step-item-checked"></i>
                  </span>
             </div>
         </div>
@@ -60,7 +60,7 @@
 
 <style lang="less" scoped>
     @import "../../styles/base/reset.less";
-    @import '../../styles/icon/weui-icon.less';
+    @import '../../styles/icon/icon.less';
     
     .wue-step-item {
         display: inline-block;

@@ -1,10 +1,10 @@
 <template>
     <div>
         <div class="accordion-title" @click="toggle">
-            <span v-if="$slots.title">
-                <slot name="title"></slot>
-            </span>
-            <span v-else>{{title}}</span>
+            <slot name="title">
+                <span>{{title}}</span>
+            </slot>
+            
             <i :class="show ? 'accordion-rotated' : ''"></i>
         </div>
         <div class="accordion-content" :style="{height: height}">
@@ -14,72 +14,6 @@
         </div>
     </div>
 </template>
-
-<style lang="less" scoped>
-    
-    @import "../../styles/base/reset.less";
-
-    @line-color: #E5E5E5;
-    @arrow-color: #A0A0A0;
-
-    .bottom-line(@color, @zindex: 0) {
-        content: '';
-        position: absolute;
-        z-index: @zindex;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        border-bottom: 1px solid @color;
-        .scaleY(0.5);
-        .transform-origin(0 0);
-    }
-
-    .accordion-title {
-        min-height: 1rem;
-        .display-flex();
-        .flex-align-items(center);
-        position: relative;
-        user-select: none;
-        padding: 0.8rem;
-        overflow: hidden;
-        &:after {
-            .bottom-line(@line-color);
-        }
-        > span {
-            display: block;
-            .flex(1);
-            font-size: 1rem;
-            color: #444;
-        }
-        > i {
-            overflow: hidden;
-            &:after {
-                content: '';
-                width: 0;
-                height: 0;
-                border-left: 5px solid transparent;
-                border-right: 5px solid transparent;
-                border-bottom: 7px solid @arrow-color;
-                display: block;
-                .transition(transform .25s cubic-bezier(0.4, 0.6, 0.2, 1));
-                .rotate(0deg);
-            }
-            &.accordion-rotated:after {
-                .rotate(-180deg);
-            }
-        }
-    }
-
-    .accordion-content {
-        position: relative;
-        overflow: hidden;
-        .transition(height .25s cubic-bezier(0.4, 0.6, 0.2, 1));
-        &:after {
-            .bottom-line(@line-color);
-        }
-    }
-    
-</style>
 
 <script type="text/babel">
     export default {
@@ -118,3 +52,9 @@
         }
     }
 </script>
+
+
+<style lang="less" scoped>
+    @import "../../styles/base/reset";
+    @import "../../styles/widget/accordion/item";
+</style>

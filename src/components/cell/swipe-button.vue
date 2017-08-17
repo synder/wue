@@ -1,12 +1,12 @@
 <template>
-    <a :class="'weui-swiped-btn weui-swiped-btn_' + type" :style="style">
+    <a :class="'swiped-btn swiped-btn_' + type" :style="style">
         <slot></slot>
     </a>
 </template>
 
 <style lang='less' scoped>
     @import "../../styles/base/reset.less";
-    @import '../../styles/widget/weui-cell/weui-cell-swiped.less';
+    @import '../../styles/widget/cell/cell-swiped.less';
 </style>
 
 <script>

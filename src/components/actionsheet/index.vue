@@ -1,29 +1,29 @@
 <template>
     <div>
-        <div class="weui-mask_transparent actionsheet__mask actionsheet__mask_show"
+        <div class="mask_transparent actionsheet__mask actionsheet__mask_show"
              v-show="currentValue && type === 'ios'" 
              @click="currentValue = false"></div>
         
-        <div class="weui-actionsheet weui-actionsheet_toggle" v-if="type === 'ios'" v-show="currentValue">
-            <div class="weui-actionsheet__title" v-if="title">
-                <p class="weui-actionsheet__title-text" v-html="title"></p>
+        <div class="actionsheet actionsheet_toggle" v-if="type === 'ios'" v-show="currentValue">
+            <div class="actionsheet__title" v-if="title">
+                <p class="actionsheet__title-text" v-html="title"></p>
             </div>
-            <div class="weui-actionsheet__menu">
-                <div class="weui-actionsheet__cell" v-for="item in options" 
+            <div class="actionsheet__menu">
+                <div class="actionsheet__cell" v-for="item in options" 
                      :key="item.id" 
                      @click="itemClick(item)"
                      v-text="item.text"></div>
             </div>
-            <div class="weui-actionsheet__action" v-if="cancel">
-                <div class="weui-actionsheet__cell" @click="currentValue = false" v-html="cancel"></div>
+            <div class="actionsheet__action" v-if="cancel">
+                <div class="actionsheet__cell" @click="currentValue = false" v-html="cancel"></div>
             </div>
         </div>
 
-        <div class="weui-skin_android" v-if="type === 'android'" v-show="currentValue">
-            <div class="weui-mask" @click="currentValue = false"></div>
-            <div class="weui-actionsheet">
-                <div class="weui-actionsheet__menu">
-                    <div v-for="item in options" :key="item.id" class="weui-actionsheet__cell" @click="itemClick(item)"
+        <div class="skin_android" v-if="type === 'android'" v-show="currentValue">
+            <div class="mask" @click="currentValue = false"></div>
+            <div class="actionsheet">
+                <div class="actionsheet__menu">
+                    <div v-for="item in options" :key="item.id" class="actionsheet__cell" @click="itemClick(item)"
                          v-text="item.text"></div>
                 </div>
             </div>
@@ -82,8 +82,8 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/widget/weui-tips/weui-mask.less';
-    @import '../../styles/widget/weui-tips/weui-actionsheet.less';
+    @import '../../styles/widget/tips/mask.less';
+    @import '../../styles/widget/tips/actionsheet.less';
 
     .actionsheet__mask_show {
         display: block;

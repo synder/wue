@@ -1,5 +1,5 @@
 <template>
-    <article class="weui-article">
+    <article class="article">
         <div class="article-header">
             <h1 class="article-title" v-html="title"></h1>
             <div class="article-author">
@@ -14,7 +14,7 @@
 
 <style lang='less' rel="stylesheet/less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/widget/weui-page/weui-article.less';
+    @import '../../styles/widget/page/article.less';
     
     .article-content{
         height: auto;

@@ -1,5 +1,5 @@
 <template>
-    <span class="weui-badge" :class="classes" :style="style">
+    <span class="badge" :class="classes" :style="style">
         <slot></slot>
     </span>
 </template>
@@ -27,7 +27,7 @@
         
         computed: {
             classes(){
-                return {'weui-badge_dot': this.dot};
+                return {'badge_dot': this.dot};
             },
             
             style(){
@@ -46,5 +46,5 @@
 
 <style lang="less">
     @import '../../styles/base/reset.less';
-    @import "../../styles/widget/weui-tips/weui-badge.less";
+    @import "../../styles/widget/tips/badge.less";
 </style>

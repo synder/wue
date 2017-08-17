@@ -1,14 +1,14 @@
 <template>
     <div>
-        <div v-if="title" class="weui-cells__title" v-html="title"></div>
-        <div class="weui-cells weui-cells_radio">
-            <label v-for="item in items" :key="item" class="weui-cell weui-check__label">
-                <div class="weui-cell__bd">
+        <div v-if="title" class="cells__title" v-html="title"></div>
+        <div class="cells cells_radio">
+            <label v-for="item in items" :key="item" class="cell check__label">
+                <div class="cell__bd">
                     <p v-text="item"></p>
                 </div>
-                <div class="weui-cell__ft">
-                    <input type="radio" class="weui-check" v-model="currentValue" :value="item">
-                    <span class="weui-icon-radio-checked"></span>
+                <div class="cell__ft">
+                    <input type="radio" class="check" v-model="currentValue" :value="item">
+                    <span class="icon-radio-checked"></span>
                 </div>
             </label>
         </div>
@@ -46,8 +46,8 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/icon/weui-icon.less';
-    @import '../../styles/widget/weui-cell/weui-cell-global.less';
-    @import '../../styles/widget/weui-cell/weui-check/weui-radio.less';
-    @import '../../styles/widget/weui-cell/weui-check/weui-check_common.less';
+    @import '../../styles/icon/icon.less';
+    @import '../../styles/widget/cell/cell-global.less';
+    @import '../../styles/widget/cell/check/radio.less';
+    @import '../../styles/widget/cell/check/check_common.less';
 </style>

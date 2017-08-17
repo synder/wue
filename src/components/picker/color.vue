@@ -9,7 +9,7 @@
                           @click="change(color)"
                           :class="{'wue-color-white': color.toUpperCase().indexOf('#FFF') > -1}">
                         
-                        <i v-if="color === value" class="wue-color-checked weui-icon-success-no-circle" :style="{lineHeight: width + 'px'}"></i>
+                        <i v-if="color === value" class="wue-color-checked icon-success-no-circle" :style="{lineHeight: width + 'px'}"></i>
                     </span>
                 </wue-flex-item>
             </wue-flex>
@@ -108,7 +108,7 @@
 <style lang="less">
 
     @import '../../styles/base/reset.less';
-    @import '../../styles/icon/weui-icon.less';
+    @import '../../styles/icon/icon.less';
     
     .wue-color-box {
         text-align: center;
@@ -127,7 +127,7 @@
         position: relative
     }
 
-    .wue-color-checked .weui-icon-success-no-circle:before {
+    .wue-color-checked .icon-success-no-circle:before {
         color: #fff;
     }
 

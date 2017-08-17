@@ -16,7 +16,7 @@
         <wue-input-cell label="label" placeholder="请输入数字" type="number" v-model="number"></wue-input-cell>
         <wue-input-cell label="请输入 abc" placeholder="请输入 abc" v-model="number" pattern="^\d*$"></wue-input-cell>
         <wue-input-cell label="请输入 abc" placeholder="请输入 abc" v-model="number" pattern="^\d*$">
-            <button class="weui-vcode-btn">获取验证码</button>
+            <button class="vcode-btn">获取验证码</button>
         </wue-input-cell>
 </wue-form>
 ```

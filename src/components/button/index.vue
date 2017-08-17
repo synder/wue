@@ -1,11 +1,11 @@
 <template>
-    <a class="weui-btn" 
+    <a class="btn" 
             :style="style"
             :class="classes" 
             :disabled="disabled" 
             :type="action" 
             @click="onClick">
-        <i class="weui-loading" v-if="loading"></i>
+        <i class="loading" v-if="loading"></i>
         <slot></slot>
     </a>
 </template>
@@ -42,12 +42,12 @@
             classes () {
                 return [
                     {
-                        'weui-btn_disabled': this.disabled,
-                        'weui-btn_mini': this.mini
+                        'btn_disabled': this.disabled,
+                        'btn_mini': this.mini
                     },
-                    `weui-btn_${this.type}`,
-                    this.plain ? `weui-btn_plain-${this.type}` : '',
-                    this.loading ? `weui-btn_loading` : ''
+                    `btn_${this.type}`,
+                    this.plain ? `btn_plain-${this.type}` : '',
+                    this.loading ? `btn_loading` : ''
                 ]
             },
             
@@ -86,7 +86,7 @@
 
 <style lang="less">
     @import "../../styles/base/reset.less";
-    @import '../../styles/widget/weui-button/weui-btn_global.less';
-    @import '../../styles/widget/weui-button/weui-button.less';
-    @import '../../styles/widget/weui-loading/weui-loading.less';
+    @import '../../styles/widget/button/btn_global.less';
+    @import '../../styles/widget/button/button.less';
+    @import '../../styles/widget/loading/loading.less';
 </style>

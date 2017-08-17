@@ -328,9 +328,9 @@
 
     @import '../../styles/base/reset.less';
     @import '../../styles/vue/transition.less';
-    @import '../../styles/widget/weui-tips/weui-mask.less';
-    @import '../../styles/widget/weui-animate/weui-animate.less';
-    @import '../../styles/widget/weui-picker/weui-picker.less';
+    @import '../../styles/widget/tips/mask.less';
+    @import '../../styles/widget/animate/animate.less';
+    @import '../../styles/widget/picker/picker.less';
 
     //use
     @wue-calendar-arrow-color: #04BE02;

@@ -1,11 +1,11 @@
 <template>
-    <a :href="to" class="weui-grid" @click="onClick" :style="style" v-if="to">
-        <div class="weui-grid__icon" v-if="hasIconSlot || icon">
+    <a :href="to" class="grid" @click="onClick" :style="style" v-if="to">
+        <div class="grid__icon" v-if="hasIconSlot || icon">
             <slot name="icon">
                 <img :src="icon" alt="">
             </slot>
         </div>
-        <p v-if="hasLabelSlot || label" class="weui-grid__label">
+        <p v-if="hasLabelSlot || label" class="grid__label">
             <slot name="label">
                 <span v-html="label"></span>
             </slot>
@@ -13,13 +13,13 @@
         <slot></slot>
     </a>
 
-    <div class="weui-grid" @click="onClick" :style="style" v-else>
-        <div class="weui-grid__icon" v-if="hasIconSlot || icon">
+    <div class="grid" @click="onClick" :style="style" v-else>
+        <div class="grid__icon" v-if="hasIconSlot || icon">
             <slot name="icon">
                 <img :src="icon" alt="">
             </slot>
         </div>
-        <p v-if="hasLabelSlot || label" class="weui-grid__label">
+        <p v-if="hasLabelSlot || label" class="grid__label">
             <slot name="label">
                 <span v-html="label"></span>
             </slot>
@@ -71,5 +71,5 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/widget/weui-grid/weui-grid.less';
+    @import '../../styles/widget/grid/grid.less';
 </style>

@@ -3,7 +3,7 @@
             :style="style">
         <div class="wue-header-btn left" @click="leftBtnClick">
             <slot name="left">
-                <i class="weui-icon-arrow-left" v-if="showBack"></i>
+                <i class="icon-arrow-left" v-if="showBack"></i>
             </slot>
         </div>
         <div class="wue-header-title">
@@ -65,7 +65,7 @@
 
 <style scoped lang="less">
     @import '../../styles/base/reset.less';
-    @import '../../styles/icon/weui-icon.less';
+    @import '../../styles/icon/icon.less';
     
     @headerHeight: 40px;
 

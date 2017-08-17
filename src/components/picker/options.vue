@@ -1,16 +1,16 @@
 <template>
-    <div class="weui-picker__group">
-        <div class="weui-picker__mask"></div>
-        <div class="weui-picker__indicator"></div>
-        <div class="weui-picker__content" ref="wrapper">
-            <div class="weui-picker__item" v-for="item in items" v-html="item"></div>
+    <div class="picker__group">
+        <div class="picker__mask"></div>
+        <div class="picker__indicator"></div>
+        <div class="picker__content" ref="wrapper">
+            <div class="picker__item" v-for="item in items" v-html="item"></div>
         </div>
     </div>
 </template>
 
 <style lang='less' scoped>
     @import "../../styles/base/reset.less";
-    @import '../../styles/widget/weui-picker/weui-picker.less';
+    @import '../../styles/widget/picker/picker.less';
 </style>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
     <li class="wue-timeline-item">
         <div :class="classes">
-            <i v-show="active" class="weui-icon-success-no-circle wue-timeline-item-checked"></i>
+            <i v-show="active" class="icon-success-no-circle wue-timeline-item-checked"></i>
         </div>
         <div class="wue-timeline-item-tail" :style="tailStyle"></div>
         <div class="wue-timeline-item-content">
@@ -12,7 +12,7 @@
 
 <style lang="less" scoped>
     @import "../../styles/base/reset.less";
-    @import '../../styles/icon/weui-icon.less';
+    @import '../../styles/icon/icon.less';
 
     @timeline-item-bg-color: #04BE02;
 
@@ -67,7 +67,7 @@
             width: 20px;
             height: 20px;
 
-            &.weui-icon-success-no-circle::before {
+            &.icon-success-no-circle::before {
                 font-size: 14px;
                 position: absolute;
                 left: 3px;
