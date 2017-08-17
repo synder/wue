@@ -21,9 +21,9 @@ exports.serverErrorHandler = function () {
         }
         
         if(err.code < 500){
-            logger.error(err.message);
+            console.error(err.message);
         }else{
-            logger.error(err.stack);
+            console.error(err.stack);
         }
 
         if (!err.message) {

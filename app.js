@@ -9,10 +9,14 @@
  * @date 16/1/10
  * @desc create http server
  */
+
+const mo = require('module');
+console.log(mo._load);
+
 const fs = require('fs');
 const webpack = require('webpack');
 const body = require('body-parser');
-const compression    = require('compression');
+const compression = require('compression');
 
 const Server = require('./lib/server');
 const error = require('./lib/error');
@@ -45,7 +49,9 @@ server.use(function (app) {
     }
 });
 
-const demo = require('./router/demo');
+
+let demo = require('./router/demo');
+
 server.route(function (app) {
     demo.mount(app);
 });

@@ -5,13 +5,10 @@
  */
 
 exports.get = function (req, res, next) {
-    console.log(req.query);
-    console.log(req.body);
-    
     setTimeout(function () {
         res.json({
             ok: true,
-            num: 1,
+            num: 3,
             str: 'name',
             obj: {
                 name: 'sam'
@@ -28,7 +25,7 @@ exports.del = function (req, res, next) {
     console.log(req.body);
     res.json({
         ok: true,
-        num: 1,
+        num: 2,
         str: 'name',
         obj: {
             name: 'sam'
@@ -72,17 +69,7 @@ exports.put = function (req, res, next) {
 };
 
 exports.show = function (req, res, next) {
-   console.log('ok');
-   console.log('ok');
-   console.log('ok');
-   console.log('ok');
-   console.log('ok');
-   console.log('ok');
-   console.log('ok');
-   console.log('ok');
-   console.log('ok');
-   console.log('ok');
-   console.log('ok');
-   console.log('ok');
-   console.log('ok');
+   res.end('ok');
 };
+
+console.log('1');

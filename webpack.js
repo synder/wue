@@ -10,6 +10,7 @@ const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const resolve = function (p) {
     return path.resolve(__dirname, p);
@@ -50,10 +51,15 @@ const plugins = function (htmlPath) {
         allChunks: true
     });
     
+    let dashboard = new DashboardPlugin({
+        port: 3001
+    });
+    
     temp.push(env);
     //temp.push(compress);
     temp.push(html);
     temp.push(css);
+    temp.push(dashboard);
     
     return temp;
 };

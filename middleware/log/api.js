@@ -13,7 +13,7 @@ module.exports = function () {
 
         res.end = function () {
             let dataFrom = res.get('X-Data-From') || 'local';
-            logger.info(req.method, req.path, Date.now() - start, 'from:' + dataFrom);
+            console.info(req.method, req.path, Date.now() - start, 'from:' + dataFrom);
             end.apply(res, arguments);
         };
 

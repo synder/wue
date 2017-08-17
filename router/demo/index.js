@@ -4,9 +4,8 @@
  * @desc
  */
 
-
-const ajax = require('../../controller/demo/ajax');
-const upload = require('../../controller/demo/upload');
+let ajax = require('../../controller/demo/ajax');
+let upload = require('../../controller/demo/upload');
 
 exports.mount = function (app) {
     app.post('/upload', upload.batch);
