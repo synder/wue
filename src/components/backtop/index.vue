@@ -1,26 +1,12 @@
 <template>
-    <div v-show="show" @click.stop="backTop">
+    <div class="wue-backtop" :style="style" @click.stop="backTop" v-show="show">
         <slot>
-            <div class="wue-backtop">
-                <i class="weui-icon-rocket"></i>
-            </div>
+            <i class="weui-icon-rocket" ></i>
         </slot>
     </div>
 </template>
 
 <script type="text/babel">
-
-    const getScrollView = function (el) {
-        let currentNode = el;
-        while (currentNode && currentNode.tagName !== 'HTML' && currentNode.tagName !== 'BODY' && currentNode.nodeType === 1) {
-            let overflowY = document.defaultView.getComputedStyle(currentNode).overflowY;
-            if (overflowY === 'scroll' || overflowY === 'auto') {
-                return currentNode;
-            }
-            currentNode = currentNode.parentNode;
-        }
-        return window;
-    };
     
     const scrollTop = function (el, from = 0, to, duration = 500) {
         if (!window.requestAnimationFrame) {
@@ -62,12 +48,24 @@
             value: {
                 type: Boolean,
                 default: false
+            },
+            color: {
+                type: String,
+                default: '#0BB20C'
             }
         },
         
         data() {
             return {
                 show: this.value
+            }
+        },
+        
+        computed: {
+            style(){
+                return {
+                    color: this.color
+                };
             }
         },
         methods: {
@@ -97,7 +95,7 @@
             }
         },
         mounted() {
-            this.scrollView = getScrollView(this.$el);
+            this.scrollView = window;
 
             this.scrollView.addEventListener('scroll', this.throttledCheck, false);
             this.scrollView.addEventListener('resize', this.scrollHandler, false);

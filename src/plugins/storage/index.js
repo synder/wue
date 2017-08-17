@@ -212,6 +212,7 @@ export {Store};
 
 export default {
     install (Vue) {
-        Vue.prototype.$storage = new Store(window.sessionStorage);
+        Vue.prototype.$session = new Store(window.sessionStorage);
+        Vue.prototype.$local = new Store(window.localStorage);
     }
 };

@@ -19,32 +19,14 @@
 .weui-grids {
     position: relative;
     overflow: hidden;
-
-    &:before {
-        .setTopLine(@weuiGridBorderColor);
-    }
-    &:after {
-        .setLeftLine(@weuiGridBorderColor);
-    }
 }
 
 .weui-grid {
     position: relative;
     float: left;
-    padding: 0.5rem 0;
+    padding: 0;
     width: 100% / @weuiGridColumnCount;
     .box-sizing(border-box);
-
-    &:before {
-        .setRightLine(@weuiGridBorderColor);
-    }
-    &:after {
-        .setBottomLine(@weuiGridBorderColor);
-    }
-
-    &:active {
-        background-color: @weuiBgColorActive;
-    }
 }
 
 .weui-grid__icon {

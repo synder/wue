@@ -1,7 +1,7 @@
 <template>
     <article class="weui-article">
         <div class="article-header">
-            <h1 class="article-title">邓紫棋终于脱离皮裤了，这样的她是不是更可爱呢？</h1>
+            <h1 class="article-title" v-html="title"></h1>
             <div class="article-author">
                 <slot></slot>
             </div>

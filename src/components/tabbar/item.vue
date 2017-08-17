@@ -1,5 +1,5 @@
 <template>
-    <a class="weui-tabbar__item" :class="{ 'weui-bar__item_on': active }" @click.prevent.stop="handleClick">
+    <a class="weui-tabbar__item" @click.prevent.stop="handleClick" :style="style">
         <slot>
             <span class="icon-box" v-if="showIcon">
                 <slot name="icon">
@@ -7,7 +7,7 @@
                 </slot>
                 <wue-badge :dot="dot" v-text="badge" v-if="badge || dot"></wue-badge>
             </span>
-            <p class="weui-tabbar__label" v-html="label"></p>
+            <p class="weui-tabbar__label" v-html="label" :style="style"></p>
         </slot>
     </a>
 </template>
@@ -29,6 +29,8 @@
             onIcon: String,
             badge: Number | String,
             dot: Boolean,
+            activated: String,
+            color: String
         },
         
         data(){
@@ -49,6 +51,18 @@
 
             showIcon(){
                 return this.$slots.icon || this.icon;
+            },
+
+            style(){
+                let temp = {};
+                
+                if(this.active && this.activated){
+                    temp.color = this.activated;
+                }else if(this.color){
+                    temp.color = this.color;
+                }
+                
+                return temp;
             }
         },
 
@@ -65,12 +79,6 @@
 
     @import '../../styles/base/reset.less';
     @import '../../styles/widget/weui-tab/weui-tabbar.less';
-    
-    .weui-bar__item_on{
-        .icon-box{
-            color: #09BB07;
-        }
-    }
     
     .icon-box{
         display: inline-block;

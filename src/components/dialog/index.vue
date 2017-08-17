@@ -5,7 +5,21 @@
         </transition>
         <transition name="wue-dialog">
             <div :class="dialogClass" :style="dialogStyle" v-show="currentValue">
-                <slot></slot>
+                <slot>
+                    <div class="weui-dialog__hd" v-if="title">
+                        <slot name="title">
+                            <strong class="weui-dialog__title" v-html="title"></strong>
+                        </slot>
+                    </div>
+                    <div class="weui-dialog__bd">
+                        <slot name="content"></slot>
+                    </div>
+                    <div class="weui-dialog__ft">
+                        <slot name="footer">
+                            <a class="weui-dialog__btn weui-dialog__btn_default" @click.prevent.stop="confirm">确认</a>
+                        </slot>
+                    </div>
+                </slot>
             </div>
         </transition>
     </div>
@@ -30,6 +44,7 @@
                 type: String,
                 default: 'weui-dialog'
             },
+            title: String,
             hideOnBlur: Boolean,
             dialogStyle: Object,
             scroll: {
@@ -57,6 +72,9 @@
         methods: {
             onTouchMove: function (event) {
                 !this.scroll && event.preventDefault()
+            },
+            confirm: function () {
+                this.currentValue = false;
             }
         }
     }

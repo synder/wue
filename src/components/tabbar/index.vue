@@ -38,7 +38,10 @@
                 return { position: this.fixed ? 'fixed' : 'absolute' };
             }
         },
-        
+
+        activated(){
+            console.log('ok');
+        }
         
     }
 </script>

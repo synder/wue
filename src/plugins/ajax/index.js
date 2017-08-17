@@ -3,7 +3,9 @@
  * @copyright
  * @desc
  */
-    
+// const host = 'http://liqingping.qingmh.com';
+const host = 'http://127.0.0.1:8010';
+
 class AjaxRequest {
 
     constructor(options) {
@@ -135,8 +137,6 @@ class AjaxRequest {
             return this.abort();
         }
     }
-    
-    
 
     _setCrossDomain() {
         let a = document.createElement('a');
@@ -313,7 +313,7 @@ class AjaxRequest {
 
 const ajax = function (options) {
     let ajax = new AjaxRequest({
-        url: options.url,
+        url: host + options.url,
         method: options.method,
         async: options.async,
         type: options.type,

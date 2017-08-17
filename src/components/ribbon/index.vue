@@ -1,6 +1,6 @@
 <template>
     <div class="ribbon">
-        <div class="wrap">
+        <div class="wrap" v-if="show">
             <span class="ribbon-co" v-html="text" :style="style"></span>
         </div>
         <slot></slot>
@@ -29,6 +29,10 @@
                 type: Number,
                 default: 30
             },
+            show: {
+                type: Boolean,
+                default: true
+            }
         },
         
         computed: {
@@ -78,7 +82,7 @@
                 text-align: center;
                 width: 200px;
                 position: absolute;
-                top: 30px;
+                top: 0px;
                 right: -50px;
                 z-index: 2;
                 border: 1px dashed;

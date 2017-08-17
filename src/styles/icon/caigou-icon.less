@@ -1,0 +1,44 @@
+@import "caigou-icon-var";
+
+@font-face {
+  font-family: 'caigou';
+  src:  url('@{font-path}/caigou.eot?8j325g');
+  src:  url('@{font-path}/caigou.eot?8j325g#iefix') format('embedded-opentype'),
+    url('@{font-path}/caigou.ttf?8j325g') format('truetype'),
+    url('@{font-path}/caigou.woff?8j325g') format('woff'),
+    url('@{font-path}/caigou.svg?8j325g#caigou') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'caigou' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cg-icon-dog {
+  &:before {
+    content: @cg-icon-dog;
+  }
+}
+.cg-icon-user {
+  &:before {
+    content: @cg-icon-user;
+  }
+}
+.cg-icon-heart {
+  &:before {
+    content: @cg-icon-heart;
+  }
+}
+

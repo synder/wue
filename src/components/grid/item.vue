@@ -1,5 +1,5 @@
 <template>
-    <a :href="to" class="weui-grid" @click="onClick" :style="style" v-else>
+    <a :href="to" class="weui-grid" @click="onClick" :style="style" v-if="to">
         <div class="weui-grid__icon" v-if="hasIconSlot || icon">
             <slot name="icon">
                 <img :src="icon" alt="">
@@ -12,6 +12,20 @@
         </p>
         <slot></slot>
     </a>
+
+    <div class="weui-grid" @click="onClick" :style="style" v-else>
+        <div class="weui-grid__icon" v-if="hasIconSlot || icon">
+            <slot name="icon">
+                <img :src="icon" alt="">
+            </slot>
+        </div>
+        <p v-if="hasLabelSlot || label" class="weui-grid__label">
+            <slot name="label">
+                <span v-html="label"></span>
+            </slot>
+        </p>
+        <slot></slot>
+    </div>
 </template>
 
 <script>

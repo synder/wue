@@ -1,5 +1,5 @@
 <template>
-    <button class="weui-btn" 
+    <a class="weui-btn" 
             :style="style"
             :class="classes" 
             :disabled="disabled" 
@@ -7,7 +7,7 @@
             @click="onClick">
         <i class="weui-loading" v-if="loading"></i>
         <slot></slot>
-    </button>
+    </a>
 </template>
 
 <script>
@@ -25,7 +25,9 @@
             to: String,
             background: String,
             color: String,
-            radius: Number
+            radius: Number,
+            width: String,
+            height: String
         },
         methods: {
             onClick () {
@@ -60,6 +62,14 @@
                     }
                 }
                 
+                if(this.width){
+                    temp.width = this.width;
+                }
+
+                if(this.height){
+                    temp.height = this.height;
+                }
+                
                 if(this.color){
                     temp.color = this.color;
                 }
@@ -76,11 +86,7 @@
 
 <style lang="less">
     @import "../../styles/base/reset.less";
+    @import '../../styles/widget/weui-button/weui-btn_global.less';
     @import '../../styles/widget/weui-button/weui-button.less';
     @import '../../styles/widget/weui-loading/weui-loading.less';
-    
-    
-    .weui-btn:after{
-       .border-radius(50%);
-    }
 </style>

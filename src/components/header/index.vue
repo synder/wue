@@ -3,7 +3,7 @@
             :style="style">
         <div class="wue-header-btn left" @click="leftBtnClick">
             <slot name="left">
-                <i class="weui-icon-arrow-left"></i>
+                <i class="weui-icon-arrow-left" v-if="showBack"></i>
             </slot>
         </div>
         <div class="wue-header-title">
@@ -12,9 +12,7 @@
             </slot>
         </div>
         <div class="wue-header-btn right">
-            <slot name="right">
-                <i class="weui-icon-more"></i>
-            </slot>
+            <slot name="right"></slot>
         </div>
     </header>
 </template>
@@ -36,7 +34,8 @@
             color: {
                 type: String,
                 default: '#FFF'
-            }
+            },
+            back: Boolean
         },
         
         computed: {
@@ -45,6 +44,14 @@
                     backgroundColor: this.background,
                     color: this.color
                 };
+            },
+            
+            showBack(){
+                if(!this.back){
+                    return false;
+                }
+                
+                return window.history.length > 0;
             }
         },
         

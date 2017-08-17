@@ -15,29 +15,17 @@
 </template>
 
 <script type="text/babel">
-    
+
     import WueSpinner from '../spinner/index.vue';
-    
-    const getScrollView = function (el) {
-        let currentNode = el;
-        while (currentNode && currentNode.tagName !== 'HTML' && currentNode.tagName !== 'BODY' && currentNode.nodeType === 1) {
-            let overflowY = document.defaultView.getComputedStyle(currentNode).overflowY;
-            if (overflowY === 'scroll' || overflowY === 'auto') {
-                return currentNode;
-            }
-            currentNode = currentNode.parentNode;
-        }
-        return window;
-    };
 
     export default {
-        
+
         name: 'wue-infinite-scroll',
-        
+
         components: {
             WueSpinner
         },
-        
+
         data() {
             return {
                 isLoading: false,
@@ -45,7 +33,7 @@
                 num: 1
             }
         },
-        
+
         props: {
             onInfinite: {
                 type: Function,
@@ -58,25 +46,29 @@
                 }
             }
         },
-        
+
         methods: {
             init() {
                 const self = this;
-                
-                this.scrollview = getScrollView(this.$el);
 
-                this.scrollview.addEventListener('scroll', this.throttledCheck, false);
+                self.scrollview = window;
 
-                this.$on('over', () => {
+                self.scrollview.addEventListener('scroll', self.throttledCheck, false);
+
+                self.$on('over', () => {
                     self.over();
                 });
 
-                this.$on('finished', () => {
+                self.$on('finished', () => {
                     self.finished();
                 });
 
-                this.$on('loading', () => {
-                    this.loading();
+                self.$on('loading', () => {
+                    self.loading();
+                });
+
+                self.$on('resize', () => {
+                    self.resize();
                 });
             },
 
@@ -84,7 +76,7 @@
                 this.isLoading = false;
                 this.isDone = true;
             },
-            
+
             finished(){
                 this.isLoading = false;
             },
@@ -92,14 +84,19 @@
             loading(){
                 this.isLoading = true;
             },
-            
+            reset(){
+                this.isLoading = false;
+                this.isDone = false;
+                this.num = 1;
+            },
+
             scrollHandler() {
-                
-                if (this.isLoading){
+
+                if (this.isLoading) {
                     return;
                 }
-                
-                if(this.isDone){
+
+                if (this.isDone) {
                     return;
                 }
 
@@ -110,7 +107,7 @@
                 if (!scrollView) {
                     return;
                 }
-                
+
                 let tag = this.$refs.tag;
 
                 const tagOffsetTop = Math.floor(tag.getBoundingClientRect().top) - 1;
@@ -132,11 +129,11 @@
                 this.throttle(this.scrollHandler);
             }
         },
-        
+
         mounted() {
             this.$nextTick(this.init);
         },
-        
+
         destroyed() {
             this.scrollview.removeEventListener('scroll', this.throttledCheck);
         }
@@ -146,7 +143,7 @@
 <style lang="less" scoped>
 
     @import "../../styles/base/reset.less";
-    
+
     .wue-infinite-list-loading {
         margin-top: 0.8rem;
         margin-bottom: 0.8rem;
@@ -157,10 +154,12 @@
         clear: both;
         line-height: 2rem;
         width: 100%;
-        img {
-            height: inherit;
-            display: inline-block;
-        }
+
+    img {
+        height: inherit;
+        display: inline-block;
+    }
+
     }
 
     .wue-infinite-list-done-tip {
@@ -171,10 +170,10 @@
         clear: both;
         width: 100%;
     }
-    
-    .wue-infinite-list-tag{
+
+    .wue-infinite-list-tag {
         height: 1px;
-        width: 100%; 
+        width: 100%;
         clear: both;
     }
 
