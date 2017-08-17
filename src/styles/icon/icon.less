@@ -11,20 +11,21 @@
   font-style: normal;
 }
 
-i {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'wue' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
+[class^="wue-icon-"], [class*=" wue-icon-"] {
+  display: inline-block;
+  vertical-align: middle;
+  font: normal normal normal 14px/1 "wue";
+  font-size: inherit;
+  text-rendering: auto;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  &:before{
+    // 平滑升级
+    display: inline-block;
+    margin-left: .2em;
+    margin-right: .2em;
+  }
 }
+
 
 .wue-icon-home {
   &:before {

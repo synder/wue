@@ -4,6 +4,9 @@
         <wue-button background="#456554" color="#fff" @click="confirm">confirm</wue-button>
         <wue-button type="warn" @click="loading">loading</wue-button>
         <wue-button type="plain" @click="toast">toast</wue-button>
+        
+        <wue-dialog v-model="show" title="测试">
+        </wue-dialog>
     </div>
 </template>
 
@@ -13,14 +16,19 @@
 
 <script>
     import WueButton from "../../../src/components/button/index";
+    import WueDialog from "../../../src/components/dialog/index";
     export default {
-        components: {WueButton},
+        components: {
+            WueDialog,
+            WueButton},
         name: '',
 
         props: {},
 
         data(){
-            return {};
+            return {
+                show: true
+            };
         },
 
         computed: {},

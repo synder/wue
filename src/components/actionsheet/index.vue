@@ -2,7 +2,8 @@
     <div>
         <div class="mask_transparent actionsheet__mask actionsheet__mask_show"
              v-show="currentValue && type === 'ios'" 
-             @click="currentValue = false"></div>
+             @click="currentValue = false">
+        </div>
         
         <div class="actionsheet actionsheet_toggle" v-if="type === 'ios'" v-show="currentValue">
             <div class="actionsheet__title" v-if="title">
@@ -32,20 +33,25 @@
 </template>
 
 <script>
+    import {ios}  from '../../plugins/device/index';
+    
     export default {
         name: 'wue-actionsheet',
 
         props: {
             value: Boolean,
-            type: {
-                type: String,
-                default: 'ios'
-            },
             title: String | Number,
             options: {
                 type: Array,
                 default: []
             },
+            type: {
+                type: String,
+                default: function () {
+                    return ios() ? 'ios' : 'android';
+                }
+            },
+            
             cancel: {
                 type: String | Number,
             },
@@ -64,7 +70,7 @@
 
             value (val) {
                 this.currentValue = val;
-            }
+            },
         },
 
         methods: {

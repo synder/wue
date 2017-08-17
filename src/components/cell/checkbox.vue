@@ -4,7 +4,7 @@
         <label class="cell check__label" v-for="item in options" :for="name + item">
             <div class="cell__hd">
                 <input type="checkbox" class="check" :name="name" :id="name + item" v-model="currentValue" :value="item">
-                <i class="icon-checkbox-checked"></i>
+                <i class="wue-icon-checkbox-checked"></i>
             </div>
             <div class="cell__bd" v-html="item">
             </div>

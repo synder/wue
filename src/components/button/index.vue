@@ -1,5 +1,6 @@
 <template>
     <a class="btn" 
+            :href="to"
             :style="style"
             :class="classes" 
             :disabled="disabled" 
@@ -27,7 +28,8 @@
             color: String,
             radius: Number,
             width: String,
-            height: String
+            height: String,
+            to: String
         },
         methods: {
             onClick () {

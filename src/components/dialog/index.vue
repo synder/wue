@@ -49,7 +49,7 @@
             dialogStyle: Object,
             scroll: {
                 type: Boolean,
-                default: true
+                default: false
             }
         },
         data () {

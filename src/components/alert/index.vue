@@ -13,9 +13,8 @@
                 </slot>
             </div>
             <div class="dialog__ft">
-                <a href="javascript:;"
-                   class="dialog__btn dialog__btn_primary"
-                   @click="click"
+                <a class="dialog__btn dialog__btn_primary"
+                   @click.prevent.stop="click"
                    v-text="button"></a>
             </div>
         </wue-dialog>

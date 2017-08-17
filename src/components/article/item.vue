@@ -1,5 +1,4 @@
 <template>
-    
     <section class="middle-mode wue-article-section" v-if="video || images && images.length < 3">
         <a class="article-link clearfix" :href="link || 'javascript: void(0)'">
             <div class="article-item-detail" :style="style">

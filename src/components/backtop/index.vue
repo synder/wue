@@ -1,7 +1,7 @@
 <template>
     <div class="wue-backtop" :style="style" @click.stop="backTop" v-show="show">
         <slot>
-            <i class="icon-rocket" ></i>
+            <i class="wue-icon-rocket" ></i>
         </slot>
     </div>
 </template>
@@ -118,9 +118,9 @@
     .wue-backtop {
         width: 3rem;
         height: 3rem;
-        background-color: rgba(230, 230, 230, .85);
+        background-color: @backtop-background-color;
         position: fixed;
-        .border-radius(50%);
+        .border-radius(@backtop-border-radius);
         right: 5%;
         bottom: 5%;
         .flex-box();
@@ -128,7 +128,7 @@
         .flex-justify-content(center);
         z-index: @base-zindex * 1000;
         border: none;
-        color: #0BB20C;
+        color: @backtop-color;
         font-size: 1.5rem;
     }
 </style>

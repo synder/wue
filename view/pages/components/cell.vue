@@ -9,21 +9,21 @@
 
             <wue-swipe-cell title="标题文字" :value="true">
                 <wue-swipe-cell-button type="warn" slot="button" >
-                    <wue-icon name="delete"></wue-icon>
+                    <wue-icon name="wue-icon-delete"></wue-icon>
                 </wue-swipe-cell-button>
             </wue-swipe-cell>
 
             <wue-swipe-cell title="标题文字" :value="true">
                 <wue-swipe-cell-button type="warn" slot="button" >
-                    <wue-icon name="delete" ></wue-icon>
+                    <wue-icon name="wue-icon-delete" ></wue-icon>
                 </wue-swipe-cell-button>
 
                 <wue-swipe-cell-button type="warn" slot="button" background="#ddd">
-                    <wue-icon name="edit"></wue-icon>
+                    <wue-icon name="wue-icon-edit"></wue-icon>
                 </wue-swipe-cell-button>
 
                 <wue-swipe-cell-button type="warn" slot="button" background="#00ffbb">
-                    <wue-icon name="lock"></wue-icon>
+                    <wue-icon name="wue-icon-lock"></wue-icon>
                 </wue-swipe-cell-button>
             </wue-swipe-cell>
             

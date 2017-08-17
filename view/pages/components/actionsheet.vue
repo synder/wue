@@ -1,5 +1,5 @@
 <template>
-    <wue-actionsheet type="ios" @click="onClick" :options="options" cancel="取消" v-model="visible"></wue-actionsheet>
+    <wue-actionsheet @click="onClick" :options="options" cancel="取消" v-model="visible"></wue-actionsheet>
 </template>
 
 <style lang='less' scoped>

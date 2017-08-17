@@ -71,7 +71,7 @@
     .wue-navbar {
         .flex-box();
         width: 100%;
-        z-index: 5000;
+        z-index: 1000;
         background-color: #fff;
     }
 </style>

@@ -3,7 +3,8 @@
         <wue-button type="primary" @click="alert">alert</wue-button>
         <wue-button background="#456554" color="#fff" @click="confirm">confirm</wue-button>
         <wue-button type="warn" @click="loading">loading</wue-button>
-        <wue-button type="plain" @click="toast">toast</wue-button>
+        <wue-button type="plain" background="#456554" @click="toast">toast</wue-button>
+        <wue-button to="http://www.baidu.com">百度</wue-button>
     </div>
 </template>
 
