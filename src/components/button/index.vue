@@ -29,7 +29,6 @@
             radius: Number,
             width: String,
             height: String,
-            to: String
         },
         methods: {
             onClick () {

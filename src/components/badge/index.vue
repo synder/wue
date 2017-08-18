@@ -8,9 +8,14 @@
     export default {
         name: 'wue-badge',
         props: {
-            color:{
+            background:{
                 type: String,
                 default: '#F43530',
+            },
+            
+            color: {
+                type: String,
+                default: '#FFF'
             },
 
             radius: {
@@ -32,7 +37,8 @@
             
             style(){
                 return { 
-                    backgroundColor: this.color,
+                    backgroundColor: this.background,
+                    color: this.color,
                     borderRadius: this.radius.toString().indexOf('%') > 0 ? this.radius : this.radius + 'px',
                 };
             }
